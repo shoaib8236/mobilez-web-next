@@ -1,0 +1,59 @@
+.styled_page_banner {
+  height: 300px;
+  position: relative;
+  margin-bottom: 20px;
+
+  .banner_image_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .banner_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+    background-color: rgba($color: $dark, $alpha: 0.6);
+  }
+
+  .content_wrap {
+    height: 100%;
+    .banner_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+
+      h1 {
+        margin-bottom: 15px;
+      }
+
+      * {
+        color: $light;
+      }
+
+      .breadcrumb {
+        a,
+        span {
+          margin: 0 5px;
+          text-transform: capitalize;
+          color: $light;
+
+          &.active {
+            color: $secondary;
+          }
+        }
+      }
+    }
+  }
+}

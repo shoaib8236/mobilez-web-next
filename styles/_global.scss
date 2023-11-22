@@ -14,7 +14,13 @@ p,
 h1,
 h2,
 h3 {
+  margin: 0;
   margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+
 }
 
 p,li,span{
