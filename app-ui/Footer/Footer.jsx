@@ -12,12 +12,12 @@ const Footer = (props) => {
     <div className="footer">
       <div className="content_wrap">
         <Row>
-          <Col className="gutter-row" lg={7} md={8} sm={24}>
+          <Col className="gutter-row" lg={7} md={7} sm={24}>
             <Image src="/logo.png" alt="logo" width={180} height={80} />
-            <div>
+            <p>
               Pakistan's # 1 Web Portal for <br /> Mobile Phones, Tablets &
               Smart Watches .
-            </div>
+            </p>
             <div className="footer_icons_main">
               <FaFacebook />
               <RiInstagramFill />
@@ -26,7 +26,7 @@ const Footer = (props) => {
               <FaYoutube />
             </div>
           </Col>
-          <Col className="gutter-row" lg={7} md={8} sm={24}>
+          <Col className="gutter-row" lg={7} md={7} sm={24}>
             <div>
               <h4>Useful Links</h4>
               <ul>
@@ -39,7 +39,7 @@ const Footer = (props) => {
               </ul>
             </div>
           </Col>
-          <Col className="gutter-row" lg={10} md={8} sm={24}>
+          <Col className="gutter-row" lg={10} md={10} sm={24}>
             <div>
               <h4>About</h4>
               <ul>
