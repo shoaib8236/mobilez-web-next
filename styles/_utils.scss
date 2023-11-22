@@ -1,32 +1,45 @@
 .content_wrap {
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
 }
 
 .text_primary {
-    color: $primary;
+  color: $primary;
 }
 .text_secondary {
-    color: $secondary;
+  color: $secondary;
 }
 .text_danger {
-    color: $danger;
+  color: $danger;
 }
 .text_info {
-    color: $info;
+  color: $info;
 }
 .text_success {
-    color: $success;
+  color: $success;
 }
 .text_warning {
-    color: $warning;
+  color: $warning;
 }
 
 .text_center {
-    text-align: center;
+  text-align: center;
 }
 
 .w_100 {
-    width: 100%;
+  width: 100%;
 }
+
+.submit_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0;
+}
+
+.page_title {
+  margin-bottom: 30px;
+}
+
+
