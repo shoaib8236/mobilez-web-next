@@ -1,15 +1,11 @@
+import ProductCard from "@/app-ui/ProductCard/ProductCard";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import React from "react";
 
 const Page = () => {
   return (
     <div>
-      <StyledButton className="primary">Click me</StyledButton>
-      <StyledButton className="secondary">Click me</StyledButton>
-      <StyledButton className="danger">Click me</StyledButton>
-      <StyledButton className="info">Click me</StyledButton>
-      <StyledButton className="warning">Click me</StyledButton>
-      <StyledButton className="success">Click me</StyledButton>
+      <ProductCard />
     </div>
   );
 };
