@@ -1,0 +1,10 @@
+.nav_wrapper {
+    height: 80px;
+    display: flex;
+    align-items: center;
+
+
+    a.active {
+        color: $primary;
+    }
+}
