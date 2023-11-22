@@ -1,8 +1,7 @@
 import React from "react";
 
-const AppBanner = (props) => {
-  const {} = props;
-  return <div>AppBanner</div>;
+const AppBanner = () => {
+  return <div></div>;
 };
 
 export default React.memo(AppBanner);
