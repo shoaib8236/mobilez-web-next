@@ -5,6 +5,9 @@ import React from "react";
 const Page = () => {
   return (
     <div>
+      <h1>Lorem</h1>
+      <h2>Lorem</h2>
+      <h3>Lorem</h3>
       <ProductCard />
     </div>
   );
