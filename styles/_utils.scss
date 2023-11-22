@@ -1,6 +1,32 @@
 .content_wrap {
     width: 100%;
-    max-width: 1080px;
+    max-width: 1200px;
     margin: auto;
-    
+}
+
+.text_primary {
+    color: $primary;
+}
+.text_secondary {
+    color: $secondary;
+}
+.text_danger {
+    color: $danger;
+}
+.text_info {
+    color: $info;
+}
+.text_success {
+    color: $success;
+}
+.text_warning {
+    color: $warning;
+}
+
+.text_center {
+    text-align: center;
+}
+
+.w_100 {
+    width: 100%;
 }

@@ -1,10 +1,7 @@
-import React from "react";
-import { Col, Divider, Row } from "antd";
-import { FaFacebook, FaYoutube } from "react-icons/fa";
-import { RiInstagramFill } from "react-icons/ri";
-import { IoLogoLinkedin } from "react-icons/io5";
-import { BiLogoTiktok } from "react-icons/bi";
+import { Col, Row } from "antd";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const Footer = (props) => {
   const {} = props;
@@ -12,39 +9,50 @@ const Footer = (props) => {
     <div className="footer">
       <div className="content_wrap">
         <Row>
-          <Col className="gutter-row" lg={7} md={7} sm={24}>
+          <Col className="footer_cells" lg={8} md={8} sm={24} xs={24}>
             <Image src="/logo.png" alt="logo" width={180} height={80} />
-            <p>
-              Pakistan's # 1 Web Portal for <br /> Mobile Phones, Tablets &
-              Smart Watches .
-            </p>
-            <div className="footer_icons_main">
-              <FaFacebook />
-              <RiInstagramFill />
-              <IoLogoLinkedin />
-              <BiLogoTiktok />
-              <FaYoutube />
+            <div>
+              <p>
+                Pakistan's # 1 Web Portal for <br /> Mobile Phones, Tablets &
+                Smart Watches .
+              </p>
             </div>
           </Col>
-          <Col className="gutter-row" lg={7} md={7} sm={24}>
+          <Col className="footer_cells" lg={8} md={8} sm={24} xs={24}>
             <div>
-              <h4>Useful Links</h4>
+              <h3 className="text_primary">Useful Links</h3>
               <ul>
-                <li>Home</li>
-                <li>Find Me a Device</li>
-                <li>About Us</li>
-                <li>Careers</li>
-                <li>Blog</li>
-                <li>Contact Us</li>
+                <li>
+                  <Link href="/"> Home</Link>
+                </li>
+                <li>
+                  <Link href="/"> Find Me a Device</Link>
+                </li>
+                <li>
+                  <Link href="/"> About Us</Link>
+                </li>
+                <li>
+                  <Link href="/"> Careers</Link>
+                </li>
+                <li>
+                  <Link href="/"> Blog</Link>
+                </li>
+                <li>
+                  <Link href="/"> Contact Us</Link>
+                </li>
               </ul>
             </div>
           </Col>
-          <Col className="gutter-row" lg={10} md={10} sm={24}>
+          <Col className="footer_cells" lg={8} md={8} sm={24} xs={24}>
             <div>
-              <h4>About</h4>
+              <h3>About</h3>
               <ul>
-                <li>Privacy</li>
-                <li>Terms & Conditions</li>
+                <li>
+                  <Link href="/"> Privacy</Link>
+                </li>
+                <li>
+                  <Link href="/"> Terms & Conditions</Link>
+                </li>
               </ul>
             </div>
           </Col>

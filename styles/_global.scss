@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -5,11 +7,55 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 p,
 h1,
 h2,
 h3 {
+  margin: 0;
   margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+p,li,span{
+  font-size: $text_md;
+}
+
+h1 {
+  font-size: $title_lg;
+}
+h2 {
+  font-size: $title_md;
+}
+h3 {
+  font-size: $title_xsm;
+}
+
+@media screen and (max-width: $breakpoint_md) {
+  h1 {
+    font-size: $title_md;
+  }
+  h2 {
+    font-size: $title_sm;
+  }
+  h3 {
+    font-size: $text_lg;
+  }
+}
+@media screen and (max-width: $breakpoint_sm) {
+  h1 {
+    font-size: $title_sm;
+  }
+  h2 {
+    font-size: $title_xsm;
+  }
+  h3 {
+    font-size: $text_lg;
+  }
 }

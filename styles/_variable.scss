@@ -2,21 +2,23 @@
 
 // colors
 
-$primary: #FF9800;
-$secondary: #004DBD;
+$primary: #004DBD;
+$secondary: #FF9800;
 $danger: #f00;
 $warning: #f2a818;
 $success: #089171;
 $info: #17a2b8;
 $light: #ffffff;
+$dark:#000000;
 
 
 // fonts sizes
 
-$title_lg:50px;
-$title_md:40px;
-$title_sm:30px;
-$title_xsm:20px;
+$title_xlg:40px;
+$title_lg:30px;
+$title_md:26px;
+$title_sm:22px;
+$title_xsm:18px;
 
 $text_lg:18px;
 $text_md:16px;
@@ -51,3 +53,12 @@ $radius_xlg: 100px;
 
 //shadow 
 $shadow_light: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+
+
+// Breakpoints
+
+$breakpoint_xs: 320px;
+$breakpoint_sm: 576px;
+$breakpoint_md: 768px;
+$breakpoint_lg: 992px;
+$breakpoint_xl: 1200px;
