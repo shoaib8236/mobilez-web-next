@@ -24,8 +24,7 @@ const StyledButton = (props) => {
         disabled || loading ? "disabled" : ""
       } ${className}`}
     >
-      {icon && <img src={icon} alt="icon" />}{" "}
-      <span className="child_element">{children}</span>
+      {icon && icon} <span className="child_element">{children}</span>
       {loading && (
         <span className="loading_wrap">
           <AiOutlineLoading3Quarters />

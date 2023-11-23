@@ -1,100 +1,120 @@
 .styled_button {
-    padding: 8px 20px;
+  padding: 8px 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: $radius_xlg;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  .loading_wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > svg {
+      animation: loading $transition_slow infinite;
+      font-size: 18px;
+    }
+
+    @keyframes loading {
+      from {
+        transform: rotate(0);
+      }
+
+      from {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &.with_icon {
+    .child_element {
+      display: flex;
+      align-items: center;
+
+      > svg,
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &.light {
     background-color: transparent;
-    border: none;
-    border-radius: $radius_xlg;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+    color: $primary;
+  }
+  &.primary {
+    background-color: $primary;
+    color: $light;
+  }
 
-    .loading_wrap {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  &.secondary {
+    background-color: $secondary;
+    color: $light;
+  }
 
-        >svg {
-            animation: loading $transition_slow infinite;
-            font-size: 18px;
-        }
+  &.danger {
+    background-color: $danger;
+    color: $light;
+  }
 
-        @keyframes loading {
-            from {
-                transform: rotate(0);
-            }
+  &.success {
+    background-color: $success;
+    color: $light;
+  }
 
-            from {
-                transform: rotate(360deg);
-            }
-        }
+  &.info {
+    background-color: $info;
+    color: $light;
+  }
+
+  &.warning {
+    background-color: $warning;
+    color: $light;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .child_element {
+      opacity: 0;
     }
+  }
 
-    &.primary {
-        background-color: $primary;
-        color: $light;
-    }
+  // sizes
 
-    &.secondary {
-        background-color: $secondary;
-        color: $light;
-    }
+  &.xlg {
+    padding: 14px 40px;
+  }
 
-    &.danger {
-        background-color: $danger;
-        color: $light;
-    }
+  &.lg {
+    padding: 10px 30px;
+  }
 
-    &.success {
-        background-color: $success;
-        color: $light;
-    }
+  &.md {
+    padding: 8px 20px;
+  }
 
-    &.info {
-        background-color: $info;
-        color: $light;
-    }
+  &.sm {
+    padding: 6px 15px;
+  }
 
-    &.warning {
-        background-color: $warning;
-        color: $light;
-    }
-
-    &:hover {
-        opacity: 0.8;
-    }
-
-    &:active {
-        opacity: 1;
-    }
-
-    &.disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-
-        .child_element {
-            opacity: 0;
-        }
-    }
-
-    // sizes
-
-    &.xlg {
-        padding: 14px 40px;
-    }
-
-    &.lg {
-        padding: 10px 30px;
-    }
-
-    &.md {
-        padding: 8px 20px;
-    }
-
-    &.sm {
-        padding: 6px 15px;
-    }
+  &.p_0 {
+    padding: 0;
+  }
 }
