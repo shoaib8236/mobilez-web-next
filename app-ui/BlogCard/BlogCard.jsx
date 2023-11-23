@@ -11,23 +11,17 @@ const BlogCard = (props) => {
   return (
     <div className={`blog_card_wrap ${className}`}>
       <div className="image_wrap">
-        <Image
-          width={500}
-          height={300}
-          layout="responsive"
-          src="/pixel-8-pro.webp"
-          alt="/pixel-8-pro.webp"
-        />
+        <Image width={500} height={300} layout="responsive" src="/pixel-8-pro.webp" alt="/pixel-8-pro.webp" />
       </div>
       <div className="card_content">
-        <h3>{data?.title}</h3>
-        <p className="price">PKR - 59999</p>
-        <p>8 GB | 128 GB | Approved</p>
-        <div className="blog_card_area">
-          <p>Karachi</p>
-          <p>23 - Nov</p>
+        <div className="content">
+          <h3>{data?.title}</h3>
+          <p className="price">Infinix Smart 6: A Budget Smartphone With Certain Shortcomings</p>
+          <p className="des">Sketching New Horizons With The Samsung Galaxy A54</p>
         </div>
-        <StyledButton className="primary with_icon">Read More</StyledButton>
+        <div className="blog_card_footer">
+          <StyledButton className="primary with_icon">Read More</StyledButton>
+        </div>
       </div>
     </div>
   );
