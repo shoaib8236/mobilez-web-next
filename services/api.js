@@ -7,7 +7,7 @@ const api = axios.create({
 // Interceptor for adding authorization header
 api.interceptors.request.use(
   (config) => {
-    const token = getToken(); // Implement this function to get the authentication token
+    const token = ""; // Implement this function to get the authentication token
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,14 +26,9 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // If the error status is 401 and the request has not been retried
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error?.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      // Implement your token refresh logic or login logic here
-      // e.g., await refreshToken();
-
-      // Retry the original request
       return api(originalRequest);
     }
 

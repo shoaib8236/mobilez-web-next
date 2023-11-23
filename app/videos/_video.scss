@@ -1,0 +1,14 @@
+.videos_wrapper {
+  .videos_header {
+    border-bottom: solid 1px $stroke_color;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+
+    .styled_input {
+      max-width: 380px;
+    }
+  }
+  .videos {
+    padding: 0 0 60px 0;
+  }
+}
