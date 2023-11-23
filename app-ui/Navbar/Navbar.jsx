@@ -9,6 +9,7 @@ const Navbar = (props) => {
       <Link href={"/"}>Home</Link>
       <Link href={"/about"}>About</Link>
       <Link href={"/careers"}>Career</Link>
+      <Link href={"/contact"}>Contact</Link>
     </div>
   );
 };

@@ -1,34 +1,31 @@
-
-
 // colors
 
-$primary: #004DBD;
-$secondary: #FF9800;
+$primary: #004dbd;
+$secondary: #ff9800;
 $danger: #f00;
 $warning: #f2a818;
 $success: #089171;
 $info: #17a2b8;
 $light: #ffffff;
-$dark:#000000;
+$dark: #000000;
 
+$text_color: #0000008a;
 
 // fonts sizes
 
-$title_xlg:40px;
-$title_lg:30px;
-$title_md:26px;
-$title_sm:22px;
-$title_xsm:18px;
+$title_xlg: 40px;
+$title_lg: 30px;
+$title_md: 26px;
+$title_sm: 22px;
+$title_xsm: 18px;
 
-$text_lg:18px;
-$text_md:16px;
-$text_sm:14px;
-$text_xsm:12px;
-
+$text_lg: 18px;
+$text_md: 16px;
+$text_sm: 14px;
+$text_xsm: 12px;
 
 // Border Colors
 $stroke_color: #e6e6ee;
-
 
 // Font Weights
 $font_light: 300;
@@ -37,12 +34,10 @@ $font_medium: 500;
 $font_semibold: 600;
 $font_bold: 700;
 
-
 // transitions
 $transition_slow: 0.8s;
 $transition_medium: 0.5s;
 $transition_fast: 0.3s;
-
 
 // radius
 $radius_sm: 6px;
@@ -51,9 +46,8 @@ $radius_md: 10px;
 $radius_lg: 15px;
 $radius_xlg: 100px;
 
-//shadow 
+//shadow
 $shadow_light: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
-
 
 // Breakpoints
 
