@@ -7,6 +7,11 @@
   position: relative;
   overflow: hidden;
 
+  span {
+    font-weight: $font_semibold;
+    letter-spacing: 2px;
+  }
+
   .loading_wrap {
     position: absolute;
     height: 100%;
@@ -46,37 +51,51 @@
   }
 
   &.light {
-    background-color: transparent;
-    color: $primary;
+    background-color: $light;
+    span {
+      color: $primary;
+    }
   }
   &.primary {
     background-color: $primary;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &.secondary {
     background-color: $secondary;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &.danger {
     background-color: $danger;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &.success {
     background-color: $success;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &.info {
     background-color: $info;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &.warning {
     background-color: $warning;
-    color: $light;
+    span {
+      color: $light;
+    }
   }
 
   &:hover {
@@ -93,6 +112,50 @@
 
     .child_element {
       opacity: 0;
+    }
+  }
+
+  // text colors
+
+  &.text_primary {
+    span {
+      color: $primary;
+    }
+  }
+
+  &.text_light {
+    span {
+      color: $light;
+    }
+  }
+
+  &.text_secondary {
+    span {
+      color: $secondary;
+    }
+  }
+
+  &.text_danger {
+    span {
+      color: $danger;
+    }
+  }
+
+  &.text_info {
+    span {
+      color: $info;
+    }
+  }
+
+  &.text_success {
+    span {
+      color: $success;
+    }
+  }
+
+  &.text_warning {
+    span {
+      color: $warning;
     }
   }
 

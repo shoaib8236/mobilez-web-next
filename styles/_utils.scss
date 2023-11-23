@@ -8,18 +8,27 @@
 .text_primary {
   color: $primary;
 }
+
+.text_light {
+  color: $light;
+}
+
 .text_secondary {
   color: $secondary;
 }
+
 .text_danger {
   color: $danger;
 }
+
 .text_info {
   color: $info;
 }
+
 .text_success {
   color: $success;
 }
+
 .text_warning {
   color: $warning;
 }
@@ -28,8 +37,29 @@
   text-align: center;
 }
 
+.font_light {
+  font-weight: $font_light;
+}
+.font_regular {
+  font-weight: $font_regular;
+}
+.font_semibold {
+  font-weight: $font_medium;
+}
+.font_medium {
+  font-weight: $font_semibold;
+}
+.font_bold {
+  font-weight: $font_bold;
+}
+
 .w_100 {
   width: 100%;
+}
+
+.w_max_content {
+  min-width: max-content;
+  width: max-content;
 }
 
 .submit_wrapper {
@@ -41,5 +71,3 @@
 .page_title {
   margin-bottom: 30px;
 }
-
-

@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap");
 
 body {
   margin: 0;
@@ -6,8 +8,10 @@ body {
 }
 
 * {
+  font-family: "Roboto", "Helvetica Neue Light", "Helvetica Neue", Helvetica,
+    Arial, "Lucida Grande", sans-serif;
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+  color: $text_color;
 }
 
 p,
@@ -20,23 +24,27 @@ h3 {
 
 a {
   text-decoration: none;
-
 }
 
-p,li,span{
+p,
+li,
+a,
+div {
   font-size: $text_md;
 }
 
 h1 {
   font-size: $title_lg;
+  font-weight: $font_medium;
 }
 h2 {
   font-size: $title_md;
+  font-weight: $font_semibold;
 }
 h3 {
   font-size: $title_xsm;
+  font-weight: $font_semibold;
 }
-
 
 @media screen and (max-width: $breakpoint_md) {
   h1 {
@@ -60,7 +68,3 @@ h3 {
     font-size: $text_lg;
   }
 }
-
-
-
-
