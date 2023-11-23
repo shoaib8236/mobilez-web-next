@@ -1,6 +1,10 @@
 .contact_form_wrap {
   .form_wrap {
     display: flex;
+    padding: 60px 20px;
+    background-color: $light;
+    margin-bottom: 40px;
+    border-radius: $radius_lg;
     .form_cols {
       flex: 1;
 
@@ -35,6 +39,7 @@
               a {
                 display: block;
                 margin: 4px 0;
+                color: $primary;
               }
             }
           }
@@ -67,15 +72,16 @@
             background-color: transparent;
             color: $light;
             margin-right: 10px;
-            border-color: rgba($color: $light, $alpha: 0.5) !important;
+            border-color: rgba($color: $light, $alpha: 1) !important;
+            border-radius: $radius_xlg;
             &:hover {
-              border-color: rgba($color: $light, $alpha: 0.5) !important;
+              border-color: rgba($color: $light, $alpha: 1) !important;
             }
             &:focus {
-              border-color: rgba($color: $light, $alpha: 0.5) !important;
+              border-color: rgba($color: $light, $alpha: 1) !important;
             }
             &::placeholder {
-              color: rgba($color: $light, $alpha: 0.5);
+              color: rgba($color: $light, $alpha: 1);
             }
           }
         }
