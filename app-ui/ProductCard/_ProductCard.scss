@@ -1,0 +1,35 @@
+.product_card_wrap {
+  box-shadow: $shadow_light;
+  border-radius: $radius_md;
+  max-width: 100%;
+
+  .image_wrap {
+    width: 100%;
+  }
+
+  .card_content {
+    padding: 24px 12px;
+    .price {
+      color: $primary;
+    }
+    .blog_card_area {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .primary {
+      margin-top: 10px;
+    }
+
+    h3 {
+      color: $dark;
+    }
+  }
+
+  img {
+    border-top-right-radius: $radius_md;
+    border-top-left-radius: $radius_md;
+    max-height: 225px;
+    object-fit: cover;
+  }
+}

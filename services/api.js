@@ -1,13 +1,12 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://api.example.com", // Your API base URL
+  baseURL: "https://www.mobilezmarket.com/api",
 });
 
-// Interceptor for adding authorization header
 api.interceptors.request.use(
   (config) => {
-    const token = ""; // Implement this function to get the authentication token
+    const token = "";
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
