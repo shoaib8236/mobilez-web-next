@@ -29,7 +29,7 @@ const Page = () => {
         ) : (
           <Row gutter={[20, 20]}>
             {blogs?.map((item) => (
-              <Col key={item?.id} lg={6} md={8} sm={12} xs={24}>
+              <Col key={item?.id} lg={8} md={8} sm={12} xs={24}>
                 <BlogCard data={item} />
               </Col>
             ))}
