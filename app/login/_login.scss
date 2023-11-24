@@ -1,0 +1,46 @@
+.login_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 10px 40px;
+    h2{
+        color: $dark;
+    }
+    p{
+        margin: 20px 0px;
+        .welcome_text{
+            font-weight: $font_semibold;
+        }
+    }
+    .login_btn{
+        margin-top: 10px;
+    }
+    .login_or{
+        border-right: 1px solid #dfdfdf;
+        border-right: 1px solid #dfdfdf;
+    }
+    .sign_google{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px #e6e6ee;
+        padding: 6px;
+        img{
+            margin-left: 8px;
+        }
+    }
+    .sign_facebook{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px #e6e6ee;
+        padding: 6px;
+        img{
+            margin-left: 8px;
+        }
+    }
+}
+.ant-input-affix-wrapper >input.ant-input:focus{
+    border: none;
+}
