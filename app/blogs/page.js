@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import BlogCard from "@/app-ui/BlogCard/BlogCard";
+import BlogSkeleton from "@/app-ui/BlogSkeleton/BlogSkeleton";
 import PageBanner from "@/app-ui/PageBanner/PageBanner";
 import api from "@/services/api";
 import { Col, Row } from "antd";
+import { useEffect, useState } from "react";
 
 const Page = () => {
   const [blogs, setBlogs] = useState([]);
@@ -25,7 +26,17 @@ const Page = () => {
       <PageBanner title="Blogs" />
       <div className="content_wrap">
         {loading ? (
-          <>loading</>
+          <Row gutter={[20, 20]}>
+            <Col lg={8} md={8} sm={12} xs={24}>
+              <BlogSkeleton />
+            </Col>
+            <Col lg={8} md={8} sm={12} xs={24}>
+              <BlogSkeleton />
+            </Col>
+            <Col lg={8} md={8} sm={12} xs={24}>
+              <BlogSkeleton />
+            </Col>
+          </Row>
         ) : (
           <Row gutter={[20, 20]}>
             {blogs?.map((item) => (
