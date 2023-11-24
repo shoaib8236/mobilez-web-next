@@ -1,0 +1,18 @@
+.blogs_details_wrap{
+    img{
+        border-radius: $radius_md;
+        width: 100%;
+    }
+    .blog_content{
+        h2{
+            margin-top: 20px;
+        }
+        .bold_para{
+            font-weight: $font_bold;
+            color: $dark;
+        }
+        p{
+            margin-top: 14px;
+        }
+    }
+}
