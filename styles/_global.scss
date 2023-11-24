@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 body {
   margin: 0;
@@ -8,9 +7,12 @@ body {
 }
 
 * {
-  font-family: "Roboto", "Helvetica Neue Light", "Helvetica Neue", Helvetica,
-    Arial, "Lucida Grande", sans-serif;
+  font-family: "Inter", sans-serif;
   box-sizing: border-box;
+}
+
+#_layout {
+  height: 100svh;
 }
 
 p,
