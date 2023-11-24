@@ -1,6 +1,7 @@
 "use client";
 
 import PageBanner from "@/app-ui/PageBanner/PageBanner";
+import Skeleton from "@/app-ui/Skeleton/Skeleton";
 import YtPlayer from "@/app-ui/YtPlayer/YtPlayers";
 import api from "@/services/api";
 import { Col, Input, Row } from "antd";
@@ -40,7 +41,17 @@ const Page = () => {
 
         <div className="videos">
           {loading ? (
-            "loading"
+            <Row gutter={[20, 20]}>
+                <Col  lg={8} md={8} sm={12} xs={24}>
+              <Skeleton height="180px" width="100%" />
+              </Col>
+                <Col  lg={8} md={8} sm={12} xs={24}>
+              <Skeleton height="180px" width="100%" />
+              </Col>
+                <Col  lg={8} md={8} sm={12} xs={24}>
+              <Skeleton height="180px" width="100%" />
+              </Col>
+            </Row>
           ) : (
             <Row gutter={[20, 20]}>
               {videos?.map((item) => (

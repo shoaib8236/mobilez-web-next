@@ -56,6 +56,9 @@ const Navbar = (props) => {
               <Link href="/blogs">Blogs</Link>
             </li>
             <li>
+              <Link href="/videos">Videos</Link>
+            </li>
+            <li>
               <Link href="/careers">Careers</Link>
             </li>
           </ul>
