@@ -45,7 +45,7 @@ const Footer = (props) => {
           </Col>
           <Col className="footer_cells" lg={8} md={8} sm={24} xs={24}>
             <div>
-              <h3>About</h3>
+              <h3 className="text_primary">About</h3>
               <ul>
                 <li>
                   <Link href="/"> Privacy</Link>
