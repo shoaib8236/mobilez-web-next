@@ -3,14 +3,13 @@ import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { getImage } from "@/utils/helper";
+import Link from "next/link";
 
 const BlogCard = (props) => {
-  const { className = "", data = {}, onClick = ()=>{} } = props;
-
-  console.log(data);
+  const { className = "", data = {}, onClick = () => {} } = props;
 
   return (
-    <div  className={`blog_card_wrap ${className}`}>
+    <div className={`blog_card_wrap ${className}`}>
       <div className="image_wrap">
         <Image
           loading="lazy"
@@ -31,7 +30,11 @@ const BlogCard = (props) => {
           />
         </div>
         <div className="blog_card_footer">
-          <StyledButton onClick={onClick} className="primary with_icon">Read More</StyledButton>
+          <Link href={{ pathname: `/blogs/${data?.slug}` }}>
+            <StyledButton onClick={onClick} className="primary with_icon">
+              Read More
+            </StyledButton>
+          </Link>
         </div>
       </div>
     </div>
