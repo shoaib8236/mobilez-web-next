@@ -55,7 +55,6 @@ const Navbar = (props) => {
             </li>
           </ul>
           <div className="search_container">
-            {/* <StyledSearch />  */}
             <StyledButton className="login_btn light">Sign in</StyledButton>
             <StyledButton className="register_btn primary">
               Register
