@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import { getImage } from "@/utils/helper";
 
 const BlogCard = (props) => {
-  const { className = "", data = {} } = props;
+  const { className = "", data = {}, onClick = ()=>{} } = props;
 
   console.log(data);
 
   return (
-    <div className={`blog_card_wrap ${className}`}>
+    <div  className={`blog_card_wrap ${className}`}>
       <div className="image_wrap">
         <Image
           loading="lazy"
@@ -31,7 +31,7 @@ const BlogCard = (props) => {
           />
         </div>
         <div className="blog_card_footer">
-          <StyledButton className="primary with_icon">Read More</StyledButton>
+          <StyledButton onClick={onClick} className="primary with_icon">Read More</StyledButton>
         </div>
       </div>
     </div>
@@ -41,6 +41,7 @@ const BlogCard = (props) => {
 BlogCard.propTypes = {
   className: PropTypes.string,
   data: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default React.memo(BlogCard);
