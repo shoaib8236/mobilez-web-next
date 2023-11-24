@@ -5,12 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import StyledButton from "../StyledButton/StyledButton";
 import { AiOutlineMenu } from "react-icons/ai";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = (props) => {
   const menuRef = useRef(null);
   const linkRef = useRef(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   const onOpenMobileMenu = useCallback(() => {
     if (menuRef.current && linkRef.current) {
@@ -32,6 +33,10 @@ const Navbar = (props) => {
       }
     }
   }, [pathname, menuRef, linkRef]);
+
+  const onLogin = () => {
+    router.push("/login");
+  };
 
   return (
     <nav className="nav_wrapper">
@@ -55,7 +60,9 @@ const Navbar = (props) => {
             </li>
           </ul>
           <div className="search_container">
-            <StyledButton className="login_btn light">Sign in</StyledButton>
+            <StyledButton onClick={onLogin} className="login_btn light">
+              Sign in
+            </StyledButton>
             <StyledButton className="register_btn primary">
               Register
             </StyledButton>
