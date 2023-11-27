@@ -1,0 +1,23 @@
+.home_wrap {
+  .mb_60 {
+    margin-bottom: 60px;
+  }
+  .home_banner_wrap {
+    height: 400px;
+    width: 100%;
+    position: relative;
+  }
+  .full_banner {
+    padding: 0 30px;
+  }
+  .brands_logo {
+    width: 100%;
+    height: 100px;
+
+    .logo_item {
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+  }
+}

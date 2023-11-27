@@ -7,6 +7,7 @@ import React from "react";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import { GrLocation } from "react-icons/gr";
 import { GoMail } from "react-icons/go";
+import SignupBanner from "@/app-ui/SignupBanner/SignupBanner";
 
 const Page = () => {
   return (
@@ -79,23 +80,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className="signup_banner">
-          <div className="content_wrap">
-            <div>
-              <h1 className="text_light text_center">
-                Sign up for the latest updates
-              </h1>
-            </div>
-            <div>
-              <div className="styled_input">
-                <Input placeholder="Enter your email" />{" "}
-                <StyledButton className="light w_max_content">
-                  Subscribe
-                </StyledButton>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SignupBanner />
       </div>
     </div>
   );

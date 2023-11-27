@@ -1,0 +1,12 @@
+.app_banner {
+  position: relative;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba($color: $dark, $alpha: 0.7);
+  }
+}

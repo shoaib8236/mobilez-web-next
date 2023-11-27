@@ -1,4 +1,5 @@
 import "../styles/index.scss";
+import "swiper/css";
 import Navbar from "@/app-ui/Navbar/Navbar";
 import Footer from "@/app-ui/Footer/Footer";
 
