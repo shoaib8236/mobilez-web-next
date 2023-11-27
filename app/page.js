@@ -1,16 +1,33 @@
 "use client";
 
 import AppBanner from "@/app-ui/AppBanner/AppBanner";
-import PageBanner from "@/app-ui/PageBanner/PageBanner";
+import BrandsSlider from "@/app-ui/BrandsSlider/BrandsSlider";
 import ProductCard from "@/app-ui/ProductCard/ProductCard";
 import SignupBanner from "@/app-ui/SignupBanner/SignupBanner";
 import StyledHeading from "@/app-ui/StyledHeading/StyledHeading";
-import { brandsLogo } from "@/utils/fakeData";
-import { Row, Col } from "antd";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Home() {
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    1200: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+    },
+  };
+
   return (
     <div className="home_wrap">
       <AppBanner className="mb_60" />
@@ -19,7 +36,7 @@ export default function Home() {
       </div>
 
       <div className="content_wrap mb_60">
-        <Swiper spaceBetween={20} slidesPerView={4}>
+        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
           <SwiperSlide>
             <ProductCard />
           </SwiperSlide>
@@ -45,7 +62,7 @@ export default function Home() {
 
       <div className="content_wrap mb_60">
         <div className="content_wrap mb_60">
-          <Swiper spaceBetween={20} slidesPerView={4}>
+          <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
             <SwiperSlide>
               <ProductCard />
             </SwiperSlide>
@@ -71,7 +88,7 @@ export default function Home() {
         <StyledHeading text="RECENTLY ADDED SMART WATCHES" />
       </div>
       <div className="content_wrap mb_60">
-        <Swiper spaceBetween={20} slidesPerView={4}>
+        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
           <SwiperSlide>
             <ProductCard />
           </SwiperSlide>
@@ -93,7 +110,7 @@ export default function Home() {
         <StyledHeading text="RECENTLY ADDED ACCESSORIES" />
       </div>
       <div className="content_wrap mb_60">
-        <Swiper spaceBetween={20} slidesPerView={4}>
+        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
           <SwiperSlide>
             <ProductCard />
           </SwiperSlide>
@@ -111,17 +128,7 @@ export default function Home() {
       <div className="mb_60">
         <SignupBanner />
       </div>
-      <div className="mb_60 brands_logo">
-        <Swiper loop spaceBetween={20} slidesPerView={8}>
-          {brandsLogo?.map((item) => (
-            <SwiperSlide key={item?.id}>
-              <div className="logo_item">
-                <Image height={100} width={100} src={item.logo} />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <BrandsSlider className="mb_60" />
     </div>
   );
 }
