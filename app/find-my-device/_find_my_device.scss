@@ -1,0 +1,36 @@
+.find_my_device_wrap {
+  .flex_layout {
+    display: flex;
+
+    .flex_cols {
+      flex: 1;
+
+      .filters_header {
+        padding: 0 0 20px 0;
+        .flex_between {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .styled_select {
+            max-width: 300px;
+          }
+        }
+      }
+
+      &.for_filters {
+        max-width: 300px;
+        padding-top: 0;
+        margin-right: 15px;
+
+        .sticky_container {
+          padding: 15px;
+          position: sticky;
+          left: 0;
+          top: 0;
+          border-right: solid 1px $stroke_color;
+        }
+      }
+    }
+  }
+}

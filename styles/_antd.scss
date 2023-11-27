@@ -11,10 +11,10 @@
   }
 
   .ant-input {
-    border: solid 2px $stroke_color;
+    border: solid 1px $stroke_color;
     border-width: 2px !important;
     box-shadow: unset;
-    height: 50px;
+    height: 40px;
     border-radius: $radius_sm;
     font-size: $text_md;
     font-weight: $font_medium;
@@ -94,7 +94,7 @@
 
 .ant-select.styled_select {
   width: 100%;
-  height: 50px;
+  height: 40px;
   border-radius: $radius_sm;
   font-size: $text_md;
 
@@ -103,9 +103,9 @@
   }
 
   .ant-select-selector {
-    border: solid 2px $stroke_color;
+    border: solid 1px $stroke_color;
     box-shadow: unset;
-    height: 50px;
+    height: 40px;
   }
 
   &:hover {

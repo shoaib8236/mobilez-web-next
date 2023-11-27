@@ -84,3 +84,28 @@ export const brandsLogo = [
     logo: "/techno.webp",
   },
 ];
+
+export const RamOptions = [
+  { value: "1GB", label: "1GB" },
+  { value: "2GB", label: "2GB" },
+  { value: "4GB", label: "4GB" },
+  { value: "8GB", label: "8GB" },
+  { value: "16GB", label: "16GB" },
+  { value: "18GB", label: "18GB" },
+  { value: "24GB", label: "24GB" },
+];
+
+export const StorageOptions = [
+  { value: "16GB", label: "16GB" },
+  { value: "32GB", label: "32GB" },
+  { value: "64GB", label: "64GB" },
+  { value: "128GB", label: "128GB" },
+  { value: "256GB", label: "256GB" },
+  { value: "512GB", label: "512GB" },
+  { value: "1TB", label: "1TB" },
+];
+
+export const WarrantyOptions = Array.from({ length: 12 }, (_, index) => ({
+  value: `${index + 1} month${index !== 0 ? "s" : ""}`,
+  label: `${index + 1} month${index !== 0 ? "s" : ""}`,
+}));

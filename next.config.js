@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     domains: ["www.mobilezmarket.com"],
   },
+
+
 };
 
 module.exports = nextConfig;
