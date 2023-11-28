@@ -6,12 +6,31 @@ import Link from "next/link";
 import StyledButton from "../StyledButton/StyledButton";
 import { AiOutlineMenu } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
+import useFcmToken from "@/utils/hooks";
+import firebaseApp from "@/firebase/firebase";
+import { getMessaging, onMessage } from 'firebase/messaging';
 
 const Navbar = (props) => {
   const menuRef = useRef(null);
   const linkRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
+
+  const { fcmToken, notificationPermissionStatus } = useFcmToken();
+
+  fcmToken && console.log("FCM token:", fcmToken);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      const messaging = getMessaging(firebaseApp);
+      const unsubscribe = onMessage(messaging, (payload) => {
+        console.log("Foreground push notification received:", payload);
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, []);
 
   const onOpenMobileMenu = useCallback(() => {
     if (menuRef.current && linkRef.current) {
@@ -37,6 +56,8 @@ const Navbar = (props) => {
   const onLogin = () => {
     router.push("/login");
   };
+
+  let token = useFcmToken();
 
   return (
     <nav className="nav_wrapper">
