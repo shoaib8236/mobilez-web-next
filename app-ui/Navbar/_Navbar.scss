@@ -30,6 +30,19 @@
 
       .search_container {
         width: max-content;
+        display: flex;
+        align-items: center;
+        flex-wrap:wrap-reverse;
+        gap: 10px;
+
+        .styled_input {
+          max-width: 240px;
+        }
+
+        button {
+         min-width:max-content;
+        }
+
         .register_btn {
           margin-left: 8px;
         }
@@ -61,8 +74,12 @@
         background-color: $light;
 
         .search_container {
-          max-width: 300px;
+          flex:1;
           margin-left: 20px;
+          .styled_input {
+            margin-right: 10px;
+          }
+
         }
 
         ul {
