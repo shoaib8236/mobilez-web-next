@@ -18,7 +18,7 @@ const BlogCard = (props) => {
           objectFit="cover"
           layout="responsive"
           src={getImage(data?.image)}
-          alt="/pixel-8-pro.webp"
+          alt="/pixel-8-pro.webp" 
         />
       </div>
       <div className="card_content">

@@ -83,7 +83,7 @@ const Page = ({ params: { slug } }) => {
                     <span>Warranty:</span> 12 Months
                   </div>
                   <div>
-                    <span>Product Condition:</span> New
+                    <span>Product Condition:</span> New 
                   </div>
                 </div>
                 <h3 className="desc_heading">Description:</h3>

@@ -50,7 +50,7 @@ export const stringRule = [
   { required: true, message: "This field is required" },
   {
     pattern: new RegExp(/.*[^ ].*/),
-    message: "Field should not be empty!",
+    message: "Field should not be empty!", 
   },
 ];
 export const numberRule = [

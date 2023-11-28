@@ -16,7 +16,7 @@ const Page = () => {
     setLoading(false);
     setBlogs(res?.data?.blogs);
   };
-
+ 
   useEffect(() => {
     getBlogs();
   }, []);

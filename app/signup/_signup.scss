@@ -1,0 +1,37 @@
+.signup_wrap {
+    padding: 60px 0;
+    .signup_form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 10px 40px;
+      h2 {
+        color: $dark;
+      }
+      p {
+        margin: 20px 0px;
+        .welcome_text {
+          font-weight: $font_semibold;
+        }
+      }
+      .signup_btn {
+        margin-top: 10px;
+      }
+      .signup_or {
+        border-right: 1px solid $stroke_color;
+        border-right: 1px solid $stroke_color;
+      }
+      .social_signup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px $stroke_color;
+        padding: 6px;
+        img {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  

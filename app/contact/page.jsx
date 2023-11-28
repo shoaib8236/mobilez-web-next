@@ -40,7 +40,7 @@ const Page = () => {
                     </Form.Item>
                   </Col>
                   <Col className="col_space_20" lg={24} md={12} sm={24} xs={24}>
-                    <Form.Item
+                    <Form.Item 
                       className="styled_input textarea_style"
                       name="number"
                       rules={requiredRule}
