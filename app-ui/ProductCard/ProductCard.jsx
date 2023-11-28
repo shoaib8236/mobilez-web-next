@@ -33,7 +33,7 @@ const ProductCard = (props) => {
           <p>{data?.user?.city}</p>
           <p>{getFormattedDate(data?.created_at, "DD MMM")}</p>
         </div>
-        <Link href={`product/${data?.id}`}>
+        <Link href={`product/${data?.id}/${data?.slug}`}>
           <StyledButton className="primary with_icon">Read More</StyledButton>
         </Link>
       </div>

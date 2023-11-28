@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
@@ -13,8 +12,16 @@ const Page = ({ params: { slug } }) => {
   const [productDetails, setProductDetails] = useState(null);
 
   const getProductsDetails = async () => {
+    let fcmToken = localStorage.getItem("@fcm_token");
+
+    const body = {
+      device_token: fcmToken,
+    };
+
     try {
-      let res = await api.get(`/product-details/${slug}`);
+      let res = await api.get(`/details/${slug[0]}/${slug[1]}`, {
+        params: body,
+      });
       if (res?.data?.status) {
         setProductDetails(res?.data?.details);
       }
@@ -25,7 +32,7 @@ const Page = ({ params: { slug } }) => {
     getProductsDetails();
   }, []);
 
-  console.log(productDetails);
+  console.log(productDetails)
 
   return (
     <>
@@ -83,7 +90,7 @@ const Page = ({ params: { slug } }) => {
                     <span>Warranty:</span> 12 Months
                   </div>
                   <div>
-                    <span>Product Condition:</span> New 
+                    <span>Product Condition:</span> New
                   </div>
                 </div>
                 <h3 className="desc_heading">Description:</h3>

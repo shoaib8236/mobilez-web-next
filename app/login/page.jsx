@@ -3,10 +3,26 @@ import React from "react";
 import { Row, Form, Col, Input, Checkbox } from "antd";
 import { emailRule, passwordRule } from "@/utils/rules";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
+import api from "@/services/api";
 
 const Page = () => {
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+
     
+    try {
+      let res = await api.post('/login', values)
+
+    console.log(res)
+
+    if(res?.data?.status) { 
+      localStorage.setItem('@token', res?.data?.token)
+    }
+    
+  } catch (error) {
+      console.log(error)
+      
+    }
+
   };
   return (
     <div className="login_wrap">
@@ -38,12 +54,12 @@ const Page = () => {
                   </Form.Item>
                   <Form.Item
                     layout="vertical"
-                    className="styled_input"
-                    name="fullName"
+                    className="styled_input password_style"
+                    name="password"
                     rules={passwordRule}
                     label="Password"
                   >
-                    <Input placeholder="Password" />
+                    <Input.Password placeholder="Password" />
                   </Form.Item>
                   <Form.Item>
                     <Checkbox>Keep me logged in</Checkbox>

@@ -8,7 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
 import useFcmToken from "@/utils/hooks";
 import firebaseApp from "@/firebase/firebase";
-import { getMessaging, onMessage } from 'firebase/messaging';
+import { getMessaging, onMessage } from "firebase/messaging";
 
 const Navbar = (props) => {
   const menuRef = useRef(null);
@@ -18,7 +18,11 @@ const Navbar = (props) => {
 
   const { fcmToken, notificationPermissionStatus } = useFcmToken();
 
-  fcmToken && console.log("FCM token:", fcmToken);
+  useEffect(() => {
+    if (fcmToken) {
+      localStorage.setItem("@fcm_token",fcmToken );
+    }
+  }, [fcmToken]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && "serviceWorker" in navigator) {
@@ -56,8 +60,9 @@ const Navbar = (props) => {
   const onLogin = () => {
     router.push("/login");
   };
-
-  let token = useFcmToken();
+  const onRegister = () => {
+    router.push("/signup");
+  };
 
   return (
     <nav className="nav_wrapper">
@@ -93,7 +98,7 @@ const Navbar = (props) => {
             <StyledButton onClick={onLogin} className="login_btn light">
               Sign in
             </StyledButton>
-            <StyledButton className="register_btn primary">
+            <StyledButton onClick={onRegister} className="register_btn primary">
               Register
             </StyledButton>
           </div>
