@@ -6,7 +6,6 @@ import Link from "next/link";
 import StyledButton from "../StyledButton/StyledButton";
 import { AiOutlineMenu } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
-import { Input } from "antd";
 
 const Navbar = (props) => {
   const menuRef = useRef(null);
@@ -70,17 +69,12 @@ const Navbar = (props) => {
             </li>
           </ul>
           <div className="search_container">
-            <div className="styled_input">
-              <Input placeholder="Search here" />
-            </div>
-            <div>
             <StyledButton onClick={onLogin} className="login_btn light">
               Sign in
             </StyledButton>
             <StyledButton className="register_btn primary">
               Register
             </StyledButton>
-            </div>
           </div>
         </div>
         <div className="mobile_actions">
