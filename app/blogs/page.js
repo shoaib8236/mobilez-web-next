@@ -24,7 +24,9 @@ const Page = () => {
   return (
     <div className="blogs_wrapper">
       <PageBanner title="Blogs" />
+
       <div className="content_wrap">
+
         {loading ? (
           <Row gutter={[20, 20]}>
             <Col lg={8} md={8} sm={12} xs={24}>

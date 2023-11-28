@@ -2,15 +2,40 @@
   .flex_layout {
     display: flex;
 
+    .title_with_icon {
+      height: 75px;
+      display: flex;
+      align-items: center;
+      color: $primary;
+
+      &.mb_0 {
+        margin-bottom: 0;
+      }
+
+      svg {
+        margin-right: 10px;
+        color: $primary;
+        font-size: $title_sm;
+      }
+    }
+
     .flex_cols {
       flex: 1;
+      border-top: solid 1px $stroke_color;
+
+      .results_wrapper {
+        margin-top: 10px;
+      }
 
       .filters_header {
-        padding: 0 0 20px 0;
+        height: 75px;
+        display: flex;
+        align-items: center;
         .flex_between {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          width: 100%;
 
           .styled_select {
             max-width: 300px;
@@ -25,10 +50,11 @@
 
         .sticky_container {
           padding: 15px;
+          padding-left: 0;
+          padding-top: 0;
           position: sticky;
           left: 0;
           top: 0;
-          border-right: solid 1px $stroke_color;
         }
       }
     }
