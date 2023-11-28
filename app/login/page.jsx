@@ -6,7 +6,7 @@ import StyledButton from "@/app-ui/StyledButton/StyledButton";
 
 const Page = () => {
   const onSubmit = (values) => {
-    console.log(values);
+    
   };
   return (
     <div className="login_wrap">

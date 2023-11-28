@@ -8,7 +8,7 @@ import React from "react";
 
 const Page = () => {
   const onSubmit = (values) => {
-    console.log(values);
+   
   };
 
   return (
