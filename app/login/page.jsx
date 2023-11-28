@@ -30,7 +30,7 @@ const Page = () => {
                   <Form.Item
                     layout="vertical"
                     className="styled_input"
-                    name="fullName"
+                    name="email"
                     rules={emailRule}
                     label="Email"
                   >
@@ -59,7 +59,7 @@ const Page = () => {
                     <p className="text_center login_or">or</p>
                     <Row gutter={[16, 16]}>
                       <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="sign_google">
+                        <div className="social_login">
                           Sign in with Google{" "}
                           <img
                             src="https://www.mobilezmarket.com/public/assets2/img/google.png"
@@ -68,7 +68,7 @@ const Page = () => {
                         </div>
                       </Col>
                       <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="sign_facebook">
+                        <div className="social_login">
                           Sign in with Facebook{" "}
                           <img
                             src="https://www.mobilezmarket.com/public/assets2/img/facebook.png"

@@ -50,7 +50,7 @@ const Navbar = (props) => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/find-my-device">Find my device</Link>
+              <Link href="/devices">Find my device</Link>
             </li>
             <li>
               <Link href="/about">About</Link>
@@ -78,10 +78,9 @@ const Navbar = (props) => {
           </div>
         </div>
         <div className="mobile_actions">
-          {" "}
           <StyledButton onClick={onOpenMobileMenu} className="nav_open_btn">
             <AiOutlineMenu />
-          </StyledButton>{" "}
+          </StyledButton>
         </div>
       </div>
     </nav>

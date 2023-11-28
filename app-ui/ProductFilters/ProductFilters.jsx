@@ -1,16 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { Form, Select } from "antd";
 import { RamOptions, StorageOptions, WarrantyOptions } from "@/utils/fakeData";
-import api from "@/services/api";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { Form, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
+import {
+  usePathname,
+  useRouter
+} from "next/navigation";
 
 const ProductFilters = (props) => {
 
@@ -44,7 +40,7 @@ const ProductFilters = (props) => {
       layout="vertical"
     >
       <Form.Item name="category" label="Category">
-        <Select className="styled_select">
+        <Select placeholder="Select Category" className="styled_select">
           <Select.Option value="mobile">Mobile</Select.Option>
           <Select.Option value="tablet">Tablet</Select.Option>
           <Select.Option value="watch">Watch</Select.Option>
@@ -52,7 +48,7 @@ const ProductFilters = (props) => {
         </Select>
       </Form.Item>
       <Form.Item name="brands" label="Brands">
-        <Select className="styled_select">
+        <Select placeholder="Select Brand" className="styled_select">
           <Select.Option value="mobile">Mobile</Select.Option>
           <Select.Option value="tablet">Tablet</Select.Option>
           <Select.Option value="watch">Watch</Select.Option>
@@ -60,7 +56,7 @@ const ProductFilters = (props) => {
         </Select>
       </Form.Item>
       <Form.Item name="ram" label="Ram">
-        <Select className="styled_select">
+        <Select placeholder="Select Ram" className="styled_select">
           {RamOptions?.map((item, i) => (
             <Select.Option key={i} value={item?.value}>
               {item?.label}
@@ -68,8 +64,8 @@ const ProductFilters = (props) => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="storage" label="Rom">
-        <Select className="styled_select">
+      <Form.Item name="storage" label="Storage">
+        <Select placeholder="Select Storage" className="styled_select">
           {StorageOptions?.map((item, i) => (
             <Select.Option key={i} value={item?.value}>
               {item?.label}
@@ -78,20 +74,20 @@ const ProductFilters = (props) => {
         </Select>
       </Form.Item>
       <Form.Item name="pta_status" label="PTA Status">
-        <Select className="styled_select">
+        <Select placeholder="Select PTA Status" className="styled_select">
           <Select.Option value={"Approved"}>Approve</Select.Option>
           <Select.Option value={"Not Approved"}>Not Approve</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item name="product_status" label="Product Condition ">
-        <Select className="styled_select">
+        <Select placeholder="Select Condition" className="styled_select">
           <Select.Option value={"new"}>New</Select.Option>
           <Select.Option value={"used"}>Used</Select.Option>
           <Select.Option value={"refurbish"}>Refurbish</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item label="Warranty">
-        <Select className="styled_select">
+        <Select placeholder="Select Warranty" className="styled_select">
           {WarrantyOptions.map((item, i) => (
             <Select.Option key={i} value={item?.item}>
               {item?.label}
@@ -100,7 +96,7 @@ const ProductFilters = (props) => {
         </Select>
       </Form.Item>
       <Form.Item name="city" label="City">
-        <Select className="styled_select">
+        <Select placeholder="Select City" className="styled_select">
           <Select.Option value={"approve"}>Karachi</Select.Option>
         </Select>
       </Form.Item>
