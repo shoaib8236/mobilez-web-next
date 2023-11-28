@@ -4,8 +4,8 @@ import PageBanner from "@/app-ui/PageBanner/PageBanner";
 import api from "@/services/api";
 import { getImage } from "@/utils/helper";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+
 const Page = ({ params: { slug } }) => {
   const [blogDetails, setBlogDetails] = useState(null);
 
