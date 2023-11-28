@@ -8,13 +8,13 @@ const Page = ({params:{slug}}) => {
     <>{slug}
     <section>
         <div className="content_wrap">
-        <Row gutter={[20, 20]}>
+        <Row gutter={[14, 14]}>
       <Col lg={12} md={12} sm={24} xs={24}>
         <div>
             <img className='detail_image' src="https://www.mobilezmarket.com/images/1701098420_A516D43C-8415-4CA6-A53F-0356653054B4.webp" alt="" />
         </div>
       </Col>
-      <Col lg={12} md={12} sm={24} xs={24}>
+      <Col lg={12} md={12} sm={24} xs={24}> 
         <div className='detail_content'>
           <h1>Apple Iphone 15</h1>
           <h1 className='text_secondary'>Rs: 379,999</h1>
