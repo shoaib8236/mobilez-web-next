@@ -63,13 +63,12 @@
         .views_heading{
             margin-top: 14px;
         }
-        .shareicon{
-            background-color: $dark;
-            color: $light;
-            border-radius: $radius_sm;
-            padding: 2px;
-            font-size: 28px;
-            margin-top: 6px;
+        .icons svg{
+                color: $dark;
+                border-radius: $radius_sm;
+                padding: 2px;
+                font-size: 28px;
+                margin-top: 6px;
         }
     }
 }
