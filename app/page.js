@@ -11,6 +11,7 @@ import { Col, Row } from "antd";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 const fetchData = async (category) => {
   try {
@@ -50,23 +51,34 @@ export default function Home() {
   const smartWatches = useCategoryData("watch");
   const accessories = useCategoryData("accessories");
 
-  const breakpoints = {
-    300: {
-      slidesPerView: 1,
-      spaceBetween: 10,
+  let sliderProp = {
+    breakpoints: {
+      300: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      1200: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
     },
-    480: {
-      slidesPerView: 2,
-      spaceBetween: 20,
+    spaceBetween: 20,
+    slidesPerView: 4,
+
+    pagination: {
+      clickable: true,
+      dynamicBullets: true,
     },
-    768: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-    1200: {
-      slidesPerView: 4,
-      spaceBetween: 40,
-    },
+    navigation: true,
+    
   };
 
   const renderSkeleton = () => {
@@ -102,11 +114,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper
-              breakpoints={breakpoints}
-              spaceBetween={20}
-              slidesPerView={4}
-            >
+            <Swiper {...sliderProp}  modules={[Pagination]}>
               {mobiles?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -131,11 +139,7 @@ export default function Home() {
             renderSkeleton()
           ) : (
             <>
-              <Swiper
-                breakpoints={breakpoints}
-                spaceBetween={20}
-                slidesPerView={4}
-              >
+              <Swiper {...sliderProp}  modules={[Pagination]} >
                 {tablets?.data?.data?.map((item) => (
                   <SwiperSlide key={item?.id}>
                     <ProductCard data={item} />
@@ -160,11 +164,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper
-              breakpoints={breakpoints}
-              spaceBetween={20}
-              slidesPerView={4}
-            >
+            <Swiper {...sliderProp}  modules={[Pagination]} >
               {smartWatches?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -185,11 +185,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper
-              breakpoints={breakpoints}
-              spaceBetween={20}
-              slidesPerView={4}
-            >
+            <Swiper {...sliderProp}  modules={[Pagination]} >
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />

@@ -1,14 +1,16 @@
-import React from 'react'
+import React from "react";
 import ImageGallery from "react-image-gallery";
 
 const ImagesGallery = (props) => {
-  const {images} = props
-    
+  const { images } = props;
+
   return (
     <>
-            <ImageGallery items={images}/>;
+      <div className="styled_gallery">
+        <ImageGallery items={images} />
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default ImagesGallery;

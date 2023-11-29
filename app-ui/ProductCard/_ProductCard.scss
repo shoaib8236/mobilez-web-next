@@ -1,16 +1,27 @@
 .product_card_wrap {
   box-shadow: $shadow_light;
-  border-radius: $radius_md;
+  border-radius: $radius_sm;
   max-width: 100%;
+  overflow: hidden;
 
   .image_wrap {
     width: 100%;
+    position: relative;
+    height: 250px;
   }
 
   .card_content {
     padding: 24px 12px;
+    p {
+      font-size: $text_sm;
+      color: $dark;
+      margin-bottom: 5px;
+      font-weight: $font_semibold;
+    }
     .price {
       color: $primary;
+      font-size: $text_md;
+      margin-bottom: 10px;
     }
     .blog_card_area {
       display: flex;
@@ -26,10 +37,4 @@
     }
   }
 
-  img {
-    border-top-right-radius: $radius_md;
-    border-top-left-radius: $radius_md;
-    max-height: 225px;
-    object-fit: cover;
-  }
 }

@@ -12,9 +12,8 @@ const ProductCard = (props) => {
     <div className={`product_card_wrap ${className}`}>
       <div className="image_wrap">
         <Image
-          height={268}
-          width={225}
-          layout="responsive"
+          loading="lazy"
+          fill
           objectFit="cover"
           objectPosition="top"
           src={getImage(data?.image?.img)}
