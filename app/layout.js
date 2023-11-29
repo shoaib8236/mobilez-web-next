@@ -2,6 +2,7 @@ import "../styles/index.scss";
 import "swiper/css";
 import Navbar from "@/app-ui/Navbar/Navbar";
 import Footer from "@/app-ui/Footer/Footer";
+import "react-image-gallery/styles/scss/image-gallery.scss";
 
 export const metadata = {
   title: "Create Next App",

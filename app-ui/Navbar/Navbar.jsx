@@ -64,6 +64,7 @@ const Navbar = (props) => {
     router.push("/signup");
   };
 
+
   return (
     <nav className="nav_wrapper">
       <div className="nav_content">
