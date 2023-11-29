@@ -1,11 +1,13 @@
 "use client";
 
 import AppBanner from "@/app-ui/AppBanner/AppBanner";
+import BlogSkeleton from "@/app-ui/BlogSkeleton/BlogSkeleton";
 import BrandsSlider from "@/app-ui/BrandsSlider/BrandsSlider";
 import ProductCard from "@/app-ui/ProductCard/ProductCard";
 import SignupBanner from "@/app-ui/SignupBanner/SignupBanner";
 import StyledHeading from "@/app-ui/StyledHeading/StyledHeading";
 import api from "@/services/api";
+import { Col, Row } from "antd";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -48,11 +50,6 @@ export default function Home() {
   const smartWatches = useCategoryData("watch");
   const accessories = useCategoryData("accessories");
 
-  console.log(mobiles);
-  console.log(tablets);
-  console.log(smartWatches);
-  console.log(accessories);
-
   const breakpoints = {
     320: {
       slidesPerView: 1,
@@ -72,6 +69,27 @@ export default function Home() {
     },
   };
 
+  const renderSkeleton = () => {
+    return (
+      <>
+        <Row gutter={[40, 40]}>
+          <Col lg={6}>
+            <BlogSkeleton />
+          </Col>
+          <Col lg={6}>
+            <BlogSkeleton />
+          </Col>
+          <Col lg={6}>
+            <BlogSkeleton />
+          </Col>
+          <Col lg={6}>
+            <BlogSkeleton />
+          </Col>
+        </Row>
+      </>
+    );
+  };
+
   return (
     <div className="home_wrap">
       <AppBanner className="mb_60" />
@@ -80,13 +98,23 @@ export default function Home() {
       </div>
 
       <div className="content_wrap mb_60">
-        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
-          {mobiles?.data?.data?.map((item) => (
-            <SwiperSlide key={item?.id}>
-              <ProductCard data={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {mobiles === null ? (
+          renderSkeleton()
+        ) : (
+          <>
+            <Swiper
+              breakpoints={breakpoints}
+              spaceBetween={20}
+              slidesPerView={4}
+            >
+              {mobiles?.data?.data?.map((item) => (
+                <SwiperSlide key={item?.id}>
+                  <ProductCard data={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        )}
       </div>
 
       <div className="home_banner_wrap mb_60">
@@ -99,13 +127,23 @@ export default function Home() {
 
       <div className="content_wrap mb_60">
         <div className="content_wrap mb_60">
-          <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
-            {tablets?.data?.data?.map((item) => (
-              <SwiperSlide key={item?.id}>
-                <ProductCard data={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {tablets === null ? (
+            renderSkeleton()
+          ) : (
+            <>
+              <Swiper
+                breakpoints={breakpoints}
+                spaceBetween={20}
+                slidesPerView={4}
+              >
+                {tablets?.data?.data?.map((item) => (
+                  <SwiperSlide key={item?.id}>
+                    <ProductCard data={item} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </>
+          )}
         </div>
       </div>
       <div className="mb_60">
@@ -118,13 +156,23 @@ export default function Home() {
         <StyledHeading text="RECENTLY ADDED SMART WATCHES" />
       </div>
       <div className="content_wrap mb_60">
-        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
-          {smartWatches?.data?.data?.map((item) => (
-            <SwiperSlide key={item?.id}>
-              <ProductCard data={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {accessories === null ? (
+          renderSkeleton()
+        ) : (
+          <>
+            <Swiper
+              breakpoints={breakpoints}
+              spaceBetween={20}
+              slidesPerView={4}
+            >
+              {smartWatches?.data?.data?.map((item) => (
+                <SwiperSlide key={item?.id}>
+                  <ProductCard data={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        )}
       </div>
       <div className="home_banner_wrap mb_60">
         <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
@@ -133,13 +181,23 @@ export default function Home() {
         <StyledHeading text="RECENTLY ADDED ACCESSORIES" />
       </div>
       <div className="content_wrap mb_60">
-        <Swiper breakpoints={breakpoints} spaceBetween={20} slidesPerView={4}>
-          {accessories?.data?.data?.map((item) => (
-            <SwiperSlide key={item?.id}>
-              <ProductCard data={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {accessories === null ? (
+          renderSkeleton()
+        ) : (
+          <>
+            <Swiper
+              breakpoints={breakpoints}
+              spaceBetween={20}
+              slidesPerView={4}
+            >
+              {accessories?.data?.data?.map((item) => (
+                <SwiperSlide key={item?.id}>
+                  <ProductCard data={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
+        )}
       </div>
       <div className="mb_60">
         <SignupBanner />
