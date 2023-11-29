@@ -46,7 +46,10 @@ const useAuthCheck = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("@token")) {
+    if (
+      localStorage.getItem("@token") &&
+      Object.keys(JSON.parse(localStorage.getItem("@user"))|| {})?.length
+    ) {
       setIsAuth(true);
     } else {
       setIsAuth(false);

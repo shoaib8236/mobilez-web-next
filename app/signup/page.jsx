@@ -1,6 +1,6 @@
 "use client";
-import React, {useEffect} from "react";
-import { Row, Form, Col, Input, Checkbox, Select } from "antd";
+import React, { useEffect, useState } from "react";
+import { Row, Form, Col, Input, Checkbox, Select, notification } from "antd";
 import {
   emailRule,
   passwordRule,
@@ -14,7 +14,10 @@ import { useAuthCheck } from "@/utils/hooks";
 
 const Page = () => {
   const router = useRouter();
-  const {authCheck} = useAuthCheck()
+  const { authCheck } = useAuthCheck();
+
+  const [loading, setLoading] = useState(false);
+  const [accountType, setAccountType] = useState(false);
 
   useEffect(() => {
     if (authCheck) {
@@ -25,9 +28,36 @@ const Page = () => {
   const onSubmit = async (values) => {
     console.log(values);
 
+    if (values?.password !== values?.conf_password) {
+      notification.error({ message: "Password does not match!" });
+      return;
+    }
     try {
+      setLoading(true);
       const res = await api.post("/register-user", { ...values, terms: true });
-    } catch (error) {}
+      if (res?.data?.status === 400) {
+        notification.error({ message: res?.data?.errors?.email?.[0] });
+        setLoading(false);
+      }
+
+      if (res?.data?.status === 200) {
+        notification.success({ message: res?.data?.message });
+        localStorage.setItem("@phone", values?.phone);
+        localStorage.setItem("@token", res?.data?.token);
+        setLoading(false);
+        router.push("/otp");
+      } else if (res?.data?.status === 419) {
+        notification.error({ message: res?.data?.message });
+        setLoading(false);
+      }
+    } catch (error) {
+      notification.error({ message: error?.response?.data?.message });
+      setLoading(false);
+    }
+  };
+
+  const onChangeAccountType = (e) => {
+    setAccountType(e === "business");
   };
 
   return (
@@ -107,7 +137,7 @@ const Page = () => {
                   <Row gutter={[8, 8]}>
                     <Col lg={24} md={24} sm={24}>
                       <Form.Item
-                        className="styled_input textarea_style"
+                        className="styled_input"
                         name="phone"
                         rules={numberRule}
                         label="Contact number"
@@ -143,12 +173,11 @@ const Page = () => {
                   <Row gutter={[8, 8]}>
                     <Col lg={12} md={12} sm={24}>
                       <Form.Item
-                        className="styled_input textarea_style"
+                        className="styled_input"
                         name="code"
-                        rules={numberRule}
-                        label="Refferal Code"
+                        label="Referral Code"
                       >
-                        <Input placeholder="Refferal Code" />
+                        <Input placeholder="Referral Code" />
                       </Form.Item>
                     </Col>
                     <Col lg={12} md={12} sm={24}>
@@ -158,6 +187,7 @@ const Page = () => {
                         label="Select Account Type"
                       >
                         <Select
+                          onChange={onChangeAccountType}
                           placeholder="Select Account Type"
                           className="styled_select"
                         >
@@ -171,6 +201,31 @@ const Page = () => {
                       </Form.Item>
                     </Col>
                   </Row>
+                  {accountType ? (
+                    <Row gutter={[8, 8]}>
+                      <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                        rules={requiredRule}
+                          className="styled_input"
+                          name="shop_name"
+                          label="Shop Name"
+                        >
+                          <Input placeholder="Shop Name" />
+                        </Form.Item>
+                      </Col>
+                      <Col lg={12} md={12} sm={24}>
+                        <Form.Item
+                          rules={requiredRule}
+                          name="shop_address"
+                          label="Shop Address"
+                          className="styled_input"
+                        >
+                          <Input placeholder="Shop Address" />
+                        
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                  ) : null}
 
                   <Form.Item
                     name="agreement"
@@ -194,6 +249,7 @@ const Page = () => {
                   <div>
                     <div className="submit_wrapper">
                       <StyledButton
+                        loading={loading}
                         className="primary w_100
                       "
                         type="submit"

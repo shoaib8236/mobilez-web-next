@@ -6,9 +6,9 @@ export const getImage = (endPoint) => {
   } else return "";
 };
 
-export const getFormattedDate = (date, form) => {
-  if (form) {
-    return moment(date).format(form);
+export const getFormattedDate = (date, frmt) => {
+  if (frmt) {
+    return moment(date).format(frmt);
   } else {
     return moment(date).format("DD MMM YYYY");
   }
@@ -16,5 +16,9 @@ export const getFormattedDate = (date, form) => {
 
 export const logout = () => {
   localStorage.clear();
-  window.location.reload()
+  window.location.reload();
+};
+
+export const removeStorageItemByKey = (key) => {
+  localStorage.removeItem(`@${key}`);
 };
