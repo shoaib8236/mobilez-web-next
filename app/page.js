@@ -51,7 +51,7 @@ export default function Home() {
   const accessories = useCategoryData("accessories");
 
   const breakpoints = {
-    320: {
+    300: {
       slidesPerView: 1,
       spaceBetween: 10,
     },
