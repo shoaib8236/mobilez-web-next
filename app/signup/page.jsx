@@ -10,9 +10,11 @@ import {
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
 import { useRouter } from "next/navigation";
+import { useAuthCheck } from "@/utils/hooks";
 
 const Page = () => {
   const router = useRouter();
+  const {authCheck} = useAuthCheck()
 
   useEffect(() => {
     if (authCheck) {
