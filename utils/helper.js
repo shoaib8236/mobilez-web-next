@@ -13,3 +13,8 @@ export const getFormattedDate = (date, form) => {
     return moment(date).format("DD MMM YYYY");
   }
 };
+
+export const logout = () => {
+  localStorage.clear();
+  window.location.reload()
+};

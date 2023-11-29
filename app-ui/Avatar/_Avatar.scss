@@ -1,0 +1,38 @@
+.styled_avatar {
+  position: relative;
+  overflow: hidden;
+  height: 110px;
+  width: 110px;
+  min-width: 110px;
+  min-height: 110px;
+  border-radius: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.md {
+    height: 80px;
+    width: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 80px;
+  }
+
+  &.sm {
+    height: 50px;
+    width: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50px;
+  }
+  &.xsm {
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 30px;
+  }
+}

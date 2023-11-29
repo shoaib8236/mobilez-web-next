@@ -20,7 +20,8 @@ const useFcmToken = () => {
           // Check if permission is granted before retrieving the token
           if (permission === "granted") {
             const currentToken = await getToken(messaging, {
-              vapidKey: "BK5FBlQMu1v8VOmhxuZ-xQ8qZ5nd3kZlGLfYWvsFOQazsMAAyWGsZHdC3lUpF8q8og_gSPXS9zFzTPYp-iLOaig",
+              vapidKey:
+                "BK5FBlQMu1v8VOmhxuZ-xQ8qZ5nd3kZlGLfYWvsFOQazsMAAyWGsZHdC3lUpF8q8og_gSPXS9zFzTPYp-iLOaig",
             });
             if (currentToken) {
               setToken(currentToken);
@@ -41,4 +42,20 @@ const useFcmToken = () => {
   return { fcmToken: token, notificationPermissionStatus };
 };
 
-export default useFcmToken;
+const useAuthCheck = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("@token")) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+      localStorage.clear();
+    }
+  }, []);
+
+  // Return the authentication status
+  return { authCheck: isAuth };
+};
+
+export { useFcmToken, useAuthCheck };

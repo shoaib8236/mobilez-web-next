@@ -2,6 +2,7 @@ import "../styles/index.scss";
 import "swiper/css";
 import Navbar from "@/app-ui/Navbar/Navbar";
 import Footer from "@/app-ui/Footer/Footer";
+import RootLayer from "@/app-ui/RootLayer/RootLayer";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,9 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <div id="_layout">{children}</div>
-        <Footer />
+        <RootLayer>      
+          <div id="_layout">{children}</div>       
+        </RootLayer>
       </body>
     </html>
   );

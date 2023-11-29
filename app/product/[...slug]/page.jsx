@@ -32,7 +32,6 @@ const Page = ({ params: { slug } }) => {
     getProductsDetails();
   }, []);
 
-  console.log(productDetails)
 
   return (
     <>

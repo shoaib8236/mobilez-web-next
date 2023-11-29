@@ -1,38 +1,29 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+import { getImage, logout } from "@/utils/helper";
+import { useAuthCheck } from "@/utils/hooks";
+import { Dropdown } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import StyledButton from "../StyledButton/StyledButton";
-import { AiOutlineMenu } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
-import useFcmToken from "@/utils/hooks";
-import firebaseApp from "@/firebase/firebase";
-import { getMessaging, onMessage } from "firebase/messaging";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AiFillCaretDown, AiOutlineMenuFold } from "react-icons/ai";
+import Avatar from "../Avatar/Avatar";
+import StyledButton from "../StyledButton/StyledButton";
 
-const Navbar = (props) => {
+const Navbar = ({ userData }) => {
   const menuRef = useRef(null);
   const linkRef = useRef(null);
   const pathname = usePathname();
   const router = useRouter();
 
-  const { fcmToken, notificationPermissionStatus } = useFcmToken();
+  const [user, setUser] = useState(null);
+  const { authCheck } = useAuthCheck();
 
   useEffect(() => {
-    if (fcmToken) {
-      localStorage.setItem("@fcm_token",fcmToken );
-    }
-  }, [fcmToken]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-      const messaging = getMessaging(firebaseApp);
-      const unsubscribe = onMessage(messaging, (payload) => {
-        console.log("Foreground push notification received:", payload);
-      });
-      return () => {
-        unsubscribe();
-      };
+    let getUser = JSON.parse(localStorage.getItem("@user"));
+    if (getUser) {
+      setUser(getUser);
     }
   }, []);
 
@@ -60,9 +51,67 @@ const Navbar = (props) => {
   const onLogin = () => {
     router.push("/login");
   };
+
   const onRegister = () => {
     router.push("/signup");
   };
+
+  const onPushToDashboard = (endPoint) => () => {
+    window.open(`https://www.mobilezmarket.com/${endPoint}`);
+  };
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <>
+          <span onClick={onPushToDashboard("mydevices")}>Dashboard</span>
+        </>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <>
+          <span onClick={onPushToDashboard("edit-profile")}>
+            Profile Setting
+          </span>
+        </>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <>
+          <span onClick={onPushToDashboard("wishlist")}>Wishlist</span>
+        </>
+      ),
+    },
+    {
+      key: "4",
+      label: (
+        <>
+          <span onClick={onPushToDashboard("add-mobile")}>Post Add</span>
+        </>
+      ),
+    },
+    {
+      key: "5",
+      label: (
+        <>
+          <span onClick={onPushToDashboard("chat")}>Chat</span>
+        </>
+      ),
+    },
+    {
+      key: "6",
+      label: (
+        <>
+          <span onClick={logout}>Sign out</span>
+        </>
+      ),
+    },
+  ];
 
   return (
     <nav className="nav_wrapper">
@@ -95,17 +144,36 @@ const Navbar = (props) => {
             </li>
           </ul>
           <div className="search_container">
-            <StyledButton onClick={onLogin} className="login_btn light">
-              Sign in
-            </StyledButton>
-            <StyledButton onClick={onRegister} className="register_btn primary">
-              Register
-            </StyledButton>
+            {userData ? (
+              <Dropdown
+                menu={{
+                  items,
+                }}
+                arrow
+              >
+                <div className="user_dropdown">
+                  <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "}
+                  <span>{userData?.name}</span> <AiFillCaretDown />
+                </div>
+              </Dropdown>
+            ) : (
+              <>
+                <StyledButton onClick={onLogin} className="login_btn light">
+                  Sign in
+                </StyledButton>
+                <StyledButton
+                  onClick={onRegister}
+                  className="register_btn primary"
+                >
+                  Register
+                </StyledButton>
+              </>
+            )}
           </div>
         </div>
         <div className="mobile_actions">
           <StyledButton onClick={onOpenMobileMenu} className="nav_open_btn">
-            <AiOutlineMenu />
+            <AiOutlineMenuFold />
           </StyledButton>
         </div>
       </div>

@@ -30,6 +30,22 @@
 
       .search_container {
         width: max-content;
+
+        .user_dropdown {
+          display: flex;
+          align-items: center;
+          font-weight: $font_semibold;
+    
+          .styled_avatar {
+            right: 10px;
+          }
+    
+          svg {
+            color: $text_color;
+            margin-left: 5px;
+          }
+        }
+
         .register_btn {
           margin-left: 8px;
         }

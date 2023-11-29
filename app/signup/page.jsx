@@ -8,9 +8,26 @@ import {
   numberRule,
 } from "@/utils/rules";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
+import api from "@/services/api";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const onSubmit = (values) => {};
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authCheck) {
+      router.back();
+    }
+  }, [authCheck]);
+
+  const onSubmit = async (values) => {
+    console.log(values);
+
+    try {
+      const res = await api.post("/register-user", { ...values, terms: true });
+    } catch (error) {}
+  };
+
   return (
     <div className="signup_wrap">
       <div className="content_wrap">
@@ -35,7 +52,7 @@ const Page = () => {
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
-                        name="fname"
+                        name="first_name"
                         rules={requiredRule}
                         label="First Name"
                       >
@@ -46,7 +63,7 @@ const Page = () => {
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
-                        name="lname"
+                        name="last_name"
                         rules={requiredRule}
                         label="Last Name"
                       >
@@ -56,7 +73,11 @@ const Page = () => {
                   </Row>
                   <Row gutter={[8, 8]}>
                     <Col lg={12} md={12} sm={24}>
-                      <Form.Item rules={requiredRule} name="city" label="Select City">
+                      <Form.Item
+                        rules={requiredRule}
+                        name="city"
+                        label="Select City"
+                      >
                         <Select
                           placeholder="Select City"
                           className="styled_select"
@@ -85,7 +106,7 @@ const Page = () => {
                     <Col lg={24} md={24} sm={24}>
                       <Form.Item
                         className="styled_input textarea_style"
-                        name="number"
+                        name="phone"
                         rules={numberRule}
                         label="Contact number"
                       >
@@ -109,7 +130,7 @@ const Page = () => {
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
-                        name="cpassword"
+                        name="conf_password"
                         rules={passwordRule}
                         label="Confirm Password"
                       >
@@ -129,7 +150,11 @@ const Page = () => {
                       </Form.Item>
                     </Col>
                     <Col lg={12} md={12} sm={24}>
-                      <Form.Item rules={requiredRule} name="city" label="Select Account Type">
+                      <Form.Item
+                        rules={requiredRule}
+                        name="acc_type"
+                        label="Select Account Type"
+                      >
                         <Select
                           placeholder="Select Account Type"
                           className="styled_select"
@@ -145,18 +170,35 @@ const Page = () => {
                     </Col>
                   </Row>
 
-                  <Form.Item>
-                    <Checkbox>Keep me logged in</Checkbox>
+                  <Form.Item
+                    name="agreement"
+                    valuePropName="checked"
+                    rules={[
+                      {
+                        validator: (_, value) =>
+                          value
+                            ? Promise.resolve()
+                            : Promise.reject(
+                                new Error("Should accept agreement")
+                              ),
+                      },
+                    ]}
+                  >
+                    <Checkbox>
+                      I have read the <a href="">agreement</a>
+                    </Checkbox>
                   </Form.Item>
 
                   <div>
-                    <StyledButton
-                      className="primary w_100
+                    <div className="submit_wrapper">
+                      <StyledButton
+                        className="primary w_100
                       "
-                      type="submit"
-                    >
-                      Sign Up
-                    </StyledButton>
+                        type="submit"
+                      >
+                        Sign Up
+                      </StyledButton>
+                    </div>
                     <p className="text_center signup_or">or</p>
                     <Row gutter={[16, 16]}>
                       <Col lg={12} md={12} sm={24} xs={24}>

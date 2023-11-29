@@ -1,28 +1,42 @@
 "use client";
-import React from "react";
-import { Row, Form, Col, Input, Checkbox } from "antd";
+import React, { useEffect, useState } from "react";
+import { Row, Form, Col, Input, Checkbox, notification } from "antd";
 import { emailRule, passwordRule } from "@/utils/rules";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
+import { useRouter } from "next/navigation";
+import { useAuthCheck } from "@/utils/hooks";
 
 const Page = () => {
+  const router = useRouter();
+  const {authCheck} = useAuthCheck()
+  
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (authCheck) {
+      router.back();
+    }
+  }, [authCheck]);
+
   const onSubmit = async (values) => {
-
-    
     try {
-      let res = await api.post('/login', values)
-
-    console.log(res)
-
-    if(res?.data?.status) { 
-      localStorage.setItem('@token', res?.data?.token)
-    }
-    
-  } catch (error) {
-      console.log(error)
+      setLoading(true)
+      let res = await api.post("/login", values);
       
+      if (res?.data?.status) {
+        localStorage.setItem("@token", res?.data?.token);
+        localStorage.setItem("@user", JSON.stringify(res?.data?.user));
+        router.push('/')
+      }else {
+        alert('asdas')
+        setLoading(false)
+      }
+    } catch (error) {
+      notification.error({message:error?.response?.data?.message})
+      setLoading(false)
+      console.log(error);
     }
-
   };
   return (
     <div className="login_wrap">
@@ -66,6 +80,7 @@ const Page = () => {
                   </Form.Item>
                   <div>
                     <StyledButton
+                      loading={loading}
                       className="primary w_100
                       "
                       type="submit"
