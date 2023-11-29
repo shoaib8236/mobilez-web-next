@@ -1,7 +1,9 @@
 "use client";
 
+import ImagesGallery from "@/app-ui/ImagesGallery/ImagesGallery";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
+import { getFormattedDate, getImage } from "@/utils/helper";
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
@@ -31,7 +33,10 @@ const Page = ({ params: { slug } }) => {
   useEffect(() => {
     getProductsDetails();
   }, []);
-
+  const productImages = productDetails?.productimages.map((item) => ({
+    original: getImage(item?.img),
+    thumbnail: getImage(item?.img),
+  }));
 
   return (
     <>
@@ -40,30 +45,31 @@ const Page = ({ params: { slug } }) => {
           <Row gutter={[14, 14]}>
             <Col lg={12} md={12} sm={24} xs={24}>
               <div>
-                <img
+                {/* <img
                   className="detail_image"
                   src="https://www.mobilezmarket.com/images/1701098420_A516D43C-8415-4CA6-A53F-0356653054B4.webp"
                   alt=""
-                />
+                /> */}
+                <ImagesGallery images={productImages || []} />
               </div>
             </Col>
             <Col lg={12} md={12} sm={24} xs={24}>
               <div className="detail_content">
-                <h1>Apple Iphone 15</h1>
-                <h1 className="text_secondary">Rs: 379,999</h1>
+                <h1>{productDetails?.brand}</h1>
+                <h1 className="text_secondary">Rs: {productDetails?.price}</h1>
                 <hr />
                 <p>
-                  <span className="text_secondary">Posted By:</span>{" "}
-                  &nbsp;Muhammad Hasnain
+                  <span className="text_secondary">Posted By:</span> &nbsp;
+                  {productDetails?.user.name}
                 </p>
                 <p>
-                  <span className="text_secondary">Posted At:</span>{" "}
-                  &nbsp;27-Nov-2023
+                  <span className="text_secondary">Posted At:</span> &nbsp;
+                  {getFormattedDate(productDetails?.created_at)}
                 </p>
                 <h3 className="posted_heading">
                   Posted By :{" "}
                   <span className="text_secondary blinking_text">
-                    Muhammad Hasnain
+                    {productDetails?.user.name}
                   </span>
                 </h3>
                 <div className="details_btn">
@@ -77,27 +83,24 @@ const Page = ({ params: { slug } }) => {
                 <h3 className="specs_heading">Specifications:</h3>
                 <div className="specs">
                   <div>
-                    <span>RAM:</span> 6 GB
+                    <span>RAM:</span> {productDetails?.ram} GB
                   </div>
                   <div>
-                    <span>Storage:</span> 128 GB
+                    <span>Storage:</span> {productDetails?.storage} GB
                   </div>
                   <div>
-                    <span>PTA Status:</span> Not Approved
+                    <span>PTA Status:</span> {productDetails?.pta_status}
                   </div>
                   <div>
-                    <span>Warranty:</span> 12 Months
+                    <span>Warranty:</span> {productDetails?.warranty}
                   </div>
                   <div>
-                    <span>Product Condition:</span> New
+                    <span>Product Condition:</span>{" "}
+                    {productDetails?.product_type}
                   </div>
                 </div>
                 <h3 className="desc_heading">Description:</h3>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Omnis rerum, doloribus neque natus quasi error possimus
-                  dolorem. neque natus quasi error possimus dolorem.
-                </p>
+                <p>{productDetails?.description}</p>
                 <h3 className="share_heading">Share:</h3>
                 <div className="icons">
                   <FaFacebook />
