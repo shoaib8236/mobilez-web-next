@@ -11,6 +11,7 @@ import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
 import { useRouter } from "next/navigation";
 import { useAuthCheck } from "@/utils/hooks";
+import LoginWithGoogle from "@/app-ui/LoginWithGoogle/LoginWithGoogle";
 
 const Page = () => {
   const router = useRouter();
@@ -205,7 +206,7 @@ const Page = () => {
                     <Row gutter={[8, 8]}>
                       <Col lg={12} md={12} sm={24}>
                         <Form.Item
-                        rules={requiredRule}
+                          rules={requiredRule}
                           className="styled_input"
                           name="shop_name"
                           label="Shop Name"
@@ -221,7 +222,6 @@ const Page = () => {
                           className="styled_input"
                         >
                           <Input placeholder="Shop Address" />
-                        
                         </Form.Item>
                       </Col>
                     </Row>
@@ -260,22 +260,7 @@ const Page = () => {
                     <p className="text_center signup_or">or</p>
                     <Row gutter={[16, 16]}>
                       <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="social_signup">
-                          Sign in with Google{" "}
-                          <img
-                            src="https://www.mobilezmarket.com/public/assets2/img/google.png"
-                            alt=""
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="social_signup">
-                          Sign in with Facebook{" "}
-                          <img
-                            src="https://www.mobilezmarket.com/public/assets2/img/facebook.png"
-                            alt=""
-                          />
-                        </div>
+                        <LoginWithGoogle />
                       </Col>
                     </Row>
                   </div>

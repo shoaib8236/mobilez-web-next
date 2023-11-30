@@ -1,0 +1,6 @@
+.google_login_wrapper {
+    &.loading {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}

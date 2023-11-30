@@ -1,17 +1,18 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Row, Form, Col, Input, Checkbox, notification } from "antd";
-import { emailRule, passwordRule } from "@/utils/rules";
+import LoginWithGoogle from "@/app-ui/LoginWithGoogle/LoginWithGoogle";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
-import { useRouter } from "next/navigation";
 import { useAuthCheck } from "@/utils/hooks";
+import { emailRule, passwordRule } from "@/utils/rules";
+import { Checkbox, Col, Form, Input, Row, notification } from "antd";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Page = () => {
   const router = useRouter();
-  const {authCheck} = useAuthCheck()
-  
-  const [loading, setLoading] = useState(false)
+  const { authCheck } = useAuthCheck();
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (authCheck) {
@@ -21,23 +22,23 @@ const Page = () => {
 
   const onSubmit = async (values) => {
     try {
-      setLoading(true)
+      setLoading(true);
       let res = await api.post("/login", values);
-      
+
       if (res?.data?.status) {
         localStorage.setItem("@token", res?.data?.token);
         localStorage.setItem("@user", JSON.stringify(res?.data?.user));
-        router.push('/')
-      }else {
-        alert('asdas')
-        setLoading(false)
+        router.push("/");
+      } else {
+        setLoading(false);
       }
     } catch (error) {
-      notification.error({message:error?.response?.data?.message})
-      setLoading(false)
+      notification.error({ message: error?.response?.data?.message });
+      setLoading(false);
       console.log(error);
     }
   };
+
   return (
     <div className="login_wrap">
       <div className="content_wrap">
@@ -90,22 +91,7 @@ const Page = () => {
                     <p className="text_center login_or">or</p>
                     <Row gutter={[16, 16]}>
                       <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="social_login">
-                          Sign in with Google{" "}
-                          <img
-                            src="https://www.mobilezmarket.com/public/assets2/img/google.png"
-                            alt=""
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={12} md={12} sm={24} xs={24}>
-                        <div className="social_login">
-                          Sign in with Facebook{" "}
-                          <img
-                            src="https://www.mobilezmarket.com/public/assets2/img/facebook.png"
-                            alt=""
-                          />
-                        </div>
+                        <LoginWithGoogle />
                       </Col>
                     </Row>
                   </div>

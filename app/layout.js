@@ -2,8 +2,8 @@ import RootLayer from "@/app-ui/RootLayer/RootLayer";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import "swiper/css";
 import "../styles/index.scss";
-import 'swiper/css/pagination';
-
+import "swiper/css/pagination";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,9 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <RootLayer>      
-          <div id="_layout">{children}</div>       
-        </RootLayer>
+        <GoogleOAuthProvider clientId="85457123059-rcs2j4u7b73qndp2fjs8gn56j3m66vu4.apps.googleusercontent.com">
+          <RootLayer>
+            <div id="_layout">{children}</div>
+          </RootLayer>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
