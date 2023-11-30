@@ -105,7 +105,7 @@ export default function Home() {
     <div className="home_wrap">
       <AppBanner className="mb_60" />
       <div className="mb_60">
-        <StyledHeading text="Recently Added Mobile" />
+        <StyledHeading text="RECENTLY ADDED MOBILE" />
       </div>
 
       <div className="content_wrap mb_60">
@@ -187,7 +187,7 @@ export default function Home() {
             <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <ProductCard data={item} />
+                  <ProductCard type="accessories" data={item} />
                 </SwiperSlide>
               ))}
             </Swiper>

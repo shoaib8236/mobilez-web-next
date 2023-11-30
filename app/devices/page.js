@@ -6,7 +6,7 @@ import ProductResult from "@/app-ui/ProductResult/ProductResult";
 import api from "@/services/api";
 import { useEffect, useState } from "react";
 import { LuFilter } from "react-icons/lu";
-
+ 
 const Page = (props) => {
 
   const [deviceData, setDeviceData] = useState(null);
@@ -27,6 +27,8 @@ const Page = (props) => {
   useEffect(() => {
     getDevices();
   }, [props?.searchParams]);
+
+  console.log(deviceData, "deviceData")
 
   return (
     <div className="find_my_device_wrap">
