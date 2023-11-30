@@ -1,9 +1,11 @@
 "use client";
 
 import ImagesGallery from "@/app-ui/ImagesGallery/ImagesGallery";
+import Skeleton from "@/app-ui/Skeleton/Skeleton";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
 import { getFormattedDate, getImage } from "@/utils/helper";
+import { useFcmToken } from "@/utils/hooks";
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
@@ -11,13 +13,13 @@ import { FaLink } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 
 const Page = ({ params: { slug } }) => {
+  const { fcmToken, notificationPermissionStatus } = useFcmToken();
   const [productDetails, setProductDetails] = useState(null);
+  const [loading, setLoading] = useState(true)
 
-  const getProductsDetails = async () => {
-    let fcmToken = localStorage.getItem("@fcm_token");
-
+  const getProductsDetails = async (fcm) => {
     const body = {
-      device_token: fcmToken,
+      device_token: fcm,
     };
 
     try {
@@ -26,36 +28,37 @@ const Page = ({ params: { slug } }) => {
       });
       if (res?.data?.status) {
         setProductDetails(res?.data?.details);
+        setLoading(false)
       }
     } catch (error) {}
   };
 
   useEffect(() => {
-    getProductsDetails();
-  }, []);
+    if (fcmToken) {
+      getProductsDetails(fcmToken);
+    }
+  }, [fcmToken]);
+
   const productImages = productDetails?.productimages.map((item) => ({
     original: getImage(item?.img),
     thumbnail: getImage(item?.img),
   }));
 
-  console.log(productDetails, "productDetails");
-
   return (
     <>
       <section>
         <div className="content_wrap">
-          <Row gutter={[14, 14]}>
+          <Row gutter={[20, 20]}>
             <Col lg={12} md={12} sm={24} xs={24}>
               <div>
-                {/* <img
-                  className="detail_image"
-                  src="https://www.mobilezmarket.com/images/1701098420_A516D43C-8415-4CA6-A53F-0356653054B4.webp"
-                  alt=""
-                /> */}
-                <ImagesGallery images={productImages || []} />
+                {
+                  loading ? <Skeleton height="400px" width="573px" /> :  <ImagesGallery images={productImages || []} />
+                }
+               
               </div>
             </Col>
-            <Col lg={12} md={12} sm={24} xs={24}>
+            {
+              loading ? <><Skeleton height="400px" width="573px" /></> : <Col lg={12} md={12} sm={24} xs={24}>
               <div className="detail_content">
                 <h1>{productDetails?.brand}</h1>
                 <h1 className="text_secondary">Rs: {productDetails?.price}</h1>
@@ -113,6 +116,7 @@ const Page = ({ params: { slug } }) => {
                 03
               </div>
             </Col>
+            }
           </Row>
 
           <div></div>

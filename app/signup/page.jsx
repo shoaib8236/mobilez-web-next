@@ -12,6 +12,7 @@ import api from "@/services/api";
 import { useRouter } from "next/navigation";
 import { useAuthCheck } from "@/utils/hooks";
 import LoginWithGoogle from "@/app-ui/LoginWithGoogle/LoginWithGoogle";
+import Image from "next/image";
 
 const Page = () => {
   const router = useRouter();
@@ -65,13 +66,10 @@ const Page = () => {
     <div className="signup_wrap">
       <div className="content_wrap">
         <Row gutter={[16, 16]}>
-          <Col span={12}>
-            <img
-              width="100%"
-              src="https://img.freepik.com/premium-psd/black-smartphone-mockup-design-isolated_34168-2417.jpg?size=626&ext=jpg&uid=R125309426&ga=GA1.1.1401301473.1700047451&semt=sph"
-            />
+          <Col className="hide_image_tab" lg={12} md={12} sm={24} xs={24}>
+          <Image height={572} width={528} loading="lazy" layout="responsive" src='/register.png' />
           </Col>
-          <Col span={12}>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div className="signup_form">
               <h2>Sign Up</h2>
               <p>
@@ -81,7 +79,7 @@ const Page = () => {
               <div>
                 <Form onFinish={onSubmit} layout="vertical">
                   <Row gutter={[8, 8]}>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
@@ -92,7 +90,7 @@ const Page = () => {
                         <Input placeholder="First Name" />
                       </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
@@ -105,7 +103,7 @@ const Page = () => {
                     </Col>
                   </Row>
                   <Row gutter={[8, 8]}>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         rules={requiredRule}
                         name="city"
@@ -124,7 +122,7 @@ const Page = () => {
                         </Select>
                       </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         className="styled_input"
                         name="email"
@@ -136,7 +134,7 @@ const Page = () => {
                     </Col>
                   </Row>
                   <Row gutter={[8, 8]}>
-                    <Col lg={24} md={24} sm={24}>
+                    <Col lg={24} md={24} sm={24} xs={24}>
                       <Form.Item
                         className="styled_input"
                         name="phone"
@@ -148,7 +146,7 @@ const Page = () => {
                     </Col>
                   </Row>
                   <Row gutter={[8, 8]}>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
@@ -159,7 +157,7 @@ const Page = () => {
                         <Input placeholder="Password" />
                       </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         layout="vertical"
                         className="styled_input"
@@ -172,7 +170,7 @@ const Page = () => {
                     </Col>
                   </Row>
                   <Row gutter={[8, 8]}>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         className="styled_input"
                         name="code"
@@ -181,7 +179,7 @@ const Page = () => {
                         <Input placeholder="Referral Code" />
                       </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={24}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
                         rules={requiredRule}
                         name="acc_type"
@@ -204,7 +202,7 @@ const Page = () => {
                   </Row>
                   {accountType ? (
                     <Row gutter={[8, 8]}>
-                      <Col lg={12} md={12} sm={24}>
+                      <Col lg={12} md={12} sm={24} xs={24}>
                         <Form.Item
                           rules={requiredRule}
                           className="styled_input"
@@ -214,7 +212,7 @@ const Page = () => {
                           <Input placeholder="Shop Name" />
                         </Form.Item>
                       </Col>
-                      <Col lg={12} md={12} sm={24}>
+                      <Col lg={12} md={12} sm={24} xs={24}>
                         <Form.Item
                           rules={requiredRule}
                           name="shop_address"

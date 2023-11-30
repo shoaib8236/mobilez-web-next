@@ -5,6 +5,7 @@ import api from "@/services/api";
 import { useAuthCheck } from "@/utils/hooks";
 import { emailRule, passwordRule } from "@/utils/rules";
 import { Checkbox, Col, Form, Input, Row, notification } from "antd";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -43,13 +44,10 @@ const Page = () => {
     <div className="login_wrap">
       <div className="content_wrap">
         <Row gutter={[16, 16]}>
-          <Col span={12}>
-            <img
-              width="100%"
-              src="https://img.freepik.com/premium-psd/black-smartphone-mockup-design-isolated_34168-2417.jpg?size=626&ext=jpg&uid=R125309426&ga=GA1.1.1401301473.1700047451&semt=sph"
-            />
+          <Col className='hide_image_tab' lg={12} md={12} sm={24} xs={24}>
+            <Image height={572} width={528} loading="lazy" layout="responsive" src='/login.png' />
           </Col>
-          <Col span={12}>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div className="login_form">
               <h2>Login</h2>
               <p>

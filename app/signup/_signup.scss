@@ -35,3 +35,18 @@
     }
   }
   
+
+  @media screen and (max-width:$breakpoint_lg) {
+    .signup_wrap {
+      .signup_form {
+        padding:0;
+
+        > div {
+          width: 100%;
+        }
+      }
+      .hide_image_tab {
+        display: none;
+      }
+    }
+  }

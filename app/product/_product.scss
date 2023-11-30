@@ -20,6 +20,11 @@
     }
     .posted_heading {
       margin-top: 17px;
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 5px;
+      }
     }
 
     .details_btn button {

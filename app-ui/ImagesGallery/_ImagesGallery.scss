@@ -32,11 +32,4 @@
       height: 70px;
     }
   }
-
-  &.fullscreen {
-    .image-gallery-image {
-        height: auto;
-        max-height: calc(100vh - 300px) !important;
-      }
-  }
 }

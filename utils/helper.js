@@ -15,7 +15,9 @@ export const getFormattedDate = (date, frmt) => {
 };
 
 export const logout = () => {
-  localStorage.clear();
+  localStorage.removeItem(`@token`);
+  localStorage.removeItem(`@user`);
+  localStorage.removeItem(`@phone`);
   window.location.reload();
 };
 
