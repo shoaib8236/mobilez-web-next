@@ -21,7 +21,7 @@ const ProductCard = (props) => {
         />
       </div>
       <div className="card_content">
-        <h3>{data?.title}</h3>
+        <h3>{data?.brand}</h3>
         <p className="price">PKR - {data?.price}</p>
         {data?.ram || data?.storage ? (
           <p>

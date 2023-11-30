@@ -78,7 +78,6 @@ export default function Home() {
       dynamicBullets: true,
     },
     navigation: true,
-    
   };
 
   const renderSkeleton = () => {
@@ -106,15 +105,15 @@ export default function Home() {
     <div className="home_wrap">
       <AppBanner className="mb_60" />
       <div className="mb_60">
-        <StyledHeading text="RECENTLY ADDED MOBILES" />
+        <StyledHeading text="Recently Added Mobile" />
       </div>
 
       <div className="content_wrap mb_60">
         {mobiles === null ? (
           renderSkeleton()
         ) : (
-          <>
-            <Swiper {...sliderProp}  modules={[Pagination]}>
+          <>   
+            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
               {mobiles?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -139,7 +138,7 @@ export default function Home() {
             renderSkeleton()
           ) : (
             <>
-              <Swiper {...sliderProp}  modules={[Pagination]} >
+              <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
                 {tablets?.data?.data?.map((item) => (
                   <SwiperSlide key={item?.id}>
                     <ProductCard data={item} />
@@ -164,7 +163,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp}  modules={[Pagination]} >
+            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
               {smartWatches?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -185,7 +184,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp}  modules={[Pagination]} >
+            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />

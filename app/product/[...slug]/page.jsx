@@ -38,6 +38,8 @@ const Page = ({ params: { slug } }) => {
     thumbnail: getImage(item?.img),
   }));
 
+  console.log(productDetails, "productDetails");
+
   return (
     <>
       <section>
