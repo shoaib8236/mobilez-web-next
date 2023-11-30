@@ -6,22 +6,25 @@ import { getImage, getFormattedDate } from "@/utils/helper";
 import Link from "next/link";
 
 const ProductCard = (props) => {
-  const { className = "", data = {} } = props;
+  const { className = "", data = {}, type = "mobile" } = props;
 
   return (
     <div className={`product_card_wrap ${className}`}>
       <div className="image_wrap">
-        <Image
-          loading="lazy"
-          fill
-          objectFit="cover"
-          objectPosition="top"
-          src={getImage(data?.image?.img)}
-          alt={data?.image?.img}
-        />
+        <Image loading="lazy" fill objectFit="cover" objectPosition="top" src={getImage(data?.image?.img)} alt={data?.image?.img} />
       </div>
       <div className="card_content">
-        <h3>{data?.brand}</h3>
+        {data?.accessories_title ? (
+          <>
+            <h3>{data?.accessories_title}</h3>
+          </>
+        ) : (
+          <>
+            <h3>
+              {data?.brand} {data?.model}
+            </h3>
+          </>
+        )}
         <p className="price">PKR - {data?.price}</p>
         {data?.ram || data?.storage ? (
           <p>
