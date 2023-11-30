@@ -13,12 +13,11 @@ const BlogCard = (props) => {
       <div className="image_wrap">
         <Image
           loading="lazy"
-          width={500}
-          height={300}
+          fill
           objectFit="cover"
-          layout="responsive"
+          objectPosition="top"
           src={getImage(data?.image)}
-          alt="/pixel-8-pro.webp" 
+          alt="/pixel-8-pro.webp"
         />
       </div>
       <div className="card_content">

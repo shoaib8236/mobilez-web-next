@@ -58,6 +58,18 @@ h3 {
   font-weight: $font_semibold;
 }
 
+// swiper styles
+
+.swiper {
+  padding-bottom: 40px !important;
+
+  .swiper-pagination {
+    .swiper-pagination-bullet-active {
+      background-color: $primary;
+    }
+  }
+}
+
 @media screen and (max-width: $breakpoint_md) {
   h1 {
     font-size: $title_md;

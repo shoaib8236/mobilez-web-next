@@ -94,7 +94,7 @@ export default function Home() {
     <div className="home_wrap">
       <AppBanner className="mb_60" />
       <div className="mb_60">
-        <StyledHeading text="Recently Added Mobiles" />
+        <StyledHeading text="RECENTLY ADDED MOBILES" />
       </div>
 
       <div className="content_wrap mb_60">
@@ -103,11 +103,6 @@ export default function Home() {
         ) : (
           <>
             <Swiper
-              loop= {true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
               breakpoints={breakpoints}
               spaceBetween={20}
               slidesPerView={4}
@@ -116,7 +111,7 @@ export default function Home() {
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
                 </SwiperSlide>
-              ))} 
+              ))}
             </Swiper>
           </>
         )}
@@ -140,11 +135,6 @@ export default function Home() {
                 breakpoints={breakpoints}
                 spaceBetween={20}
                 slidesPerView={4}
-                loop= {true}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
               >
                 {tablets?.data?.data?.map((item) => (
                   <SwiperSlide key={item?.id}>
@@ -171,11 +161,6 @@ export default function Home() {
         ) : (
           <>
             <Swiper
-            loop= {true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
               breakpoints={breakpoints}
               spaceBetween={20}
               slidesPerView={4}
@@ -201,11 +186,6 @@ export default function Home() {
         ) : (
           <>
             <Swiper
-            loop= {true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
               breakpoints={breakpoints}
               spaceBetween={20}
               slidesPerView={4}

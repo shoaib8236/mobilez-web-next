@@ -1,9 +1,9 @@
-import "../styles/index.scss";
-import "swiper/css";
-import Navbar from "@/app-ui/Navbar/Navbar";
-import Footer from "@/app-ui/Footer/Footer";
 import RootLayer from "@/app-ui/RootLayer/RootLayer";
 import "react-image-gallery/styles/scss/image-gallery.scss";
+import "swiper/css";
+import "../styles/index.scss";
+import 'swiper/css/pagination';
+
 
 export const metadata = {
   title: "Create Next App",
