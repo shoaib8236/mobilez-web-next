@@ -117,13 +117,13 @@ const Page = ({ params: { slug } }) => {
         <div className="content_wrap">
           <Row gutter={[20, 20]}>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <div>
-                {loading ? (
-                  <Skeleton height="400px" width="573px" />
+              
+                {!loading ? (
+                  <Skeleton height="400px" width="100%" />
                 ) : (
                   <ImagesGallery images={productImages || []} />
                 )}
-              </div>
+              
             </Col>
 
             <Col lg={12} md={12} sm={24} xs={24}>
