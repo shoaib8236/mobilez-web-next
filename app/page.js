@@ -84,16 +84,16 @@ export default function Home() {
     return (
       <>
         <Row gutter={[20, 20]}>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
         </Row>
