@@ -1,0 +1,53 @@
+.contact_seller_modal {
+  text-align: center;
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact_links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .social_btns {
+      height: 40px;
+      padding: 0 20px 0 80px;
+      border: solid;
+      border-width: 2px;
+      border-color: $primary;
+      background: $primary;
+      color: $light;
+      font-weight: $font_semibold;
+      border-radius: $radius_sm;
+      position: relative;
+      margin-bottom: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      overflow: hidden;
+
+      svg {
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+        width: 60px;
+        background: #fff;
+        padding: 8px;
+        color: $primary;
+      }
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}
