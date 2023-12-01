@@ -94,16 +94,16 @@ const Page = ({ params: { slug } }) => {
     return (
       <>
         <Row gutter={[40, 40]}>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
         </Row>
