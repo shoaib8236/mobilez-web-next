@@ -146,7 +146,7 @@ const Page = ({ params: { slug } }) => {
                 )}
                 <hr />
                 {loading ? (
-                  <Skeleton height="20px" margin="0 0 10px 0" width="150px" />
+                  <Skeleton height="20px" margin="0 0 10px 0" width="200px" />
                 ) : (
                   <>
                     <p>
@@ -166,7 +166,7 @@ const Page = ({ params: { slug } }) => {
                   </>
                 )}
                 {loading ? (
-                  <Skeleton height="30px" margin="0 0 10px 0" width="180px" />
+                  <Skeleton height="30px" margin="0 0 10px 0" width="300px" />
                 ) : (
                   <>
                     <h3 className="posted_heading">
@@ -200,7 +200,7 @@ const Page = ({ params: { slug } }) => {
                   </>
                 )}
                 {loading ? (
-                  <Skeleton height="50px" margin="0 0 10px 0" width="120px" />
+                  <Skeleton height="20px" margin="0 0 10px 0" width="120px" />
                 ) : (
                   <>
                     {" "}

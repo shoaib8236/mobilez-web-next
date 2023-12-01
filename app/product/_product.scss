@@ -1,11 +1,10 @@
 .content_wrap {
-
   .mb_60 {
-    margin-bottom:60px;
+    margin-bottom: 60px;
   }
 
   .mt_60 {
-    margin-top:60px;
+    margin-top: 60px;
   }
   .detail_image {
     width: 100%;
@@ -14,7 +13,6 @@
     border-radius: $radius_sm;
   }
   .detail_content {
-    background-color: rgba($color: $light_gray, $alpha: 0.2);
     padding: 10px 12px;
     border-radius: $radius_sm;
     h1 {
@@ -45,11 +43,16 @@
     }
     .specs {
       display: flex;
-      flex-wrap: wrap;
       margin-top: 12px;
+      gap: 20px;
+      flex-wrap: wrap;
       div {
-        border: 1px solid #c5c5c5;
-        padding: 12px 22px;
+        border-right: 1px solid $stroke_color;
+        padding-right: 10px;
+        &:last-child {
+          padding-right: 0px;
+          border-right: 0;
+        }
       }
       span {
         font-weight: $font_semibold;

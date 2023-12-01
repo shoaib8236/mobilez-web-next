@@ -36,7 +36,7 @@ const Page = ({ params: { slug } }) => {
               loading="lazy"
               loader={({ src, width, quality }) => getImage(blogDetails?.image)}
               src={getImage(blogDetails?.image)}
-              alt=""
+              alt="banner"
             />
             <div>
               <h2 className="text_primary">{blogDetails?.title}</h2>

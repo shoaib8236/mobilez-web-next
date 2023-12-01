@@ -125,7 +125,7 @@ export default function Home() {
       </div>
 
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/banner-2.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-2.webp"} alt="banner" />
       </div>
 
       <div className="mb_60">
@@ -149,11 +149,8 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="mb_60">
-        <StyledHeading text="RECENTLY ADDED TABLETS" />
-      </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="banner" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED SMART WATCHES" />
@@ -174,7 +171,7 @@ export default function Home() {
         )}
       </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="banner" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED ACCESSORIES" />

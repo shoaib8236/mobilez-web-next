@@ -78,3 +78,10 @@
 .page_title {
   margin-bottom: 30px;
 }
+
+
+@media screen and (max-width: $breakpoint_lg) {
+  .content_wrap {
+    padding: 0 10px;
+  }
+}
