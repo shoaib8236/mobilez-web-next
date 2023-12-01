@@ -118,7 +118,7 @@ const Page = ({ params: { slug } }) => {
           <Row gutter={[20, 20]}>
             <Col lg={12} md={12} sm={24} xs={24}>
               
-                {!loading ? (
+                {loading ? (
                   <Skeleton height="400px" width="100%" />
                 ) : (
                   <ImagesGallery images={productImages || []} />
