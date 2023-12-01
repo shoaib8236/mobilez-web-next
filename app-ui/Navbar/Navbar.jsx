@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AiFillCaretDown, AiOutlineMenuFold } from "react-icons/ai";
+import { VscMenu } from "react-icons/vsc";
 import Avatar from "../Avatar/Avatar";
 import StyledButton from "../StyledButton/StyledButton";
 
@@ -117,7 +118,7 @@ const Navbar = ({ userData }) => {
     <nav className="nav_wrapper">
       <div className="nav_content">
         <div className="logo">
-          <Image src="/logo.png" alt="logo" width={140} height={60} />
+          <Image src="/logo.png" alt="logo" fill objectFit="contain" />
         </div>
         <div ref={menuRef} className="links_container">
           <ul ref={linkRef}>
@@ -151,7 +152,7 @@ const Navbar = ({ userData }) => {
                 }}
                 arrow
               >
-                <div className="user_dropdown">
+                <div className="user_dropdown hide_sm">
                   <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "}
                   <span>{userData?.name}</span> <AiFillCaretDown />
                 </div>
@@ -172,8 +173,21 @@ const Navbar = ({ userData }) => {
           </div>
         </div>
         <div className="mobile_actions">
+          {userData && (
+            <Dropdown
+              menu={{
+                items,
+              }}
+              arrow
+            >
+              <div className="user_dropdown">
+                <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "}
+                <span>{userData?.name}</span> <AiFillCaretDown />
+              </div>
+            </Dropdown>
+          )}
           <StyledButton onClick={onOpenMobileMenu} className="nav_open_btn">
-            <AiOutlineMenuFold />
+            <VscMenu />
           </StyledButton>
         </div>
       </div>
