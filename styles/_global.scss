@@ -62,6 +62,13 @@ h3 {
 
 .swiper {
   padding-bottom: 40px !important;
+  
+  
+  &.p_15 {
+    
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+  }
 
   .swiper-pagination {
     .swiper-pagination-bullet-active {

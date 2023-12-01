@@ -22,7 +22,7 @@ const BlogCard = (props) => {
       </div>
       <div className="card_content">
         <div className="content">
-          <h3 className="text_secondary">{data?.title}</h3>
+          <h3 className="text_primary">{data?.title}</h3>
           <p
             className="desc"
             dangerouslySetInnerHTML={{ __html: data?.description }}

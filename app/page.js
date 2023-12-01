@@ -59,15 +59,15 @@ export default function Home() {
       },
       480: {
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: 10,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 10,
       },
       1200: {
         slidesPerView: 4,
-        spaceBetween: 40,
+        spaceBetween: 20,
       },
     },
     spaceBetween: 20,
@@ -83,7 +83,7 @@ export default function Home() {
   const renderSkeleton = () => {
     return (
       <>
-        <Row gutter={[40, 40]}>
+        <Row gutter={[20, 20]}>
           <Col lg={6}>
             <BlogSkeleton />
           </Col>
@@ -113,7 +113,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>   
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+            <Swiper className="p_15" {...sliderProp} modules={[Pagination]} loop= {true}>
               {mobiles?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -125,7 +125,7 @@ export default function Home() {
       </div>
 
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-2.webp"} alt="" />
       </div>
 
       <div className="mb_60">
@@ -138,7 +138,7 @@ export default function Home() {
             renderSkeleton()
           ) : (
             <>
-              <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+              <Swiper className="p_15" {...sliderProp} modules={[Pagination]} loop= {true}>
                 {tablets?.data?.data?.map((item) => (
                   <SwiperSlide key={item?.id}>
                     <ProductCard data={item} />
@@ -153,7 +153,7 @@ export default function Home() {
         <StyledHeading text="RECENTLY ADDED TABLETS" />
       </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED SMART WATCHES" />
@@ -163,7 +163,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+            <Swiper className="p_15" {...sliderProp} modules={[Pagination]} loop= {true}>
               {smartWatches?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard data={item} />
@@ -174,7 +174,7 @@ export default function Home() {
         )}
       </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED ACCESSORIES" />
@@ -184,7 +184,7 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+            <Swiper className="p_15" {...sliderProp} modules={[Pagination]} loop= {true}>
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
                   <ProductCard type="accessories" data={item} />

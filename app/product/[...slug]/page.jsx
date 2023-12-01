@@ -49,10 +49,12 @@ const Page = ({ params: { slug } }) => {
   };
 
   useEffect(() => {
+    console.log(slug, "slug");
+
     if (fcmToken) {
       getProductsDetails(fcmToken);
     }
-  }, [fcmToken]);
+  }, [fcmToken, slug]);
 
   const productImages = productDetails?.productimages.map((item) => ({
     original: getImage(item?.img),
@@ -130,14 +132,14 @@ const Page = ({ params: { slug } }) => {
                   <Skeleton height="30px" margin="0 0 10px 0" width="280px" />
                 ) : (
                   <>
-                    <h1>{productDetails?.brand}</h1>
+                    <h1>{`${productDetails?.brand} ${productDetails?.model}`}</h1>
                   </>
                 )}
                 {loading ? (
                   <Skeleton height="30px" margin="0 0 10px 0" width="220px" />
                 ) : (
                   <>
-                    <h1 className="text_secondary">
+                    <h1 className="text_primary">
                       Rs: {productDetails?.price}
                     </h1>
                   </>
@@ -148,7 +150,7 @@ const Page = ({ params: { slug } }) => {
                 ) : (
                   <>
                     <p>
-                      <span className="text_secondary">Posted By:</span> &nbsp;
+                      <span className="text_primary">Posted By:</span> &nbsp;
                       {productDetails?.user.name}
                     </p>
                   </>
@@ -158,7 +160,7 @@ const Page = ({ params: { slug } }) => {
                 ) : (
                   <>
                     <p>
-                      <span className="text_secondary">Posted At:</span> &nbsp;
+                      <span className="text_primary">Posted At:</span> &nbsp;
                       {getFormattedDate(productDetails?.created_at)}
                     </p>
                   </>
@@ -169,7 +171,7 @@ const Page = ({ params: { slug } }) => {
                   <>
                     <h3 className="posted_heading">
                       Posted By :{" "}
-                      <span className="text_secondary blinking_text">
+                      <span className="text_primary blinking_text">
                         {productDetails?.user.name}
                       </span>
                     </h3>

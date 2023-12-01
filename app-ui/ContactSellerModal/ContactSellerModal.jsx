@@ -21,10 +21,10 @@ const ContactSellerModal = (props) => {
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://api.whatsapp.com/send?phone=${data?.user?.phone}`, "_blank");
+    window.open(`https://api.whatsapp.com/send?phone=${(data?.user?.phone?.split(" ") || ['']).shift()?.substring(1).split(" ").join(" ")}`, "_blank");
     // Replace with the actual phone number
   };
-
+  
   return (
     <Modal footer={false} width={500} visible={open} onCancel={onClose}>
       <div className="contact_seller_modal">

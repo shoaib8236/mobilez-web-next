@@ -39,7 +39,7 @@ const Page = ({ params: { slug } }) => {
               alt=""
             />
             <div>
-              <h2 className="text_secondary">{blogDetails?.title}</h2>
+              <h2 className="text_primary">{blogDetails?.title}</h2>
               <p
                 className="desc"
                 dangerouslySetInnerHTML={{ __html: blogDetails?.description }}
