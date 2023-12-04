@@ -7,11 +7,17 @@ import api from "@/services/api";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuFilter } from "react-icons/lu";
+import { useSearchParams } from 'next/navigation'
+
 
 const Page = (props) => {
   const [deviceData, setDeviceData] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams()
+
+  const searchParams = useSearchParams()
+
+
 
   const getDevices = async () => {
     try {
@@ -31,6 +37,8 @@ const Page = (props) => {
 
   console.log(props, "props");
   console.log(params, "params");
+
+  // console.log(searchParams?.getAll())
 
   return (
     <div className="find_my_device_wrap">

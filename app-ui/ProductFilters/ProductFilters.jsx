@@ -13,13 +13,15 @@ const ProductFilters = (props) => {
   const [form] = useForm();
 
   const onFinish = (values) => {
-    const filteredValues = Object.fromEntries(
-      Object.entries(values).filter(([key, value]) => value !== undefined)
-    );
-    const queryString = Object.entries(filteredValues)
-      .map(([key, value]) => `${key}=${value}`)
-      .join("&");
-    router.push(`${pathname}?${queryString}`);
+    let url = new URL(window.location.href);
+    let params = new URLSearchParams(url.search);
+    Object.entries(values).forEach(([key, value]) => {
+      if (value !== undefined) {
+        params.set(key, value);
+      }
+    });
+    url.search = params.toString();
+    router.push(url.pathname + url.search);
   };
 
   const onValuesChange = () => {
@@ -34,7 +36,6 @@ const ProductFilters = (props) => {
       onValuesChange={onValuesChange}
       layout="vertical"
     >
-      
       <Form.Item name="category" label="Category">
         <Select placeholder="Select Category" className="styled_select">
           <Select.Option value="mobile">Mobile</Select.Option>
@@ -96,7 +97,6 @@ const ProductFilters = (props) => {
           <Select.Option value={"approve"}>Karachi</Select.Option>
         </Select>
       </Form.Item>
-
     </Form>
   );
 };
