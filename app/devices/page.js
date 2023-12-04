@@ -16,6 +16,11 @@ const Page = (props) => {
   const params = useParams()
 
   const searchParams = useSearchParams()
+ 
+  const search = searchParams.get('search')
+ 
+  // This will not be logged on the server when using static rendering
+  console.log(search)
 
 
 
@@ -35,10 +40,6 @@ const Page = (props) => {
     getDevices();
   }, [props]);
 
-  console.log(props, "props");
-  console.log(params, "params");
-
-  // console.log(searchParams?.getAll())
 
   return (
     <div className="find_my_device_wrap">
