@@ -1,23 +1,18 @@
 "use client";
 
 import { RamOptions, StorageOptions, WarrantyOptions } from "@/utils/fakeData";
-import { Form, Select } from "antd";
+import { Checkbox, Form, Input, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
-import {
-  usePathname,
-  useRouter
-} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const ProductFilters = (props) => {
-
-  const {initialValues} = props
+  const { initialValues } = props;
 
   const router = useRouter();
   const pathname = usePathname();
   const [form] = useForm();
 
   const onFinish = (values) => {
-
     const filteredValues = Object.fromEntries(
       Object.entries(values).filter(([key, value]) => value !== undefined)
     );
@@ -39,6 +34,7 @@ const ProductFilters = (props) => {
       onValuesChange={onValuesChange}
       layout="vertical"
     >
+      
       <Form.Item name="category" label="Category">
         <Select placeholder="Select Category" className="styled_select">
           <Select.Option value="mobile">Mobile</Select.Option>
@@ -100,6 +96,7 @@ const ProductFilters = (props) => {
           <Select.Option value={"approve"}>Karachi</Select.Option>
         </Select>
       </Form.Item>
+
     </Form>
   );
 };

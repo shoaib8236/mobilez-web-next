@@ -1,4 +1,10 @@
 .find_my_device_wrap {
+  .page_title {
+    font-size: $title_sm;
+    color: $primary;
+    text-transform: capitalize;
+  }
+
   .flex_layout {
     display: flex;
 
@@ -7,6 +13,7 @@
       display: flex;
       align-items: center;
       color: $primary;
+      font-size: $text_md;
 
       &.mb_0 {
         margin-bottom: 0;
@@ -21,16 +28,26 @@
 
     .flex_cols {
       flex: 1;
-      border-top: solid 1px $stroke_color;
+      padding: 10px;
+      margin-top: 20px;
+      padding-top: 0;
 
       .results_wrapper {
-        margin-top: 10px;
+        
+        margin-top: 20px;
+        // background-color: $light;
+        // border: solid 1px $stroke_color;
+        
       }
 
       .filters_header {
         height: 75px;
         display: flex;
         align-items: center;
+        background-color: $light;
+        border: solid 1px $stroke_color;
+        padding: 10px;
+
         .flex_between {
           display: flex;
           align-items: center;
@@ -40,6 +57,21 @@
           .styled_select {
             max-width: 300px;
           }
+
+          .filters_right_section {
+            display: flex;
+            gap: 10px;
+            flex-grow: 1;
+            max-width: 400px;
+
+            > div {
+              display: flex;
+            }
+
+            .styled_select {
+              flex-grow: 1;
+            }
+          }
         }
       }
 
@@ -47,14 +79,22 @@
         max-width: 300px;
         padding-top: 0;
         margin-right: 15px;
+        padding: 0;
+        background-color: $light;
+        border: solid 1px $stroke_color;
 
         .sticky_container {
-          padding: 15px;
-          padding-left: 0;
-          padding-top: 0;
+          padding: 10px;
           position: sticky;
           left: 0;
           top: 0;
+
+          .filters_content {
+            border-bottom: solid 1px $stroke_color;
+            pb10 .content {
+              padding-left: 20px;
+            }
+          }
         }
       }
     }

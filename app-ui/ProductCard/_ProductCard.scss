@@ -1,13 +1,13 @@
 .product_card_wrap {
-  box-shadow: $shadow_light;
-  border-radius: $radius_sm;
+  border: solid 1px $stroke_color;
   max-width: 100%;
   overflow: hidden;
+  background-color: $light;
 
   .image_wrap {
     width: 100%;
     position: relative;
-    height: 250px;
+    height: 180px;
   }
 
   .card_content {
@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    height: 220px;
+    // height: 220px;
     p {
       font-size: $text_sm;
       color: $dark;
@@ -25,27 +25,58 @@
     }
     .price {
       color: $primary;
-      font-size: $text_md;
+      font-size: $text_sm;
       margin-bottom: 10px;
     }
     .blog_card_area {
       display: flex;
       justify-content: space-between;
+      font-size: $text_sm;
     }
 
     .primary {
       margin-top: 10px;
+      font-size: $text_sm;
     }
 
     h3 {
       color: $dark;
-      height: 42px;
+      font-size: $text_md;
       display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
+  &.list {
+    display: flex;
+  
+    .image_wrap {
+      width: 220px;
+    }
+
+    .blog_card_footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .blog_card_area {
+      justify-content: unset;
+      gap: 10px;
+
+      p {
+        border-right: solid 2px $text_color;
+        padding-right: 10px;
+        
+        &:last-child {
+          padding-right: 0px;
+          border: none;
+        }
+
+      }
+
+    }
+  }
 }

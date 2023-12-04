@@ -186,4 +186,20 @@
   &.p_0 {
     padding: 0;
   }
+
+  &.icon_style {
+    &.md {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        line-height:1;
+      }
+      svg {
+        font-size: 22px;
+      }
+    }
+  }
 }

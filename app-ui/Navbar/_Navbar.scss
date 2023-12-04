@@ -1,4 +1,6 @@
 .nav_wrapper {
+  background-color: $light;
+  border-bottom: solid 1px $stroke_color;
   .nav_content {
     padding: 0 20px;
     height: 80px;
