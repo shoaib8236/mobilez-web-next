@@ -17,17 +17,18 @@ const Page = (props) => {
 
   const searchParams = useSearchParams()
  
-  const search = searchParams.get('search')
+  const category = searchParams.get('category')
+  const brands = searchParams.get('brands')
  
-  // This will not be logged on the server when using static rendering
-  console.log(search)
+  
 
 
 
   const getDevices = async () => {
     try {
       setLoading(true);
-      let res = await api.post("/category", props?.searchParams);
+      console.log(category)
+      let res = await api.post(`/category?category=${category}&brands=${brands || ''}`,);
       setLoading(false);
 
       setDeviceData(res?.data?.data);
@@ -38,7 +39,7 @@ const Page = (props) => {
 
   useEffect(() => {
     getDevices();
-  }, [props]);
+  }, [category, brands]);
 
 
   return (
