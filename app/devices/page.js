@@ -7,31 +7,39 @@ import api from "@/services/api";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuFilter } from "react-icons/lu";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
+import Head from "next/head";
+
 
 
 const Page = (props) => {
   const [deviceData, setDeviceData] = useState(null);
+  const [categoryBrands, setCategoryBrands] = useState(null);
   const [loading, setLoading] = useState(true);
-  const params = useParams()
 
-  const searchParams = useSearchParams()
- 
-  const category = searchParams.get('category')
-  const brands = searchParams.get('brands')
- 
-  
+  const params = useParams();
 
+  const searchParams = useSearchParams();
 
+  const category = searchParams.get("category") || "";
+  const brand = searchParams.get("brand") || "";
+  const ram = searchParams.get("ram") || "";
+  const storage = searchParams.get("storage") || "";
+  const pta_status = searchParams.get("pta_status") || "";
+  const product_status = searchParams.get("product_status") || "";
+  const city = searchParams.get("city") || "";
 
   const getDevices = async () => {
     try {
       setLoading(true);
-      console.log(category)
-      let res = await api.post(`/category?category=${category}&brands=${brands || ''}`,);
+      console.log(category);
+      let res = await api.post(
+        `/category?category=${category}&brands=${brand}&storage=${storage}&ram=${ram}&pta_status=${pta_status}&product_status=${product_status}&city=${city}`
+      );
       setLoading(false);
 
       setDeviceData(res?.data?.data);
+      setCategoryBrands(res?.data?.brands);
     } catch (error) {
       console.log(error);
     }
@@ -39,14 +47,25 @@ const Page = (props) => {
 
   useEffect(() => {
     getDevices();
-  }, [category, brands]);
+  }, [category, brand, storage, pta_status, product_status, city, ram]);
 
 
+ 
   return (
+    <>
+     <Head>
+        <style>
+          
+        </style>
+      </Head>
     <div className="find_my_device_wrap">
+     
       <div className="content_wrap">
         <h1 className="page_title">
-          Adam Boltoro Jeep 4x4 Diesel for sale in Pakistan
+          {brand
+            ? `${brand} ${category === "mobile" ? "mobile" : category}`
+            : category}{" "}
+          for sale in {city ? city : "Pakistan"}
         </h1>
         <div className="breadcrumb"></div>
 
@@ -57,8 +76,8 @@ const Page = (props) => {
                 <LuFilter /> Filter by
               </h3>
               <ProductFilters
+                categoryBrands={categoryBrands}
                 loading={loading}
-                initialValues={props?.searchParams}
                 setDeviceData={setDeviceData}
               />
             </div>
@@ -71,7 +90,14 @@ const Page = (props) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
+
+
+// export const metadata = {
+//   title: 'asdjka;sdkasl;',
+//   description: 'asdjkasldj',
+// }
 
 export default Page;

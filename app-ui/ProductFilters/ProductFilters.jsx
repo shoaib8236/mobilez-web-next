@@ -2,17 +2,54 @@
 
 import { RamOptions, StorageOptions, WarrantyOptions } from "@/utils/fakeData";
 import { Checkbox, Form, Input, Select } from "antd";
-import { useForm } from "antd/es/form/Form";
-import { usePathname, useRouter } from "next/navigation";
+
+import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
 
 const ProductFilters = (props) => {
-  const { initialValues } = props;
+  const { initialValues, categoryBrands } = props;
+
+
+  const params = useParams();
+
+  const searchParams = useSearchParams();
+
+  const category = searchParams.get("category") || "";
+  const brand = searchParams.get("brand") || "";
+  const ram = searchParams.get("ram") || "";
+  const storage = searchParams.get("storage") || "";
+  const pta_status = searchParams.get("pta_status") || "";
+  const product_status = searchParams.get("product_status") || "";
+  const city = searchParams.get("city") || "";
 
   const router = useRouter();
   const pathname = usePathname();
-  const [form] = useForm();
+  const [form] = Form.useForm();
+
+
+  useEffect(() => {
+    form.setFieldsValue({
+      ...(category && { category }),
+      ...(brand && { brands: brand.split(",") }),
+      ...(ram && { ram }),
+      ...(storage && { storage }),
+      ...(pta_status && { pta_status }),
+      ...(product_status && { product_status }),
+      ...(city && { city }),
+    });
+  }, [category, brand, ram, storage, pta_status, product_status, city]);
+
+  const onReset = () => {
+    form.resetFields()
+    router.push('/devices')
+  };
+
+  const onBrandChange = () => {
+    form.setFieldValue("brand", []);
+  };
 
   const onFinish = (values) => {
+    console.log(values)
     let url = new URL(window.location.href);
     let params = new URLSearchParams(url.search);
     Object.entries(values).forEach(([key, value]) => {
@@ -20,6 +57,9 @@ const ProductFilters = (props) => {
         params.set(key, value);
       }
     });
+
+    console.log(url?.search)
+
     url.search = params.toString();
     router.push(url.pathname + url.search);
   };
@@ -30,26 +70,31 @@ const ProductFilters = (props) => {
 
   return (
     <Form
-      initialValues={initialValues}
       form={form}
       onFinish={onFinish}
       onValuesChange={onValuesChange}
       layout="vertical"
     >
+      <button type='button' onClick={onReset}>Reset Fields</button>
       <Form.Item name="category" label="Category">
-        <Select placeholder="Select Category" className="styled_select">
+        <Select         
+          onChange={onBrandChange}
+          placeholder="Select Category"
+          className="styled_select"
+        >
           <Select.Option value="mobile">Mobile</Select.Option>
           <Select.Option value="tablet">Tablet</Select.Option>
           <Select.Option value="watch">Watch</Select.Option>
           <Select.Option value="accessories">Accessories</Select.Option>
         </Select>
       </Form.Item>
-      <Form.Item name="brands" label="Brands">
+      <Form.Item name="brand" label="Brands">
         <Select placeholder="Select Brand" className="styled_select">
-          <Select.Option value="mobile">Mobile</Select.Option>
-          <Select.Option value="tablet">Tablet</Select.Option>
-          <Select.Option value="watch">Watch</Select.Option>
-          <Select.Option value="accessories">Accessories</Select.Option>
+          {categoryBrands?.map((item, i) => (
+            <Select.Option key={i} value={item?.title}>
+              {item?.title}
+            </Select.Option>
+          ))}
         </Select>
       </Form.Item>
       <Form.Item name="ram" label="Ram">
@@ -94,11 +139,11 @@ const ProductFilters = (props) => {
       </Form.Item>
       <Form.Item name="city" label="City">
         <Select placeholder="Select City" className="styled_select">
-          <Select.Option value={"approve"}>Karachi</Select.Option>
+          <Select.Option value={"karachi"}>Karachi</Select.Option>
         </Select>
       </Form.Item>
     </Form>
   );
 };
 
-export default ProductFilters;
+export default React.memo(ProductFilters);

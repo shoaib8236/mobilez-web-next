@@ -48,7 +48,7 @@ const useAuthCheck = () => {
   useEffect(() => {
     if (
       localStorage.getItem("@token") &&
-      Object.keys(JSON.parse(localStorage.getItem("@user"))|| {})?.length
+      Object.keys(JSON.parse(localStorage.getItem("@user")) || {})?.length
     ) {
       setIsAuth(true);
     } else {
@@ -61,4 +61,22 @@ const useAuthCheck = () => {
   return { authCheck: isAuth };
 };
 
-export { useFcmToken, useAuthCheck };
+
+const useDeviceDetect = () => {
+  const [isWindows, setIsWindows] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+
+    // Check if the user is on a Windows device
+    setIsWindows(/Windows/.test(userAgent));
+
+    // Check if the user is on a Mac device
+    setIsMac(/Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent));
+  }, []);
+
+  return { isWindows, isMac };
+};
+
+export { useFcmToken, useAuthCheck, useDeviceDetect };
