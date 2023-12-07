@@ -62,13 +62,22 @@
       color: $dark;
     }
   }
+
+
+  &.light_primary {
+    background-color: rgba($color: $primary, $alpha: 0.2);
+    span {
+      color: $primary;
+    }
+    
+  }
   &.primary {
     background-color: $primary;
     span {
       color: $light;
     }
   }
-
+  
   &.secondary {
     background-color: $secondary;
     span {
@@ -191,6 +200,19 @@
     &.md {
       height: 40px;
       width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        line-height:1;
+      }
+      svg {
+        font-size: 22px;
+      }
+    }
+    &.sm {
+      height: 30px;
+      width: 30px;
       display: flex;
       justify-content: center;
       align-items: center;

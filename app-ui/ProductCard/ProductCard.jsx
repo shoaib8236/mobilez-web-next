@@ -46,7 +46,7 @@ const ProductCard = (props) => {
         </div>
         <div className="blog_card_footer">
           <Link href={`/product/${data?.id}/${data?.slug}`}>
-            <StyledButton className="primary sm with_icon">Read More</StyledButton>
+            <StyledButton className="light_primary sm with_icon">Read More</StyledButton>
           </Link>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { FaListUl } from "react-icons/fa6";
 import { LuLayoutGrid } from "react-icons/lu";
 
 import StyledButton from "../StyledButton/StyledButton";
+import Image from "next/image";
 
 const ProductResult = (props) => {
   const { deviceData = {}, loading = true } = props;
@@ -23,18 +24,6 @@ const ProductResult = (props) => {
     <>
       <div className="filters_header">
         <div className="flex_between">
-          <h3 className="title_with_icon mb_0">
-            {loading ? (
-              <>
-                <Skeleton height="30px" width="150px" />
-              </>
-            ) : (
-              <>
-                <MdOutlineYoutubeSearchedFor />
-                Showing {deviceData?.total} results
-              </>
-            )}
-          </h3>
           <div className="filters_right_section">
             <Select placeholder="Select filters" className="styled_select">
               <Select.Option value="">Default</Select.Option>
@@ -52,13 +41,13 @@ const ProductResult = (props) => {
            <div>
            <StyledButton
               onClick={onChangeLayout("list")}
-              className="icon_style md light"
+              className="icon_style light_primary sm"
             >
               <FaListUl />
             </StyledButton>
             <StyledButton
               onClick={onChangeLayout("grid")}
-              className="icon_style md light"
+              className="icon_style light_primary sm"
             >
               <LuLayoutGrid />
             </StyledButton>
@@ -82,7 +71,9 @@ const ProductResult = (props) => {
             </>
           ) : (
             <>
-              {deviceData?.data?.map((item) => (
+              {
+                deviceData?.data?.length > 0 ? <>
+                {deviceData?.data?.map((item) => (
                 <Col
                   key={item?.id}
                   {...(layout === "grid" ? { lg: 8 } : { span: 24 })}
@@ -90,6 +81,10 @@ const ProductResult = (props) => {
                   <ProductCard className={layout} data={item} />
                 </Col>
               ))}
+                </> : <>
+                  <Image src='/no-data.jpg' alt="no-data" width={300} height={300} layout="responsive"/>
+                </>
+              }
             </>
           )}
         </Row>

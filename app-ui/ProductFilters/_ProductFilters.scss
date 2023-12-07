@@ -1,0 +1,53 @@
+.form_item_wrap {
+  &.space_x_10 {
+    padding: 0 10px;
+  }
+
+  > h3 {
+  }
+
+  .ant-checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+
+    .ant-checkbox {
+      margin-right: 5px;
+    }
+  }
+
+  .ant-collapse {
+    border-radius: 0 !important;
+    border-left: unset;
+    border-right: unset;
+    border-color: $stroke_color !important;
+
+    .ant-collapse-item {
+      border-color: $stroke_color !important;
+      background-color: $light;
+    }
+
+    .ant-collapse-header-text {
+      font-size: $text_sm;
+      font-weight: $font_bold;
+    }
+  }
+  .ant-radio-wrapper {
+    margin-right: 0;
+
+    > span {
+      padding: 0;
+    }
+    .ant-radio {
+      display: none;
+    }
+
+    &.ant-radio-wrapper-checked {
+        .ant-tag {
+            background-color: rgba($color: $secondary, $alpha: 0.05);
+            color: $secondary;
+            border-color: $secondary;
+        }
+    }
+
+  }
+}

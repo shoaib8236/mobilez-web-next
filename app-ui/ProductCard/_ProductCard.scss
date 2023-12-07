@@ -3,6 +3,8 @@
   max-width: 100%;
   overflow: hidden;
   background-color: $light;
+  border-radius: $radius_md;
+  box-shadow: $shadow_light;
 
   .image_wrap {
     width: 100%;
@@ -48,11 +50,15 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .blog_card_footer {
+      margin-top: 10px;
+    }
   }
 
   &.list {
     display: flex;
-  
+
     .image_wrap {
       width: 220px;
     }
@@ -60,6 +66,7 @@
     .blog_card_footer {
       display: flex;
       justify-content: flex-end;
+      padding-top: 10px;
     }
 
     .blog_card_area {
@@ -69,14 +76,12 @@
       p {
         border-right: solid 2px $text_color;
         padding-right: 10px;
-        
+
         &:last-child {
           padding-right: 0px;
           border: none;
         }
-
       }
-
     }
   }
 }

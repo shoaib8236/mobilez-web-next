@@ -182,9 +182,27 @@ span.ant-select-arrow.ant-select-arrow-loading {
   }
 }
 
-
 // Styled antd Checkbox
 
-.styled_checkbox {
-  margin-bottom: 0;
+.ant-checkbox-wrapper {
+  .ant-checkbox {
+    transform: scale(1.5);
+    margin-left: 6px;
+    * {
+      border-color: $light_gray !important;
+    }
+
+    &.ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: $light !important;
+        &::after {
+          border-color: $secondary;
+        }
+      }
+    }
+  }
+  span {
+    font-weight: $font_semibold;
+    font-size: $text_sm;
+  }
 }

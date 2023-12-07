@@ -6,96 +6,113 @@
     font-weight: $font_regular;
   }
 
-  .flex_layout {
-    display: flex;
-
-    .title_with_icon {
-      height: 75px;
+  .content_fluid {
+    background-color: #fafafa;
+    box-shadow: $shadow_light;
+    
+    .flex_layout {
       display: flex;
-      align-items: center;
-      color: $primary;
-      font-size: $text_md;
 
-      &.mb_0 {
-        margin-bottom: 0;
-      }
-
-      svg {
-        margin-right: 10px;
-        color: $primary;
-        font-size: $title_sm;
-      }
-    }
-
-    .flex_cols {
-      flex: 1;
-      padding: 10px;
-      margin-top: 20px;
-      padding-top: 0;
-
-      .results_wrapper {
-        margin-top: 20px;
-        // background-color: $light;
-        // border: solid 1px $stroke_color;
-      }
-
-      .filters_header {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        background-color: $light;
-        border: solid 1px $stroke_color;
-        padding: 10px;
-
-        .flex_between {
+  
+      .filters_sticky { 
+        .sticky {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-
-          .styled_select {
-            max-width: 300px;
-          }
-
-          .filters_right_section {
-            display: flex;
-            gap: 10px;
-            flex-grow: 1;
-            max-width: 400px;
-
-            > div {
-              display: flex;
-            }
-
-            .styled_select {
-              flex-grow: 1;
-            }
-          }
-        }
-      }
-
-      &.for_filters {
-        max-width: 300px;
-        padding-top: 0;
-        margin-right: 15px;
-        padding: 0;
-        background-color: $light;
-        border: solid 1px $stroke_color;
-
-        .sticky_container {
-          padding: 10px;
           position: sticky;
           left: 0;
           top: 0;
+          min-height: 100vh;
+          background-color: $light;
+          border-radius: 0 $radius_md $radius_md 0;
 
-          .filters_content {
-            border-bottom: solid 1px $stroke_color;
-            pb10 .content {
-              padding-left: 20px;
+          .filter_left_col {
+            border-right: solid 1px $stroke_color;
+            padding:0 10px;
+            padding-top: 20px;
+            button {
+              border-radius: 6px;
+              svg {
+                font-size: 24px;
+              }
+            }
+          }  
+          .filters {
+            min-width: 300px;
+            display: none;
+           
+            .filters_header {
+              padding: 20px 10px;
+              padding-bottom: 15px;
+              border-bottom: solid 1px $stroke_color;
+              margin-bottom: 10px;
+               h3 {
+                font-size: $text_md;
+              }
+            }
+            &.open {
+              display: block;
             }
           }
         }
       }
+      .flex_cols {
+        flex: 1;
+        padding: 10px;
+        padding-top: 0;
+
+        .product_results {
+          background-color: $light;
+          padding: 0 20px;
+
+          .results_wrapper {
+            margin-top: 20px;
+          }
+  
+          .filters_header {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+  
+            button {
+              border-radius: 6px;
+              svg {
+                font-size: 18px;
+              }
+            }
+  
+            .flex_between {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+  
+              .styled_select {
+                max-width: 300px;
+              }
+
+              .filters_right_section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                flex-grow: 1;
+  
+                > div {
+                  display: flex;
+                  gap: 10px;
+                }
+  
+                .styled_select {
+                  flex-grow: 1;
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+
     }
   }
 }

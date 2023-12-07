@@ -105,6 +105,17 @@ export const StorageOptions = [
   { value: "1TB", label: "1TB" },
 ];
 
+export const PtaStatus = [
+  { value: "Approved", label: "Approved" },
+  { value: "Not Approved", label: "Not Approved" },
+];
+
+export const ProductCondition = [
+  { value: "New", label: "New" },
+  { value: "Used", label: "Used" },
+  { value: "Refurbish", label: "Refurbish" },
+];
+
 export const WarrantyOptions = Array.from({ length: 12 }, (_, index) => ({
   value: `${index + 1} month${index !== 0 ? "s" : ""}`,
   label: `${index + 1} month${index !== 0 ? "s" : ""}`,
