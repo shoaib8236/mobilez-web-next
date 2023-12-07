@@ -8,9 +8,9 @@ import QRCode from "react-qr-code";
 const Footer = (props) => {
   const {} = props;
 
-  const {isWindows, isMac} = useDeviceDetect()
+  // const {isWindows, isMac} = useDeviceDetect()
 
-  console.log(isWindows, isMac)
+  // console.log(isWindows, isMac);
 
   return (
     <div className="footer">

@@ -1,103 +1,90 @@
-"use client";
+// "use client";
 
-import PageBanner from "@/app-ui/PageBanner/PageBanner";
-import ProductFilters from "@/app-ui/ProductFilters/ProductFilters";
-import ProductResult from "@/app-ui/ProductResult/ProductResult";
-import api from "@/services/api";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { LuFilter } from "react-icons/lu";
-import { useSearchParams } from "next/navigation";
-import Head from "next/head";
+// import ProductFilters from "@/app-ui/ProductFilters/ProductFilters";
+// import ProductResult from "@/app-ui/ProductResult/ProductResult";
+// import api from "@/services/api";
+// import { useParams, useSearchParams } from "next/navigation";
+// import { useEffect, useState } from "react";
+// import { LuFilter } from "react-icons/lu";
 
+export default function Page(props) {
+  // const [deviceData, setDeviceData] = useState(null);
+  // const [categoryBrands, setCategoryBrands] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
+  // const params = useParams();
 
-const Page = (props) => {
-  const [deviceData, setDeviceData] = useState(null);
-  const [categoryBrands, setCategoryBrands] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const searchParams = useSearchParams();
 
-  const params = useParams();
+  // const category = searchParams.get("category") || "";
+  // const brand = searchParams.get("brand") || "";
+  // const ram = searchParams.get("ram") || "";
+  // const storage = searchParams.get("storage") || "";
+  // const pta_status = searchParams.get("pta_status") || "";
+  // const product_status = searchParams.get("product_status") || "";
+  // const city = searchParams.get("city") || "";
 
-  const searchParams = useSearchParams();
+  // const getDevices = async () => {
+  //   try {
+  //     setLoading(true);
+  //     console.log(category);
+  //     let res = await api.post(
+  //       `/category?category=${category}&brands=${brand}&storage=${storage}&ram=${ram}&pta_status=${pta_status}&product_status=${product_status}&city=${city}`
+  //     );
+  //     setLoading(false);
 
-  const category = searchParams.get("category") || "";
-  const brand = searchParams.get("brand") || "";
-  const ram = searchParams.get("ram") || "";
-  const storage = searchParams.get("storage") || "";
-  const pta_status = searchParams.get("pta_status") || "";
-  const product_status = searchParams.get("product_status") || "";
-  const city = searchParams.get("city") || "";
+  //     setDeviceData(res?.data?.data);
+  //     setCategoryBrands(res?.data?.brands);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const getDevices = async () => {
-    try {
-      setLoading(true);
-      console.log(category);
-      let res = await api.post(
-        `/category?category=${category}&brands=${brand}&storage=${storage}&ram=${ram}&pta_status=${pta_status}&product_status=${product_status}&city=${city}`
-      );
-      setLoading(false);
+  // useEffect(() => {
+  //   getDevices();
+  // }, [category, brand, storage, pta_status, product_status, city, ram]);
 
-      setDeviceData(res?.data?.data);
-      setCategoryBrands(res?.data?.brands);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getDevices();
-  }, [category, brand, storage, pta_status, product_status, city, ram]);
-
-
- 
   return (
     <>
-     <Head>
-        <style>
-          
-        </style>
-      </Head>
-    <div className="find_my_device_wrap">
-     
-      <div className="content_wrap">
-        <h1 className="page_title">
-          {brand
-            ? `${brand} ${category === "mobile" ? "mobile" : category}`
-            : category}{" "}
-          for sale in {city ? city : "Pakistan"}
-        </h1>
-        <div className="breadcrumb"></div>
+      <div className="find_my_device_wrap">
+        {/* <div className="content_wrap">
+          <h1 className="page_title">
+            {brand
+              ? `${brand} ${category === "mobile" ? "mobile" : category}`
+              : category}{" "}
+            for sale in {city ? city : "Pakistan"}
+          </h1>
+          <div className="breadcrumb"></div>
 
-        <div className="flex_layout">
-          <div className="flex_cols for_filters">
-            <div className="sticky_container">
-              <h3 className="title_with_icon">
-                <LuFilter /> Filter by
-              </h3>
-              <ProductFilters
-                categoryBrands={categoryBrands}
-                loading={loading}
-                setDeviceData={setDeviceData}
-              />
+          <div className="flex_layout">
+            <div className="flex_cols for_filters">
+              <div className="sticky_container">
+                <h3 className="title_with_icon">
+                  <LuFilter /> Filter by
+                </h3>
+                <ProductFilters
+                  categoryBrands={categoryBrands}
+                  loading={loading}
+                  setDeviceData={setDeviceData}
+                />
+              </div>
+            </div>
+            <div className="flex_cols">
+              <div className="product_results">
+                <ProductResult loading={loading} deviceData={deviceData} />
+              </div>
             </div>
           </div>
-          <div className="flex_cols">
-            <div className="product_results">
-              <ProductResult loading={loading} deviceData={deviceData} />
-            </div>
-          </div>
-        </div>
+        </div> */}
       </div>
-    </div>
     </>
   );
-};
+}
 
+export async function generateMetadata(props) {
+  console.log(props);
 
-// export const metadata = {
-//   title: 'asdjka;sdkasl;',
-//   description: 'asdjkasldj',
-// }
-
-export default Page;
+  return {
+    title: props?.searchParams.category,
+  };
+}
