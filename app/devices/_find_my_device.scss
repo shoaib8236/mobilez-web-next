@@ -3,6 +3,7 @@
     font-size: $title_sm;
     color: $primary;
     text-transform: capitalize;
+    font-weight: $font_regular;
   }
 
   .flex_layout {
@@ -33,11 +34,9 @@
       padding-top: 0;
 
       .results_wrapper {
-        
         margin-top: 20px;
         // background-color: $light;
         // border: solid 1px $stroke_color;
-        
       }
 
       .filters_header {
