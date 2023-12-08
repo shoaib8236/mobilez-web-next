@@ -28,8 +28,6 @@ const Page = () => {
   }, [authCheck]);
 
   const onSubmit = async (values) => {
-    console.log(values);
-
     if (values?.password !== values?.conf_password) {
       notification.error({ message: "Password does not match!" });
       return;
@@ -67,7 +65,13 @@ const Page = () => {
       <div className="content_wrap">
         <Row gutter={[16, 16]}>
           <Col className="hide_image_tab" lg={12} md={12} sm={24} xs={24}>
-          <Image height={572} width={528} loading="lazy" layout="responsive" src='/register.png' />
+            <Image
+              height={572}
+              width={528}
+              loading="lazy"
+              layout="responsive"
+              src="/register.png"
+            />
           </Col>
           <Col lg={12} md={12} sm={24} xs={24}>
             <div className="signup_form">

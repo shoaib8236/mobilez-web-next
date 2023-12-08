@@ -7,20 +7,27 @@ import {
   StorageOptions,
   WarrantyOptions,
 } from "@/utils/fakeData";
-import { Checkbox, Collapse, Form, Input, Radio, Select, Tag } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import { Checkbox, Collapse, Form, Radio, Slider, Tag } from "antd";
 
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-import React, { useEffect } from "react";
+import api from "@/services/api";
+import debounce from "lodash/debounce";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { MdFilterListOff } from "react-icons/md";
+import { RiSeparator } from "react-icons/ri";
+import StyledButton from "../StyledButton/StyledButton";
 
 const ProductFilters = (props) => {
-  const { initialValues, categoryBrands } = props;
-
-  const params = useParams();
+  const {
+    categoryBrands = [],
+    setDeviceData,
+    setCategoryBrands,
+    setLoading,
+    handleCollapseClose,
+    loading,
+  } = props;
 
   const searchParams = useSearchParams();
 
@@ -31,24 +38,77 @@ const ProductFilters = (props) => {
   const pta_status = searchParams.get("pta_status") || "";
   const product_status = searchParams.get("product_status") || "";
   const city = searchParams.get("city") || "";
+  const min_price = searchParams.get("min_price") || "";
+  const max_price = searchParams.get("max_price") || "";
 
   const router = useRouter();
-  const pathname = usePathname();
   const [form] = Form.useForm();
 
-  console.log(ram);
+  const [price, setPrice] = useState([]);
+
+  const getDevices = async (data) => {
+    console.log(data);
+
+    try {
+      setLoading(true);
+      let res = await api.post(`/category`, data);
+      setLoading(false);
+      setDeviceData(res?.data?.data);
+
+      let getBrands = res?.data?.brands?.map((item) => {
+        return {
+          label: item?.brand,
+          value: item?.brand,
+        };
+      });
+
+      setCategoryBrands(getBrands);
+
+
+      let formValues = {
+        ...data,
+        brand: data?.brand?.[0] || "",
+        range: [data?.min_price || 0, data?.max_price || 0],
+      };
+
+      setPrice(formValues?.range);
+
+      console.log(formValues);
+
+      form.setFieldsValue(formValues);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const debouncedGetDevices = debounce(getDevices, 300);
 
   useEffect(() => {
-    form.setFieldsValue({
+    let payload = {
       ...(category && { category }),
-      ...(brand && { brands: brand.split(",") }),
+      ...(brand && { brand: brand.split(",") }),
       ...(ram && { ram: ram.split(",") }),
-      ...(storage && { storage }),
-      ...(pta_status && { pta_status }),
-      ...(product_status && { product_status }),
+      ...(storage && { storage: storage.split(",") }),
+      ...(pta_status && { pta_status: pta_status.split(",") }),
+      ...(product_status && { product_status: product_status.split(",") }),
       ...(city && { city }),
-    });
-  }, [category, brand, ram, storage, pta_status, product_status, city]);
+      ...(min_price && { min_price }),
+      ...(max_price && { max_price }),
+    };
+    debouncedGetDevices(payload);
+
+    return () => debouncedGetDevices.cancel();
+  }, [
+    category,
+    brand,
+    ram,
+    storage,
+    pta_status,
+    product_status,
+    city,
+    min_price,
+    max_price,
+  ]);
 
   const onReset = () => {
     form.resetFields();
@@ -59,24 +119,56 @@ const ProductFilters = (props) => {
     form.setFieldValue("brand", []);
   };
 
+  const removeUndefinedValues = (obj) => {
+    const result = {};
+    for (const key in obj) {
+      if (obj[key] !== undefined) {
+        result[key] = obj[key];
+      }
+    }
+    return result;
+  };
+
   const onFinish = (values) => {
-    console.log(values);
+    let getValues = removeUndefinedValues(values);
+
+    let payload = {
+      ...getValues,
+      ...(getValues?.brand ? { brand: [getValues?.brand] } : {}),
+      ...(getValues?.range
+        ? { min_price: getValues?.range[0], max_price: getValues?.range[1] }
+        : {}),
+    };
+
+    delete payload.range;
+
+
+    // getDevices(payload);
+
     let url = new URL(window.location.href);
     let params = new URLSearchParams(url.search);
-    Object.entries(values).forEach(([key, value]) => {
+    Object.entries(payload).forEach(([key, value]) => {
       if (value !== undefined) {
         params.set(key, value);
       }
     });
 
-    console.log(url?.search);
-
     url.search = params.toString();
     router.push(url.pathname + url.search);
+    handleCollapseClose();
   };
 
-  const onValuesChange = () => {
-    form.submit();
+  let timer;
+  const onValuesChange = (value) => {
+    if (Object.keys(value)[0] === "range") {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        form.submit();
+      }, 1000);
+    } else {
+      form.submit();
+    }
   };
 
   return (
@@ -87,27 +179,33 @@ const ProductFilters = (props) => {
       layout="vertical"
     >
       <div className="filters_header">
-        <h3>Filters</h3>
+        <h3>Filters</h3>{" "}
+        <div>
+          <StyledButton
+            onClick={onReset}
+            className="with_icon_right light_primary sm"
+          >
+            Clear All Filter <MdFilterListOff />
+          </StyledButton>
+          <StyledButton
+            onClick={handleCollapseClose}
+            className="icon_style filters_action light_primary sm"
+          >
+            <AiOutlineClose />
+          </StyledButton>
+        </div>
       </div>
       <div className="form_item_wrap">
         <Collapse
-          expandIconPosition="right"
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+          ghost
+          bordered={false}
+          expandIconPosition="end"
           defaultActiveKey={["1", "2", "3", "4", "5", "6", "7", "8"]}
         >
           <Collapse.Panel key="1" header="Category">
-            {/* <Form.Item name="category">
-              <Select
-                onChange={onBrandChange}
-                placeholder="Select Category"
-                className="styled_select"
-              >
-                <Select.Option value="mobile">Mobile</Select.Option>
-                <Select.Option value="tablet">Tablet</Select.Option>
-                <Select.Option value="watch">Watch</Select.Option>
-                <Select.Option value="accessories">Accessories</Select.Option>
-              </Select>
-            </Form.Item> */}
-
             <Form.Item name="category">
               <Radio.Group>
                 <Radio value={"mobile"}>
@@ -127,16 +225,16 @@ const ProductFilters = (props) => {
           </Collapse.Panel>
           <Collapse.Panel key="2" header="Brands">
             <Form.Item name="brand">
-              <Select placeholder="Select Brand" className="styled_select">
-                {categoryBrands?.map((item, i) => (
-                  <Select.Option key={i} value={item?.title}>
-                    {item?.title}
-                  </Select.Option>
+              <Radio.Group>
+                {categoryBrands?.map((item) => (
+                  <Radio value={item?.label}>
+                    <Tag color="blue">{item?.label}</Tag>
+                  </Radio>
                 ))}
-              </Select>
+              </Radio.Group>
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="3" header="City">
+          <Collapse.Panel key="4" header="City">
             <Form.Item name="city">
               <Radio.Group>
                 <Radio value={"karachi"}>
@@ -148,31 +246,44 @@ const ProductFilters = (props) => {
                 <Radio value={"islamabad"}>
                   <Tag color="blue">Islamabad</Tag>
                 </Radio>
-                
               </Radio.Group>
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="4" header="Ram">
+          <Collapse.Panel key="3" header="Price Range">
+            <Form.Item name={"range"}>
+              <Slider min={0} max={1000000} range />
+            </Form.Item>
+            {max_price  > 0 ? (
+              <div className="price_range">
+                <span>{min_price || 0}</span>{" "}
+                <span>
+                  <RiSeparator />
+                </span>
+                <span>{max_price || 0}</span>
+              </div>
+            ) : null}
+          </Collapse.Panel>
+          <Collapse.Panel key="5" header="Ram">
             <Form.Item name="ram">
               <Checkbox.Group options={RamOptions} />
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="5" header="Storage">
+          <Collapse.Panel key="6" header="Storage">
             <Form.Item name="storage">
               <Checkbox.Group options={StorageOptions} />
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="6" header="Product Condition">
+          <Collapse.Panel key="7" header="Product Condition">
             <Form.Item name="product_status">
               <Checkbox.Group options={ProductCondition} />
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="7" header="Warranty">
+          <Collapse.Panel key="8" header="Warranty">
             <Form.Item name="warranty">
               <Checkbox.Group options={WarrantyOptions} />
             </Form.Item>
           </Collapse.Panel>
-          <Collapse.Panel key="8" header="Pta Status">
+          <Collapse.Panel key="9" header="Pta Status">
             <Form.Item name="pta_status">
               <Checkbox.Group options={PtaStatus} />
             </Form.Item>

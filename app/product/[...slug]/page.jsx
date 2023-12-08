@@ -49,7 +49,6 @@ const Page = ({ params: { slug } }) => {
   };
 
   useEffect(() => {
-    console.log(slug, "slug");
 
     if (fcmToken) {
       getProductsDetails(fcmToken);

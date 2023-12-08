@@ -9,16 +9,15 @@
   .image_wrap {
     width: 100%;
     position: relative;
-    height: 180px;
+    height: 240px;
   }
 
   .card_content {
-    padding: 24px 12px;
+    padding: 12px 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    // height: 220px;
     p {
       font-size: $text_sm;
       color: $dark;
@@ -31,9 +30,6 @@
       margin-bottom: 10px;
     }
     .blog_card_area {
-      display: flex;
-      justify-content: space-between;
-      font-size: $text_sm;
     }
 
     .primary {
@@ -41,7 +37,7 @@
       font-size: $text_sm;
     }
 
-    h3 {
+    h2 {
       color: $dark;
       font-size: $text_md;
       display: -webkit-box;

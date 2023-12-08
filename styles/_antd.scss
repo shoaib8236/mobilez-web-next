@@ -186,8 +186,6 @@ span.ant-select-arrow.ant-select-arrow-loading {
 
 .ant-checkbox-wrapper {
   .ant-checkbox {
-    transform: scale(1.5);
-    margin-left: 6px;
     * {
       border-color: $light_gray !important;
     }
@@ -204,5 +202,18 @@ span.ant-select-arrow.ant-select-arrow-loading {
   span {
     font-weight: $font_semibold;
     font-size: $text_sm;
+  }
+}
+
+// Styled Antd Slider
+
+.ant-slider {
+  .ant-slider-track {
+    background-color: rgba($color: $primary, $alpha: 0.6) !important;
+  }
+  .ant-slider-handle {
+    &::after {
+      box-shadow: 0 0 0 2px rgba($color: $primary, $alpha: 1) !important;
+    }
   }
 }

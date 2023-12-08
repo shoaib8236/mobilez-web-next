@@ -37,7 +37,6 @@ const ProductResult = (props) => {
                 Recently Added
               </Select.Option>
             </Select>
-
            <div>
            <StyledButton
               onClick={onChangeLayout("list")}
@@ -59,13 +58,13 @@ const ProductResult = (props) => {
         <Row gutter={[20, 20]}>
           {loading ? (
             <>
-              <Col lg={8}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <BlogSkeleton />
               </Col>
-              <Col lg={8}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <BlogSkeleton />
               </Col>
-              <Col lg={8}>
+              <Col lg={8} md={12} sm={24} xs={24}>
                 <BlogSkeleton />
               </Col>
             </>
@@ -75,6 +74,7 @@ const ProductResult = (props) => {
                 deviceData?.data?.length > 0 ? <>
                 {deviceData?.data?.map((item) => (
                 <Col
+                lg={8} md={12} sm={24} xs={24}
                   key={item?.id}
                   {...(layout === "grid" ? { lg: 8 } : { span: 24 })}
                 >

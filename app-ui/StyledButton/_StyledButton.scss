@@ -49,6 +49,17 @@
       }
     }
   }
+  &.with_icon_right {
+    .child_element {
+      display: flex;
+      align-items: center;
+
+      > svg,
+      img {
+        margin-left: 10px;
+      }
+    }
+  }
 
   &.light {
     background-color: $light;
@@ -65,7 +76,7 @@
 
 
   &.light_primary {
-    background-color: rgba($color: $primary, $alpha: 0.2);
+    background-color: rgba($color: $primary, $alpha: 0.1);
     span {
       color: $primary;
     }

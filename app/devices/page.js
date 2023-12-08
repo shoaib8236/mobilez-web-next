@@ -20,6 +20,6 @@ export async function generateMetadata(props) {
     : "";
 
   return {
-    title: getTitle ?  `Mobilez Market | ${getTitle}` : "devices",
+    title: getTitle ?  `Mobilez Market | ${getTitle}` : "Mobilez Market | Mobile devices in Pakistan",
   };
 }

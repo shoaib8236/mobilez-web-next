@@ -27,7 +27,6 @@ const LoginWithGoogle = () => {
 
   const onGoogleLogin = async (res) => {
     const resDecode = jwtDecode(res?.credential);
-    console.log(resDecode);
     let payload = {
       name: resDecode?.name,
       id: resDecode?.jti,
@@ -40,7 +39,6 @@ const LoginWithGoogle = () => {
       if (res?.data?.status) {
         localStorage.setItem("@token", res?.data?.token);
         getUserData();
-        console.log(res?.data);
       } else {
         setSocialLoginLoading(false);
       }
@@ -59,11 +57,9 @@ const LoginWithGoogle = () => {
     >
       <GoogleLogin
         useOneTap={false}
-        theme='outline'
+        theme="outline"
         onSuccess={onGoogleLogin}
-        onError={() => {
-          console.log("Login Failed");
-        }}
+        onError={() => {}}
       />
     </div>
   );

@@ -3,26 +3,20 @@
     padding: 0 10px;
   }
 
-  > h3 {
+  .ant-form-item {
+    margin-bottom: 0;
   }
 
   .ant-checkbox-group {
     flex-direction: column;
-    gap: 10px;
-
+    gap: 5px;
     .ant-checkbox {
       margin-right: 5px;
     }
   }
 
   .ant-collapse {
-    border-radius: 0 !important;
-    border-left: unset;
-    border-right: unset;
-    border-color: $stroke_color !important;
-
     .ant-collapse-item {
-      border-color: $stroke_color !important;
       background-color: $light;
     }
 
@@ -31,8 +25,26 @@
       font-weight: $font_bold;
     }
   }
+
+  .ant-radio-group {
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 6px;
+  }
   .ant-radio-wrapper {
     margin-right: 0;
+
+    .ant-tag {
+      margin-right: 0;
+      background-color: rgba($color: $primary, $alpha: 0.05);
+      color: $primary;
+      border-color: rgba($color: $primary, $alpha: 0.2);
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     > span {
       padding: 0;
@@ -42,12 +54,28 @@
     }
 
     &.ant-radio-wrapper-checked {
-        .ant-tag {
-            background-color: rgba($color: $secondary, $alpha: 0.05);
-            color: $secondary;
-            border-color: $secondary;
-        }
+      .ant-tag {
+        background-color: rgba($color: $secondary, $alpha: 0.05);
+        color: $secondary;
+        border-color: $secondary;
+      }
     }
+  }
 
+  .price_range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: $text_sm;
+      font-weight: $font_bold;
+      line-height: 1;
+
+      svg {
+        font-size: 25px;
+        line-height: 1;
+      }
+    }
   }
 }

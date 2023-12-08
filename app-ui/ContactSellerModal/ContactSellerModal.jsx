@@ -6,11 +6,7 @@ import { FaMessage } from "react-icons/fa6";
 import { SiWhatsapp } from "react-icons/si";
 
 const ContactSellerModal = (props) => {
-  const { open = true, onClose = () => {}, data={} } = props;
-
-
-
-  console.log(data)
+  const { open = true, onClose = () => {}, data = {} } = props;
 
   const handlePhoneCall = () => {
     window.location.href = `tel:${data?.user?.phone}`; // Replace with the actual phone number
@@ -21,10 +17,19 @@ const ContactSellerModal = (props) => {
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://api.whatsapp.com/send?phone=${(data?.user?.phone?.split(" ") || ['']).shift()?.substring(1).split(" ").join(" ")}`, "_blank");
+    window.open(
+      `https://api.whatsapp.com/send?phone=${(
+        data?.user?.phone?.split(" ") || [""]
+      )
+        .shift()
+        ?.substring(1)
+        .split(" ")
+        .join(" ")}`,
+      "_blank"
+    );
     // Replace with the actual phone number
   };
-  
+
   return (
     <Modal footer={false} width={500} visible={open} onCancel={onClose}>
       <div className="contact_seller_modal">
