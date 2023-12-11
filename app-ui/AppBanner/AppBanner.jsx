@@ -33,6 +33,7 @@ const AppBanner = (props) => {
       {loading ? (
         <div className="banner_placeholder">
           <Skeleton height="100%" width="100%"/>
+          {/* <div></div> */}
         </div>
       ) : (
         <>
