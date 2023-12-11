@@ -1,5 +1,4 @@
 .nav_wrapper {
-  background-color: $light;
   border-bottom: solid 1px $stroke_color;
   .nav_header {
     display: flex;
@@ -36,6 +35,12 @@
         top: 50%;
         transform: translateY(-50%);
         left: 20px;
+        color: $light_gray;
+        font-weight: $font_medium;
+
+        * {
+          color: $light_gray;
+        }
       }
 
       input {
@@ -55,6 +60,9 @@
   .nav_links {
     display: flex;
     align-items: center;
+    background-color: $body_color;
+    border-top: solid 1px $stroke_color;
+    border-bottom: solid 1px $stroke_color;
 
     padding: 0 20px;
     ul {

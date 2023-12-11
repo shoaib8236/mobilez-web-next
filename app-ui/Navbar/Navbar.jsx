@@ -17,12 +17,12 @@ import { FiMenu } from "react-icons/fi";
 
 const Navbar = ({ userData }) => {
   const menuRef = useRef(null);
- 
+
   const pathname = usePathname();
   const router = useRouter();
 
-  const [showPlaceholder, setShowPlaceholder] = useState(true)
-  const [search, setSearch] = useState('')
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [search, setSearch] = useState("");
 
   const [user, setUser] = useState(null);
   const { authCheck } = useAuthCheck();
@@ -38,10 +38,8 @@ const Navbar = ({ userData }) => {
     if (menuRef.current) {
       if (menuRef.current.classList.contains("open_menu")) {
         menuRef.current.classList.remove("open_menu");
-        
       } else {
         menuRef.current.classList.add("open_menu");
-      
       }
     }
   }, [menuRef]);
@@ -50,7 +48,6 @@ const Navbar = ({ userData }) => {
     if (menuRef.current) {
       if (menuRef.current.classList.contains("open_menu")) {
         menuRef.current.classList.remove("open_menu");
-       
       }
     }
   }, [pathname, menuRef]);
@@ -128,24 +125,22 @@ const Navbar = ({ userData }) => {
     " accessories",
   ];
 
-  const handlePlaceHolder = ()=> {
-    setShowPlaceholder(false)
-  }
-  
-  const onBlurInput = ()=> {
-    setShowPlaceholder(true)
-  }
+  const handlePlaceHolder = () => {
+    setShowPlaceholder(false);
+  };
 
-  const handleSearch = (e)=> {
-    const {value} = e.target
-    if(value){
-      setSearch(value)
-    }else {
-      setSearch(null)
+  const onBlurInput = () => {
+    setShowPlaceholder(true);
+  };
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    if (value) {
+      setSearch(value);
+    } else {
+      setSearch(null);
     }
-  }
-
-
+  };
 
   return (
     <nav className="nav_wrapper">
@@ -155,19 +150,26 @@ const Navbar = ({ userData }) => {
         </div>
         <div className="header_action_container">
           <div className="search_container">
-            <input onChange={handleSearch} onClick={handlePlaceHolder} onBlur={onBlurInput} type="text" />
-            {showPlaceholder && !search ?  <div className="search_placeholder">
-              Search for{" "}
-              <TypingAnimation
-                texts={placeholderTexts}
-                speed={100}
-                delay={1500}
-              />
-            </div> : null}
+            <input
+              onChange={handleSearch}
+              onClick={handlePlaceHolder}
+              onBlur={onBlurInput}
+              type="text"
+            />
+            {showPlaceholder && !search ? (
+              <div className="search_placeholder">
+                Search for{" "}
+                <TypingAnimation
+                  texts={placeholderTexts}
+                  speed={100}
+                  delay={1500}
+                />
+              </div>
+            ) : null}
             <BiSearch />
           </div>
           <StyledButton onClick={onOpenMobileMenu} className="menu_btn">
-              <FiMenu/>
+            <FiMenu />
           </StyledButton>
         </div>
       </div>
@@ -206,7 +208,6 @@ const Navbar = ({ userData }) => {
               arrow
             >
               <div className="user_dropdown">
-                {/* <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "} */}
                 <span>{userData?.name}</span> <AiFillCaretDown />
               </div>
             </Dropdown>
@@ -218,7 +219,7 @@ const Navbar = ({ userData }) => {
             </>
           )}
 
-          <StyledButton onClick={onPost} className="secondary_light">
+          <StyledButton onClick={onPost} className="secondary_light sm">
             Post an Ad
           </StyledButton>
         </div>

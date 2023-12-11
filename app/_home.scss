@@ -20,6 +20,8 @@
       pointer-events: none;
     }
   }
+
+  
 }
 
 @media screen and (max-width: $breakpoint_lg) {
@@ -43,5 +45,25 @@
     .home_banner_wrap {
       height: 100px;
     }
+
+    .two_card_sm {
+      .image_wrap {
+        height: 120px;
+      }
+  
+      .card_content {
+        padding: 6px;
+        min-height: 160px;
+      }
+  
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
+      }
+    }
+
   }
 }
