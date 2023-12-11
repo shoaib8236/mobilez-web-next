@@ -123,6 +123,7 @@ const Navbar = ({ userData }) => {
     " mobile devices",
     " smart watches",
     " accessories",
+    " tablets",
   ];
 
   const handlePlaceHolder = () => {
