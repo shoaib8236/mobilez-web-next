@@ -141,15 +141,16 @@
 
     .nav_links {
       padding: 10px 20px;
-
+      
       .login_section {
         margin-left: auto;
       }
-
+      
       ul {
+        padding-top: 20px;
         position: fixed;
         left: 0;
-        top: 100px;
+        top: 96px;
         width: 100%;
         height: 100%;
         z-index: 999;
@@ -177,8 +178,15 @@
             overflow: hidden;
             width: 140px;
             font-size: $text_xsm;
+
+            * {
+              font-size: $text_xsm;
+            }
           }
         }
+      }
+      .nav_links {
+
       }
     }
   }
