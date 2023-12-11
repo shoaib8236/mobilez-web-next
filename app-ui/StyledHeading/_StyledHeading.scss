@@ -41,3 +41,36 @@
     }
   }
 }
+
+
+@media screen and (max-width: $breakpoint_sm) {
+
+  .styled_heading  {
+    h1 {
+      font-size: 16px;
+      padding: 0 8px;
+    }
+
+    &::before {
+      content: "";
+      height: 2px;
+      width: calc(100% - 30px);
+      transform: translateY(-50%);
+      z-index: -1;
+      position: absolute;
+      top: calc(50%);
+      left: 15px;
+    }
+    &::after {
+      content: "";
+      height: 2px;
+      width: 100%;
+      transform: translateY(-50%);
+      z-index: -1;
+      position: absolute;
+      top: calc(70% - 10px);
+      left: 0;
+    }
+  }
+
+}
