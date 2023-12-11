@@ -11,12 +11,18 @@ import { AiFillCaretDown, AiOutlineMenuFold } from "react-icons/ai";
 import { VscMenu } from "react-icons/vsc";
 import Avatar from "../Avatar/Avatar";
 import StyledButton from "../StyledButton/StyledButton";
+import { BiSearch } from "react-icons/bi";
+import TypingAnimation from "../TypingAnimation/TypingAnimation";
+import { FiMenu } from "react-icons/fi";
 
 const Navbar = ({ userData }) => {
   const menuRef = useRef(null);
-  const linkRef = useRef(null);
+ 
   const pathname = usePathname();
   const router = useRouter();
+
+  const [showPlaceholder, setShowPlaceholder] = useState(true)
+  const [search, setSearch] = useState('')
 
   const [user, setUser] = useState(null);
   const { authCheck } = useAuthCheck();
@@ -29,25 +35,25 @@ const Navbar = ({ userData }) => {
   }, []);
 
   const onOpenMobileMenu = useCallback(() => {
-    if (menuRef.current && linkRef.current) {
+    if (menuRef.current) {
       if (menuRef.current.classList.contains("open_menu")) {
         menuRef.current.classList.remove("open_menu");
-        linkRef.current.classList.remove("animate_links");
+        
       } else {
         menuRef.current.classList.add("open_menu");
-        linkRef.current.classList.add("animate_links");
+      
       }
     }
-  }, [menuRef, linkRef]);
+  }, [menuRef]);
 
   useEffect(() => {
-    if (menuRef.current && linkRef.current) {
+    if (menuRef.current) {
       if (menuRef.current.classList.contains("open_menu")) {
         menuRef.current.classList.remove("open_menu");
-        linkRef.current.classList.remove("animate_links");
+       
       }
     }
-  }, [pathname, menuRef, linkRef]);
+  }, [pathname, menuRef]);
 
   const onLogin = () => {
     router.push("/login");
@@ -60,6 +66,8 @@ const Navbar = ({ userData }) => {
   const onPushToDashboard = (endPoint) => () => {
     window.open(`https://www.mobilezmarket.com/${endPoint}`);
   };
+
+  const onPost = () => {};
 
   const items = [
     {
@@ -114,66 +122,83 @@ const Navbar = ({ userData }) => {
     },
   ];
 
+  const placeholderTexts = [
+    " mobile devices",
+    " smart watches",
+    " accessories",
+  ];
+
+  const handlePlaceHolder = ()=> {
+    setShowPlaceholder(false)
+  }
+  
+  const onBlurInput = ()=> {
+    setShowPlaceholder(true)
+  }
+
+  const handleSearch = (e)=> {
+    const {value} = e.target
+    if(value){
+      setSearch(value)
+    }else {
+      setSearch(null)
+    }
+  }
+
+
+
   return (
     <nav className="nav_wrapper">
-      <div className="nav_content">
+      <div className="nav_header">
         <div className="logo">
           <Image src="/logo.png" alt="logo" fill objectFit="contain" />
         </div>
-        <div ref={menuRef} className="links_container">
-          <ul ref={linkRef}>
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/devices">Find my device</Link>
-            </li>
-            <li>
-              <Link href="/about">About</Link>
-            </li>
-            <li>
-              <Link href="/blogs">Blogs</Link>
-            </li>
-            <li>
-              <Link href="/videos">Videos</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link href="/careers">Careers</Link>
-            </li>
-          </ul>
+        <div className="header_action_container">
           <div className="search_container">
-            {userData ? (
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                arrow
-              >
-                <div className="user_dropdown hide_sm">
-                  <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "}
-                  <span>{userData?.name}</span> <AiFillCaretDown />
-                </div>
-              </Dropdown>
-            ) : (
-              <>
-                <StyledButton onClick={onLogin} className="login_btn light">
-                  Sign in
-                </StyledButton>
-                <StyledButton
-                  onClick={onRegister}
-                  className="register_btn primary"
-                >
-                  Register
-                </StyledButton>
-              </>
-            )}
+            <input onChange={handleSearch} onClick={handlePlaceHolder} onBlur={onBlurInput} type="text" />
+            {showPlaceholder && !search ?  <div className="search_placeholder">
+              Search for{" "}
+              <TypingAnimation
+                texts={placeholderTexts}
+                speed={100}
+                delay={1500}
+              />
+            </div> : null}
+            <BiSearch />
           </div>
+          <StyledButton onClick={onOpenMobileMenu} className="menu_btn">
+              <FiMenu/>
+          </StyledButton>
         </div>
-        <div className="mobile_actions">
-          {userData && (
+      </div>
+      <div className="nav_links">
+        <ul ref={menuRef}>
+          <li>
+            <Link className="active" href="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/devices">Find my device</Link>
+          </li>
+          <li>
+            <Link href="/about">About</Link>
+          </li>
+          <li>
+            <Link href="/blogs">Blogs</Link>
+          </li>
+          <li>
+            <Link href="/videos">Videos</Link>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link href="/careers">Careers</Link>
+          </li>
+        </ul>
+        <div className="login_section">
+          {userData ? (
             <Dropdown
               menu={{
                 items,
@@ -181,13 +206,20 @@ const Navbar = ({ userData }) => {
               arrow
             >
               <div className="user_dropdown">
-                <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "}
+                {/* <Avatar url={getImage(userData?.photo)} className={"sm"} />{" "} */}
                 <span>{userData?.name}</span> <AiFillCaretDown />
               </div>
             </Dropdown>
+          ) : (
+            <>
+              <StyledButton onClick={onLogin} className="light">
+                Login
+              </StyledButton>
+            </>
           )}
-          <StyledButton onClick={onOpenMobileMenu} className="nav_open_btn">
-            <VscMenu />
+
+          <StyledButton onClick={onPost} className="secondary_light">
+            Post an Ad
           </StyledButton>
         </div>
       </div>

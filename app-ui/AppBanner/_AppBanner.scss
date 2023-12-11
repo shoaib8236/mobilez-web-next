@@ -1,6 +1,11 @@
 .app_banner {
   position: relative;
 
+  .slider_wrap {
+    height: 400px;
+    width: 100%;
+  }
+
   .overlay {
     position: absolute;
     top: 0;
@@ -11,9 +16,17 @@
   }
 }
 
-
 .banner_placeholder {
   height: 400px;
   width: 100%;
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: $breakpoint_md) {
+  .app_banner {
+    padding-bottom: 0 !important;
+    .slider_wrap {
+      height: 90px;
+    }
+  }
 }

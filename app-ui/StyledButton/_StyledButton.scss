@@ -90,11 +90,20 @@
   }
   
   &.secondary {
-    background-color: $secondary;
+    background-color:$secondary;
     span {
       color: $light;
     }
   }
+  
+  &.secondary_light {
+    background-color:rgba($color: $secondary, $alpha: 0.15);
+    border: solid 1px $secondary;
+    span {
+      color: $secondary;
+    }
+  }
+
 
   &.danger {
     background-color: $danger;

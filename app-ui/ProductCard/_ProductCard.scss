@@ -38,13 +38,30 @@
     }
 
     h2 {
-      color: $dark;
-      font-size: $text_md;
+      color: $text_color;
+      font-size: $text_lg;
+      margin-bottom: 10px;
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: $text_color;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 5px;
+        color: rgba($color: $text_color, $alpha: 0.5);
+        font-size: 16px;
+      }
     }
 
     .blog_card_footer {
