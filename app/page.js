@@ -237,7 +237,7 @@ export default function Home() {
             >
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <ProductCard type="accessories" data={item} />
+                  <ProductCard className="two_card_sm" type="accessories" data={item} />
                 </SwiperSlide>
               ))}
             </Swiper>
