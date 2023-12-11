@@ -25,7 +25,7 @@ const ProductResult = (props) => {
       <div className="filters_header">
         <div className="flex_between">
           <div className="filters_right_section">
-            <Select placeholder="Select filters" className="styled_select">
+            <Select placeholder="Sort by" className="styled_select">
               <Select.Option value="">Default</Select.Option>
               <Select.Option value="high-to-low">
                 Price : (High to low)
@@ -74,9 +74,9 @@ const ProductResult = (props) => {
                 deviceData?.data?.length > 0 ? <>
                 {deviceData?.data?.map((item) => (
                 <Col
-                lg={8} md={12} sm={24} xs={24}
+                
                   key={item?.id}
-                  {...(layout === "grid" ? { lg: 8 } : { span: 24 })}
+                  {...(layout === "grid" ? { lg: 8, md:12, sm:12, xs:24 } : { span: 24 })}
                 >
                   <ProductCard className={layout} data={item} />
                 </Col>

@@ -207,7 +207,7 @@ const ProductFilters = (props) => {
         >
           <Collapse.Panel key="1" header="Category">
             <Form.Item name="category">
-              <Radio.Group>
+              <Radio.Group onChange={onBrandChange}>
                 <Radio value={"mobile"}>
                   <Tag color="blue">Mobile</Tag>
                 </Radio>

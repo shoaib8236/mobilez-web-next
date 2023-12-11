@@ -4,23 +4,22 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import { getImage, getFormattedDate } from "@/utils/helper";
 import Link from "next/link";
-import moment from 'moment'
+import moment from "moment";
 import { HiLocationMarker } from "react-icons/hi";
 
 const ProductCard = (props) => {
   const { className = "", data = {}, type = "mobile" } = props;
 
-
   function getHumanReadableTimeDifference(date) {
     const now = moment();
     const inputDate = moment(date);
-  
-    const diffInSeconds = now.diff(inputDate, 'seconds');
-    const diffInMinutes = now.diff(inputDate, 'minutes');
-    const diffInHours = now.diff(inputDate, 'hours');
-    const diffInDays = now.diff(inputDate, 'days');
-    const diffInMonths = now.diff(inputDate, 'months');
-  
+
+    const diffInSeconds = now.diff(inputDate, "seconds");
+    const diffInMinutes = now.diff(inputDate, "minutes");
+    const diffInHours = now.diff(inputDate, "hours");
+    const diffInDays = now.diff(inputDate, "days");
+    const diffInMonths = now.diff(inputDate, "months");
+
     if (diffInSeconds < 60) {
       return `${diffInSeconds} seconds ago`;
     } else if (diffInMinutes < 60) {
@@ -66,11 +65,16 @@ const ProductCard = (props) => {
                 {data?.ram} GB | {data?.storage} GB | {data?.pta_status}
               </p>
             ) : null}
-           <div className="flex_between">
-           <p className="location"><HiLocationMarker/>{data?.user?.city}</p>
-            
-            <p>{getHumanReadableTimeDifference(data?.created_at, "DD MMM")}</p>
-           </div>
+            <div className="flex_between">
+              <p className="location">
+                <HiLocationMarker />
+                {data?.user?.city}
+              </p>
+
+              <p>
+                {getHumanReadableTimeDifference(data?.created_at, "DD MMM")}
+              </p>
+            </div>
           </div>
           <div className="blog_card_footer"></div>
         </div>

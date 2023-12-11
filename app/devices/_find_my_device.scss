@@ -14,7 +14,7 @@
       gap: 10px;
       align-items: center;
       .page_title {
-        font-size: $title_sm;
+        font-size: $title_lg;
         color: $primary;
         text-transform: capitalize;
         font-weight: $font_regular;
@@ -213,4 +213,13 @@
 }
 
 @media screen and (max-width: $breakpoint_sm) {
+  .find_my_device_wrap {
+    .page_title_wrap {
+      > div {
+        .page_title {
+          font-size: $title_sm;
+        }
+      }
+    }
+  }
 }
