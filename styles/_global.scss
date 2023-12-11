@@ -1,6 +1,4 @@
-
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 body {
   margin: 0;
@@ -9,8 +7,8 @@ body {
 }
 
 * {
-  font-family: 'Inter', sans-serif !important;
- 
+  font-family: "Inter", sans-serif !important;
+
   box-sizing: border-box;
 }
 
@@ -78,6 +76,40 @@ h3 {
   }
 }
 
+
+.styled_breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    color: $gray;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+
+    &:hover {
+      color: $secondary;
+    }
+
+    svg {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+
+  .separator {
+    color: $gray;
+    margin: 0 10px;
+
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+
 @media screen and (max-width: $breakpoint_md) {
   h1 {
     font-size: $title_md;
@@ -89,6 +121,8 @@ h3 {
     font-size: $text_lg;
   }
 }
+
+
 @media screen and (max-width: $breakpoint_sm) {
   h1 {
     font-size: $title_sm;
@@ -102,12 +136,12 @@ h3 {
 
   .swiper {
     padding-bottom: 30px !important;
-  
+
     &.p_15 {
       padding-right: 5px !important;
       padding-left: 5px !important;
     }
-  
+
     .swiper-pagination {
       .swiper-pagination-bullet-active {
         background-color: $primary;
@@ -115,38 +149,10 @@ h3 {
     }
   }
 
-}
-
-
-.styled_breadcrumb {
-  display: flex;
-  align-items:center;
-  gap:10px;
-
-
-  a {
-    color:$gray;
-    display: flex;
-    align-items:center;
-    text-transform: capitalize;
-
-    &:hover {
-      color: $secondary;
-    }
-
-    svg {
-      font-size: 16px;
-      margin-right: 10px;
-    }
-
-  }
-  
-  .separator {
-    color:$gray;
-    margin: 0 10px;
-    
-    &:last-child {
-      display:none;
+  .styled_breadcrumb {
+    * {
+      font-size: $text_md;
     }
   }
 }
+
