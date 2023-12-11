@@ -4,7 +4,7 @@
   overflow: hidden;
   background-color: $light;
   border-radius: $radius_md;
-  box-shadow: $shadow_light;
+  
 
   .image_wrap {
     width: 100%;
@@ -26,7 +26,7 @@
     }
     .price {
       color: $primary;
-      font-size: $text_sm;
+      font-size: $text_md;
       margin-bottom: 10px;
     }
     .blog_card_area {
@@ -38,7 +38,7 @@
     }
 
     h2 {
-      color: $text_color;
+      color: $dark;
       font-size: $text_lg;
       margin-bottom: 10px;
       display: -webkit-box;
@@ -46,6 +46,8 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-weight: $font_bold;
+      margin-top: 10px;
     }
 
     p {
@@ -56,16 +58,24 @@
     .location {
       display: flex;
       align-items: center;
-
+      
       svg {
         margin-right: 5px;
         color: rgba($color: $text_color, $alpha: 0.5);
         font-size: 16px;
       }
     }
-
+    
     .blog_card_footer {
       margin-top: 10px;
+    }
+    
+    .flex_between {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      justify-content: space-between;
+
     }
   }
 

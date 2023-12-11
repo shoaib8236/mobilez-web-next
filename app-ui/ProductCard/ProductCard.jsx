@@ -66,9 +66,11 @@ const ProductCard = (props) => {
                 {data?.ram} GB | {data?.storage} GB | {data?.pta_status}
               </p>
             ) : null}
-            <p className="location"><HiLocationMarker/>{data?.user?.city}</p>
+           <div className="flex_between">
+           <p className="location"><HiLocationMarker/>{data?.user?.city}</p>
             
             <p>{getHumanReadableTimeDifference(data?.created_at, "DD MMM")}</p>
+           </div>
           </div>
           <div className="blog_card_footer"></div>
         </div>
