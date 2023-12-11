@@ -5,6 +5,8 @@ import { useRef, useState } from "react";
 import ProductFilters from "../ProductFilters/ProductFilters";
 import ProductResult from "../ProductResult/ProductResult";
 import StyledButton from "../StyledButton/StyledButton";
+import Link from "next/link";
+import { IoHome } from "react-icons/io5";
 
 const FiltersLayout = () => {
   const [deviceData, setDeviceData] = useState(null);
@@ -35,6 +37,43 @@ const FiltersLayout = () => {
   return (
     <>
       <div className="content_wrap">
+        <div className="styled_breadcrumb">
+          <Link href="/">
+            <IoHome />
+            Home
+          </Link>{" "}
+          <span className="separator">/</span>
+          {category && (
+            <>
+              <Link href={`/devices?category=${category || ""}`}>
+                {category}
+              </Link>
+              <span className="separator">/</span>
+            </>
+          )}{" "}
+          {brand && (
+            <>
+              <Link
+                href={`/devices?category=${category || ""}&brand=${
+                  brand || ""
+                }`}
+              >
+                {brand}
+              </Link>
+              <span className="separator">/</span>
+            </>
+          )}{" "}
+          {city && (
+            <Link
+              href={`/devices?category=${category || ""}&brand=${
+                brand || ""
+              }&city=${city || ""}`}
+            >
+              {city}{" "}
+            </Link>
+          )}
+        </div>
+
         <div className="page_title_wrap">
           <div>
             <StyledButton className="light_primary sm" onClick={handleCollapse}>

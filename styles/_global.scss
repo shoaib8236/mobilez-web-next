@@ -116,3 +116,37 @@ h3 {
   }
 
 }
+
+
+.styled_breadcrumb {
+  display: flex;
+  align-items:center;
+  gap:10px;
+
+
+  a {
+    color:$gray;
+    display: flex;
+    align-items:center;
+    text-transform: capitalize;
+
+    &:hover {
+      color: $secondary;
+    }
+
+    svg {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+  }
+  
+  .separator {
+    color:$gray;
+    margin: 0 10px;
+    
+    &:last-child {
+      display:none;
+    }
+  }
+}

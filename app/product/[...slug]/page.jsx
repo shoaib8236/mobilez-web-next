@@ -112,7 +112,7 @@ const Page = ({ params: { slug } }) => {
 
   return (
     <>
-      <section>
+      <section className="product_details">
         <div className="content_wrap">
           <Row gutter={[20, 20]}>
             <Col lg={12} md={12} sm={24} xs={24}>
