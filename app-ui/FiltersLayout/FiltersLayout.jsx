@@ -46,6 +46,22 @@ const FiltersLayout = () => {
   return (
     <>
       <div className="content_wrap">
+        <div className="page_title_wrap">
+          <div>
+            <StyledButton className="light_primary sm" onClick={handleCollapse}>
+              Filters
+            </StyledButton>
+            <h1 className="page_title">
+              {brand
+                ? `${brand} ${category === "mobile" ? "mobile" : category}`
+                : `category`
+                ? category === 'mobile' ? 'Mobile Devices' : category === 'accessories' ? 'Mobile Accessories' : category === 'tablet' ? 'Tablet Devices' :  category === 'watch' ? 'Smart Watches' : category
+                : "Mobile Devices"}{" "}
+              for sale in {city ? city : "Pakistan"}
+            </h1>
+          </div>
+          <p>Showing {deviceData?.length} out of {totalRecords} </p>
+        </div>
         <div className="styled_breadcrumb">
           <Link href="/">
             <IoHome />
@@ -81,23 +97,6 @@ const FiltersLayout = () => {
               {city}{" "}
             </Link>
           )}
-        </div>
-
-        <div className="page_title_wrap">
-          <div>
-            <StyledButton className="light_primary sm" onClick={handleCollapse}>
-              Filters
-            </StyledButton>
-            <h1 className="page_title">
-              {brand
-                ? `${brand} ${category === "mobile" ? "mobile" : category}`
-                : category
-                ? category
-                : "Mobile Devices"}{" "}
-              for sale in {city ? city : "Pakistan"}
-            </h1>
-          </div>
-          <p>Showing {deviceData?.length} results of {totalRecords} </p>
         </div>
       </div>
       <div className="content_fluid">

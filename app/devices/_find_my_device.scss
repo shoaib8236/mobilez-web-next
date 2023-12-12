@@ -7,7 +7,8 @@
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    padding: 30px 0;
+    padding: 20px 0;
+    padding-bottom: 20px;
 
     > div {
       display: flex;
@@ -32,6 +33,10 @@
       padding-right: 10px;
       margin-bottom: 0;
     }
+  }
+
+  .styled_breadcrumb {
+    margin-bottom: 30px;
   }
 
   .content_fluid {

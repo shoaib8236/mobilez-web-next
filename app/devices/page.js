@@ -16,18 +16,28 @@ export async function generateMetadata(props) {
   } = props;
 
   const getOrderedTitle = (str) => {
-    return str.slice(0, 1).toUpperCase() + str.slice(1);
+    let newStr = str.slice(0, 1).toUpperCase() + str.slice(1);
+
+    if (newStr === "Watch") {
+      return "Smart Watches";
+    } else if (newStr === "Mobile") {
+      return "Mobile Devices";
+    } else if (newStr === "Tablet") {
+      return "Tablet Devices";
+    } else if (newStr === "Accessories") {
+      return "Mobile Accessories";
+    }
   };
 
   let getTitle = category
-    ? `${brand ? brand : ""} ${getOrderedTitle(category)} for sale ${
-        city ? `in ${city}` : ""
+    ? `${brand ? brand : ""} ${getOrderedTitle(category)} ${
+        city ? `in ${city.slice(0, 1).toUpperCase() + city.slice(1)}` : "in Pakistan"
       }`
     : "";
 
   return {
     title: getTitle
       ? `${getTitle} | Mobilez Market`
-      : "Mobile devices in Pakistan | Mobilez Market ",
+      : `Mobile devices ${city ? `in ${city.slice(0, 1).toUpperCase() + city.slice(1)}` : "in Pakistan"} | Mobilez Market`,
   };
 }
