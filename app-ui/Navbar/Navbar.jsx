@@ -297,9 +297,20 @@ const Navbar = ({ userData }) => {
             </>
           )}
 
+          {
+            userData ? <>
+
           <StyledButton onClick={onPost} className="secondary_light sm">
             Post an Ad
           </StyledButton>
+            </> : <>
+
+          <StyledButton onClick={onRegister} className="secondary_light sm">
+            Sign Up
+          </StyledButton>
+            </>
+          }
+
         </div>
       </div>
     </nav>

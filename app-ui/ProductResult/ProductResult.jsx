@@ -59,13 +59,13 @@ const ProductResult = (props) => {
         <Row gutter={[20, 20]}>
           {loading && isLoadMore !== true ? (
             <>
-              <Col lg={8} md={12} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={12}>
                 <BlogSkeleton />
               </Col>
-              <Col lg={8} md={12} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={12}>
                 <BlogSkeleton />
               </Col>
-              <Col lg={8} md={12} sm={24} xs={24}>
+              <Col lg={8} md={12} sm={12} xs={12}>
                 <BlogSkeleton />
               </Col>
             </>
@@ -77,9 +77,9 @@ const ProductResult = (props) => {
                 <Col
                 
                   key={item?.id}
-                  {...(layout === "grid" ? { lg: 8, md:12, sm:12, xs:24 } : { span: 24 })}
+                  {...(layout === "grid" ? { lg: 8, md:12, sm:12, xs:12 } : { span: 24 })}
                 >
-                  <ProductCard className={layout} data={item} />
+                  <ProductCard className={`${layout} two_card_sm`} data={item} />
                 </Col>
               ))}
                 </> : <>

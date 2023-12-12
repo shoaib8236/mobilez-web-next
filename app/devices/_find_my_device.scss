@@ -28,7 +28,7 @@
     p {
       font-weight: $font_medium;
       color: $dark;
-      font-size:$text_sm;
+      font-size: $text_sm;
       padding-right: 10px;
       margin-bottom: 0;
     }
@@ -96,6 +96,7 @@
 
           .results_wrapper {
             margin-top: 20px;
+            padding-bottom:15px;
           }
 
           .filters_header {
@@ -227,6 +228,24 @@
         .page_title {
           font-size: $title_sm;
         }
+      }
+    }
+    
+    .two_card_sm {
+      .image_wrap {
+        height: 150px;
+      }
+
+      .card_content {
+        padding: 6px;
+      }
+
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
       }
     }
   }

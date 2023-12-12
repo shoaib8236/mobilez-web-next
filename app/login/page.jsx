@@ -44,8 +44,14 @@ const Page = () => {
     <div className="login_wrap">
       <div className="content_wrap">
         <Row gutter={[16, 16]}>
-          <Col className='hide_image_tab' lg={12} md={12} sm={24} xs={24}>
-            <Image height={572} width={528} loading="lazy" layout="responsive" src='/login.png' />
+          <Col className="hide_image_tab" lg={12} md={12} sm={24} xs={24}>
+            <Image
+              height={572}
+              width={528}
+              loading="lazy"
+              layout="responsive"
+              src="/login.png"
+            />
           </Col>
           <Col lg={12} md={12} sm={24} xs={24}>
             <div className="login_form">
@@ -88,8 +94,10 @@ const Page = () => {
                     </StyledButton>
                     <p className="text_center login_or">or</p>
                     <Row gutter={[16, 16]}>
-                      <Col lg={12} md={12} sm={24} xs={24}>
-                        <LoginWithGoogle />
+                      <Col span={24}>
+                        <div className="social_login">
+                          <LoginWithGoogle />
+                        </div>
                       </Col>
                     </Row>
                   </div>

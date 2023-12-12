@@ -50,7 +50,10 @@ const ProductDetailsLayout = (props) => {
         setShopAdds(res?.data?.more_ads);
         setLoading(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      console.log(error)
+    }
   };
 
   useEffect(() => {
@@ -148,7 +151,7 @@ const ProductDetailsLayout = (props) => {
               <>
                 <p>
                   <span className="text_primary">Posted By:</span> &nbsp;
-                  {productDetails?.user.name}
+                  {productDetails?.user?.user_type === 'business' ? productDetails?.user.shop_name : productDetails?.user.name}
                 </p>
               </>
             )}
@@ -169,7 +172,7 @@ const ProductDetailsLayout = (props) => {
                 <h3 className="posted_heading">
                   Posted By :{" "}
                   <span className="text_primary blinking_text">
-                    {productDetails?.user.name}
+                  {productDetails?.user?.user_type === 'business' ? productDetails?.user.shop_name : productDetails?.user.name}
                   </span>
                 </h3>
               </>
