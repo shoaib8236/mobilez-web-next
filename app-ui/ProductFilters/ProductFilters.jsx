@@ -45,18 +45,18 @@ const ProductFilters = (props) => {
   const city = searchParams.get("city") || "";
   const min_price = searchParams.get("min_price") || "";
   const max_price = searchParams.get("max_price") || "";
+  const search = searchParams.get("search") || "";
 
   const router = useRouter();
   const [form] = Form.useForm();
 
   const [price, setPrice] = useState([]);
 
-  const getDevices = async (data) => {
-    console.log(data);
+  const getDevices = async ({page, ...data}) => {
 
     try {
       setLoading(true);
-      let res = await api.post(`/category?page=${data?.page}`, data);
+      let res = await api.post(`/category?page=${page}`, data);
       setLoading(false);
 
       if (isLoadMore) {
@@ -79,12 +79,10 @@ const ProductFilters = (props) => {
       let formValues = {
         ...data,
         brand: data?.brand?.[0] || "",
-        range: [data?.min_price || 0, data?.max_price || 0],
+        range: [data?.min_price || 0, data?.max_price || 1000000],
       };
 
       setPrice(formValues?.range);
-
-      console.log(formValues);
 
       form.setFieldsValue(formValues);
     } catch (error) {
@@ -105,6 +103,7 @@ const ProductFilters = (props) => {
       ...(city && { city }),
       ...(min_price && { min_price }),
       ...(max_price && { max_price }),
+      ...(search && { search }),
       page,
     };
     debouncedGetDevices(payload);
@@ -121,6 +120,7 @@ const ProductFilters = (props) => {
     min_price,
     max_price,
     page,
+    search
   ]);
 
   const onReset = () => {
@@ -146,23 +146,35 @@ const ProductFilters = (props) => {
   const onFinish = (values) => {
     let getValues = removeUndefinedValues(values);
 
+    setLoading(true);
     setDeviceData([]);
     setPage(1);
 
+
+
     let payload = {
       ...getValues,
-      ...(getValues?.brand ? { brand: [getValues?.brand] } : {}),
-      ...(getValues?.range
-        ? { min_price: getValues?.range[0], max_price: getValues?.range[1] }
-        : {}),
     };
+    
+    if(payload?.range[1] > 0){
+      payload = {
+        ...payload,
+        ...(getValues?.brand?.length > 0 ? { brand: [getValues?.brand] } : {}),
+        ...(getValues?.range
+          ? { min_price: getValues?.range[0], max_price: getValues?.range[1] }
+          : {}),
+        }
+    }
+
     delete payload.range;
-    // getDevices(payload);
 
     let url = new URL(window.location.href);
     let params = new URLSearchParams(url.search);
     Object.entries(payload).forEach(([key, value]) => {
-      if (value !== undefined) {
+
+      console.log(key, value)
+
+      if (value !== undefined || value !=='0' || value !== 0) {
         params.set(key, value);
       }
     });
@@ -265,7 +277,7 @@ const ProductFilters = (props) => {
           </Collapse.Panel>
           <Collapse.Panel key="3" header="Price Range">
             <Form.Item name={"range"}>
-              <Slider min={0} max={1000000} range />
+              <Slider defaultValue={[1000,500000]} min={0} max={1000000} range />
             </Form.Item>
             {max_price > 0 ? (
               <div className="price_range">

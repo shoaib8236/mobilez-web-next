@@ -17,6 +17,8 @@ import { FaLink } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+// import { CgSmartphoneRam } from "react-icons/cg";
+// import { GrStorage } from "react-icons/gr";
 
 const ProductDetailsLayout = (props) => {
 

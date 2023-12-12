@@ -43,8 +43,6 @@ const FiltersLayout = () => {
     setPage((prev) => prev + 1);
   };
 
-  console.log(page);
-
   return (
     <>
       <div className="content_wrap">
@@ -99,7 +97,7 @@ const FiltersLayout = () => {
               for sale in {city ? city : "Pakistan"}
             </h1>
           </div>
-          <p>Showing {totalRecords} results</p>
+          <p>Showing {deviceData?.length} results of {totalRecords} </p>
         </div>
       </div>
       <div className="content_fluid">

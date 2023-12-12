@@ -27,7 +27,6 @@ const Page = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log(values);
 
     try {
       setLoading(true);
@@ -51,8 +50,6 @@ const Page = () => {
     setPhone(localStorage.getItem("@phone"));
   }, [phone]);
 
-
-  console.log(phone)
 
   return (
     <div className="login_wrap">

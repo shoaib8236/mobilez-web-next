@@ -21,8 +21,6 @@ const ProductResult = (props) => {
     setLayout(type);
   };
 
-  console.log(deviceData)
-
   return (
     <>
       <div className="filters_header">

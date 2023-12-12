@@ -14,6 +14,8 @@ import StyledButton from "../StyledButton/StyledButton";
 import { BiSearch } from "react-icons/bi";
 import TypingAnimation from "../TypingAnimation/TypingAnimation";
 import { FiMenu } from "react-icons/fi";
+import api from "@/services/api";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Navbar = ({ userData }) => {
   const menuRef = useRef(null);
@@ -23,6 +25,8 @@ const Navbar = ({ userData }) => {
 
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [search, setSearch] = useState("");
+  const [searchData, setSearchData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const [user, setUser] = useState(null);
   const { authCheck } = useAuthCheck();
@@ -33,6 +37,37 @@ const Navbar = ({ userData }) => {
       setUser(getUser);
     }
   }, []);
+
+  let getSearchSuggestions = async (search) => {
+    try {
+      setLoading(true);
+      let res = await api.post("/search", { search });
+
+      if (res?.data?.status) {
+        setSearchData(res?.data?.search_data);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      if (search?.length > 2) {
+        getSearchSuggestions(search);
+      }
+    }, 500);
+
+    if (!search?.length) {
+      setSearchData([]);
+    }
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const onOpenMobileMenu = useCallback(() => {
     if (menuRef.current) {
@@ -139,8 +174,29 @@ const Navbar = ({ userData }) => {
     if (value) {
       setSearch(value);
     } else {
-      setSearch(null);
+      setSearch("");
     }
+  };
+
+  const onSearch = (data) => () => {
+    let payload = {
+      search: data?.accessories_title
+        ? data?.accessories_title
+        : `${data?.brand} ${data?.model}`,
+      category: data?.category,
+      brand: data?.brand,
+    };
+    setSearchData([]);
+    setSearch("");
+    let url = new URL(window.location.href);
+    let params = new URLSearchParams(url.search);
+    Object.entries(payload).forEach(([key, value]) => {
+      if (value !== undefined) {
+        params.set(key, value);
+      }
+    });
+    url.search = params.toString();
+    router.push("/devices" + url.search);
   };
 
   return (
@@ -152,6 +208,7 @@ const Navbar = ({ userData }) => {
         <div className="header_action_container">
           <div className="search_container">
             <input
+              value={search}
               onChange={handleSearch}
               onClick={handlePlaceHolder}
               onBlur={onBlurInput}
@@ -167,7 +224,27 @@ const Navbar = ({ userData }) => {
                 />
               </div>
             ) : null}
-            <BiSearch />
+            {loading ? (
+              <AiOutlineLoading3Quarters className="search_loading" />
+            ) : (
+              <BiSearch />
+            )}
+
+            <div className="search_result_dropdown">
+              {searchData?.map((item, i) => (
+                <div key={i} className="search_result">
+                  <button onClick={onSearch(item)}>
+                    {item?.accessories_title ? (
+                      <>{item?.accessories_title}</>
+                    ) : (
+                      <>
+                        {item?.brand} {item?.model}
+                      </>
+                    )}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
           <StyledButton onClick={onOpenMobileMenu} className="menu_btn">
             <FiMenu />
