@@ -15,11 +15,19 @@ export async function generateMetadata(props) {
     searchParams: { category, brand, city },
   } = props;
 
+  const getOrderedTitle = (str) => {
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+  };
+
   let getTitle = category
-    ? `${brand ? brand : ""} ${category} for sale ${city ? `in ${city}` : ""}`
+    ? `${brand ? brand : ""} ${getOrderedTitle(category)} for sale ${
+        city ? `in ${city}` : ""
+      }`
     : "";
 
   return {
-    title: getTitle ?  `${getTitle} | Mobilez Market` : "Mobile devices in Pakistan | Mobilez Market ",
+    title: getTitle
+      ? `${getTitle} | Mobilez Market`
+      : "Mobile devices in Pakistan | Mobilez Market ",
   };
 }

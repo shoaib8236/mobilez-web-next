@@ -40,7 +40,7 @@ const BrandsSlider = (props) => {
         {brandsLogo?.map((item) => (
           <SwiperSlide key={item?.id}>
             <div className="logo_item">
-              <Image height={100} width={100} src={item.logo} />
+              <Image height={100} width={100} src={item.logo} alt={'brands'} />
             </div>
           </SwiperSlide>
         ))}
