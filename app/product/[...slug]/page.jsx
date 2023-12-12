@@ -26,3 +26,5 @@ export async function generateMetadata(props) {
     title: `${getTitle} | Mobilez Market`,
   };
 }
+
+

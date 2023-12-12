@@ -11,10 +11,7 @@ const TypingAnimation = ({ texts, speed = 100, delay = 1500 }) => {
       if (currentText && displayText.length < currentText.length) {
         setDisplayText((prevText) => prevText + currentText[displayText.length]);
       } else {
-        // If the current text is fully displayed, move to the next one
         clearInterval(intervalId);
-
-        // Wait for a delay before moving to the next text
         setTimeout(() => {
           setDisplayText('');
           setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
