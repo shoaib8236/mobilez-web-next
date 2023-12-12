@@ -13,12 +13,15 @@ import StyledButton from "../StyledButton/StyledButton";
 import Image from "next/image";
 
 const ProductResult = (props) => {
-  const { deviceData = {}, loading = true } = props;
+  const { deviceData = {}, loading = true,     isLoadMore= false,
+  setIsLoadMore= ()=> {}} = props;
   const [layout, setLayout] = useState("grid");
 
   const onChangeLayout = (type) => () => {
     setLayout(type);
   };
+
+  console.log(deviceData)
 
   return (
     <>
@@ -56,7 +59,7 @@ const ProductResult = (props) => {
       </div>
       <div className="results_wrapper">
         <Row gutter={[20, 20]}>
-          {loading ? (
+          {loading && isLoadMore !== true ? (
             <>
               <Col lg={8} md={12} sm={24} xs={24}>
                 <BlogSkeleton />
@@ -71,8 +74,8 @@ const ProductResult = (props) => {
           ) : (
             <>
               {
-                deviceData?.data?.length > 0 ? <>
-                {deviceData?.data?.map((item) => (
+                deviceData?.length > 0 ? <>
+                {deviceData?.map((item) => (
                 <Col
                 
                   key={item?.id}

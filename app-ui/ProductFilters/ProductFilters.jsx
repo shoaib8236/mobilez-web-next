@@ -27,6 +27,11 @@ const ProductFilters = (props) => {
     setLoading,
     handleCollapseClose,
     loading,
+    page = 1,
+    isLoadMore = false,
+    setIsLoadMore = () => {},
+    setPage = () => {},
+    setTotalRecords = () => {},
   } = props;
 
   const searchParams = useSearchParams();
@@ -51,9 +56,16 @@ const ProductFilters = (props) => {
 
     try {
       setLoading(true);
-      let res = await api.post(`/category`, data);
+      let res = await api.post(`/category?page=${data?.page}`, data);
       setLoading(false);
-      setDeviceData(res?.data?.data);
+
+      if (isLoadMore) {
+        setIsLoadMore(false);
+      }
+
+      setDeviceData((prev) => [...(prev || []), ...res?.data?.data?.data]);
+
+      setTotalRecords(res?.data?.data?.total);
 
       let getBrands = res?.data?.brands?.map((item) => {
         return {
@@ -63,7 +75,6 @@ const ProductFilters = (props) => {
       });
 
       setCategoryBrands(getBrands);
-
 
       let formValues = {
         ...data,
@@ -94,6 +105,7 @@ const ProductFilters = (props) => {
       ...(city && { city }),
       ...(min_price && { min_price }),
       ...(max_price && { max_price }),
+      page,
     };
     debouncedGetDevices(payload);
 
@@ -108,6 +120,7 @@ const ProductFilters = (props) => {
     city,
     min_price,
     max_price,
+    page,
   ]);
 
   const onReset = () => {
@@ -116,6 +129,7 @@ const ProductFilters = (props) => {
   };
 
   const onBrandChange = () => {
+    setLoading(true);
     form.setFieldValue("brand", []);
   };
 
@@ -132,6 +146,9 @@ const ProductFilters = (props) => {
   const onFinish = (values) => {
     let getValues = removeUndefinedValues(values);
 
+    setDeviceData([]);
+    setPage(1);
+
     let payload = {
       ...getValues,
       ...(getValues?.brand ? { brand: [getValues?.brand] } : {}),
@@ -139,10 +156,7 @@ const ProductFilters = (props) => {
         ? { min_price: getValues?.range[0], max_price: getValues?.range[1] }
         : {}),
     };
-
     delete payload.range;
-
-
     // getDevices(payload);
 
     let url = new URL(window.location.href);
@@ -253,7 +267,7 @@ const ProductFilters = (props) => {
             <Form.Item name={"range"}>
               <Slider min={0} max={1000000} range />
             </Form.Item>
-            {max_price  > 0 ? (
+            {max_price > 0 ? (
               <div className="price_range">
                 <span>{min_price || 0}</span>{" "}
                 <span>
