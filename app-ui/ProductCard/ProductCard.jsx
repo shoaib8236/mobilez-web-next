@@ -2,7 +2,7 @@ import React from "react";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import { getImage, getFormattedDate } from "@/utils/helper";
+import { getImage, getFormattedDate, numberWithCommas } from "@/utils/helper";
 import Link from "next/link";
 import moment from "moment";
 import { HiLocationMarker } from "react-icons/hi";
@@ -58,7 +58,7 @@ const ProductCard = (props) => {
                 </h2>
               </>
             )}
-            <p className="price">PKR - {data?.price}</p>
+            <p className="price">PKR - {numberWithCommas(data?.price)}</p>
 
             {data?.ram || data?.storage ? (
               <p>

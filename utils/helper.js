@@ -24,3 +24,8 @@ export const logout = () => {
 export const removeStorageItemByKey = (key) => {
   localStorage.removeItem(`@${key}`);
 };
+
+
+export const numberWithCommas = (x)=> {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}

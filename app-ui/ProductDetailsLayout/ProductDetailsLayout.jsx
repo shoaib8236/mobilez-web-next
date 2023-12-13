@@ -8,28 +8,37 @@ import Skeleton from "../Skeleton/Skeleton";
 import StyledButton from "../StyledButton/StyledButton";
 import StyledHeading from "../StyledHeading/StyledHeading";
 import api from "@/services/api";
-import { getFormattedDate, getImage } from "@/utils/helper";
+import { getFormattedDate, getImage, numberWithCommas } from "@/utils/helper";
 import { useFcmToken } from "@/utils/hooks";
-import { Col, Row } from "antd";
+import { Col, Row, notification } from "antd";
 import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaLink } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import { CgSmartphoneRam } from "react-icons/cg";
-// import { GrStorage } from "react-icons/gr";
+import { FaWhatsapp } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
+import { FiLink } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 
 const ProductDetailsLayout = (props) => {
-
-    const {slug} = props
+  const { slug } = props;
 
   const { fcmToken, notificationPermissionStatus } = useFcmToken();
   const [productDetails, setProductDetails] = useState(null);
+  const [views, setViews] = useState(0);
   const [relatedAdds, setRelatedAdds] = useState([]);
   const [shopAdds, setShopAdds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openContactSellerModal, setOpenContactSellerModal] = useState(false);
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    if (window !== undefined) {
+      setCurrentPath(window.location.href);
+    }
+  }, []);
 
   const handleContactSellerModal = () => {
     setOpenContactSellerModal(!openContactSellerModal);
@@ -46,13 +55,14 @@ const ProductDetailsLayout = (props) => {
       });
       if (res?.data?.status) {
         setProductDetails(res?.data?.details);
+        setViews(res?.data?.views);
         setRelatedAdds(res?.data?.related_ads);
         setShopAdds(res?.data?.more_ads);
         setLoading(false);
       }
     } catch (error) {
       setLoading(false);
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -117,191 +127,210 @@ const ProductDetailsLayout = (props) => {
     );
   };
 
+  const openWhatsApp = () => {
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${currentPath}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const openFacebookShare = () => {
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentPath}`;
+    window.open(facebookShareUrl, "_blank");
+  };
+
+  const copyLinkToClipboard = () => {
+    navigator.clipboard.writeText(currentPath);
+    notification.success({ message: "Link copied to clipboard!" });
+  };
   return (
-    <div className="content_wrap">
-      <Row gutter={[20, 20]}>
-        <Col lg={12} md={12} sm={24} xs={24}>
-          {loading ? (
-            <Skeleton height="400px" width="100%" />
-          ) : (
-            <ImagesGallery images={productImages || []} />
-          )}
-        </Col>
+    <>
+      <div className="product_details_header">
+        <div className="content_wrap">
+          <h1>
+            {loading ? (
+              <Skeleton height="25px" width="250px" />
+            ) : (
+              <>
+                {productDetails?.accessories_title ? (
+                  <>
+                    <h2>{productDetails?.accessories_title}</h2>
+                  </>
+                ) : (
+                  <>
+                    <h2>
+                      {productDetails?.brand} {productDetails?.model}
+                    </h2>
+                  </>
+                )}
+              </>
+            )}
+          </h1>
+          <h2>
+            {loading ? (
+              <Skeleton height="25px" width="150px" />
+            ) : (
+              `Rs: ${numberWithCommas(productDetails?.price)}`
+            )}
+          </h2>
+        </div>
+      </div>
 
-        <Col lg={12} md={12} sm={24} xs={24}>
-          <div className="detail_content">
+      <div className="content_wrap">
+        <Row gutter={[20, 20]}>
+          <Col lg={12} md={12} sm={24} xs={24}>
             {loading ? (
-              <Skeleton height="30px" margin="0 0 10px 0" width="280px" />
+              <Skeleton height="400px" width="100%" />
             ) : (
-              <>
-                <h1>{`${productDetails?.brand} ${productDetails?.model}`}</h1>
-              </>
+              <ImagesGallery images={productImages || []} />
             )}
+          </Col>
+
+          <Col lg={12} md={12} sm={24} xs={24}>
             {loading ? (
-              <Skeleton height="30px" margin="0 0 10px 0" width="220px" />
+              <div>
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+              </div>
             ) : (
-              <>
-                <h1 className="text_primary">Rs: {productDetails?.price}</h1>
-              </>
+              <div className="styled_table">
+                <div className="t_row">
+                  <div className="t_cols">Posted By</div>
+                  <div className="t_cols">
+                    {productDetails?.user?.user_type === "business"
+                      ? productDetails?.user.shop_name
+                      : productDetails?.user.name}
+                  </div>
+                </div>
+                <div className="t_row">
+                  <div className="t_cols">Posted At</div>
+                  <div className="t_cols">
+                    {getFormattedDate(productDetails?.created_at)}
+                  </div>
+                </div>
+              </div>
             )}
-            <hr />
+
+            <h3 className="my_20">Specifications</h3>
+
             {loading ? (
-              <Skeleton height="20px" margin="0 0 10px 0" width="200px" />
+              <div>
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+                <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />
+              </div>
+            ) : (
+              <div className="styled_table">
+                <div className="t_row">
+                  <div className="t_cols">Ram</div>
+                  <div className="t_cols">{productDetails?.ram} GB</div>
+                </div>
+                <div className="t_row">
+                  <div className="t_cols">Storage</div>
+                  <div className="t_cols">{productDetails?.storage} GB</div>
+                </div>
+                <div className="t_row">
+                  <div className="t_cols">PTA Status</div>
+                  <div className="t_cols">{productDetails?.pta_status}</div>
+                </div>
+                <div className="t_row">
+                  <div className="t_cols">Warranty</div>
+                  <div className="t_cols">{productDetails?.warranty}</div>
+                </div>
+                <div className="t_row">
+                  <div className="t_cols">Product Condition</div>
+                  <div className="t_cols">{productDetails?.product_type}</div>
+                </div>
+              </div>
+            )}
+
+            <h3 className="my_20">Description</h3>
+            <p>{productDetails?.description}</p>
+
+            {loading ? (
+              <Skeleton height="30px" width="120px" />
             ) : (
               <>
-                <p>
-                  <span className="text_primary">Posted By:</span> &nbsp;
-                  {productDetails?.user?.user_type === 'business' ? productDetails?.user.shop_name : productDetails?.user.name}
+                <p className="styled_chip">
+                  <FiEye /> Views {views}
                 </p>
               </>
             )}
-            {loading ? (
-              <Skeleton height="20px" margin="0 0 10px 0" width="160px" />
-            ) : (
-              <>
-                <p>
-                  <span className="text_primary">Posted At:</span> &nbsp;
-                  {getFormattedDate(productDetails?.created_at)}
-                </p>
-              </>
-            )}
-            {loading ? (
-              <Skeleton height="30px" margin="0 0 10px 0" width="300px" />
-            ) : (
-              <>
-                <h3 className="posted_heading">
-                  Posted By :{" "}
-                  <span className="text_primary blinking_text">
-                  {productDetails?.user?.user_type === 'business' ? productDetails?.user.shop_name : productDetails?.user.name}
-                  </span>
-                </h3>
-              </>
-            )}
-            {loading ? (
-              <Skeleton
-                height="40px"
-                margin="0 0 10px 0"
-                width="120px"
-                borderRadius="50px"
-              />
-            ) : (
-              <>
-                <div className="details_btn">
-                  <StyledButton
-                    onClick={handleContactSellerModal}
-                    className="primary"
-                  >
-                    Contact Seller
-                  </StyledButton>
-                  <StyledButton className="secondary">
-                    Chat With Seller
-                  </StyledButton>
-                </div>
-              </>
-            )}
-            {loading ? (
-              <Skeleton height="20px" margin="0 0 10px 0" width="120px" />
-            ) : (
-              <>
-                {" "}
-                <h3 className="specs_heading">Specifications:</h3>
-              </>
-            )}
-            {loading ? (
-              <Skeleton height="30px" margin="0 0 10px 0" width="250px" />
-            ) : (
-              <>
-                {" "}
-                <div className="specs">
-                  <div>
-                    <span>RAM:</span> {productDetails?.ram} GB
-                  </div>
-                  <div>
-                    <span>Storage:</span> {productDetails?.storage} GB
-                  </div>
-                  <div>
-                    <span>PTA Status:</span> {productDetails?.pta_status}
-                  </div>
-                  <div>
-                    <span>Warranty:</span> {productDetails?.warranty}
-                  </div>
-                  <div>
-                    <span>Product Condition:</span>{" "}
-                    {productDetails?.product_type}
-                  </div>
-                </div>
-              </>
-            )}
-            <h3 className="desc_heading">Description:</h3>
-            {loading ? (
-              <>
-                <Skeleton height="20px" margin="0 0 10px 0" width="100%" />
-                <Skeleton height="20px" margin="0 0 10px 0" width="300px" />
-              </>
-            ) : (
-              <>
-                {" "}
-                <p>{productDetails?.description}</p>
-              </>
-            )}
-            <h3 className="share_heading">Share:</h3>
-            <div className="icons">
-              <FaFacebook />
-              <IoLogoWhatsapp />
-              <FaLink />
+
+            <div className="contact_actions">
+              <StyledButton
+                onClick={handleContactSellerModal}
+                className="primary"
+              >
+                Contact Seller
+              </StyledButton>
+              <StyledButton className="secondary">
+                Chat With Seller
+              </StyledButton>
             </div>
-            <h3 className="views_heading">Views:</h3>
-            03
-          </div>
-        </Col>
-      </Row>
+            <div className="social">
+              <button onClick={openWhatsApp} className="whatsapp">
+                <FaWhatsapp />
+              </button>
+              <button onClick={openFacebookShare} className="facebook">
+                <FaFacebookF />
+              </button>
+              <button onClick={copyLinkToClipboard} className="secondary">
+                <FiLink />
+              </button>
+            </div>
+          </Col>
+        </Row>
 
-      <div className="mt_60">
-        <div className="mb_60">
-          <StyledHeading text="ADS BY CELL LAGOON" />
+        <div className="mt_60">
+          <div className="mb_60">
+            <StyledHeading text="ADS BY CELL LAGOON" />
+          </div>
+          <div className="mb_60">
+            {loading ? (
+              renderSkeleton()
+            ) : (
+              <>
+                <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
+                  {relatedAdds?.map((item) => (
+                    <SwiperSlide key={item?.id}>
+                      <ProductCard data={item} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            )}
+          </div>
         </div>
-        <div className="mb_60">
-          {loading ? (
-            renderSkeleton()
-          ) : (
-            <>
-              <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
-                {relatedAdds?.map((item) => (
-                  <SwiperSlide key={item?.id}>
-                    <ProductCard data={item} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          )}
+        <div>
+          <div className="mb_60">
+            <StyledHeading text="RELATED ITEMS" />
+          </div>
+          <div className="mb_60">
+            {loading ? (
+              renderSkeleton()
+            ) : (
+              <>
+                <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
+                  {shopAdds?.map((item) => (
+                    <SwiperSlide key={item?.id}>
+                      <ProductCard data={item} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            )}
+          </div>
         </div>
+        <ContactSellerModal
+          data={productDetails}
+          open={openContactSellerModal}
+          onClose={handleContactSellerModal}
+        />
       </div>
-      <div>
-        <div className="mb_60">
-          <StyledHeading text="RELATED ITEMS" />
-        </div>
-        <div className="mb_60">
-          {loading ? (
-            renderSkeleton()
-          ) : (
-            <>
-              <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
-                {shopAdds?.map((item) => (
-                  <SwiperSlide key={item?.id}>
-                    <ProductCard data={item} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
-          )}
-        </div>
-      </div>
-      <ContactSellerModal
-        data={productDetails}
-        open={openContactSellerModal}
-        onClose={handleContactSellerModal}
-      />
-    </div>
+    </>
   );
 };
 
