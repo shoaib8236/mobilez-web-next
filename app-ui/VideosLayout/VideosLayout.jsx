@@ -29,30 +29,24 @@ const VideosLayout = () => {
     getVideos();
   }, []);
   return (
-    <div className="content_wrap">
-      <div className="videos_header">
-        <div className="styled_input">
-          <Input placeholder="Search" />
-        </div>
-      </div>
-
+    <div className="content_wrap">    
       <div className="videos">
         {loading ? (
           <Row gutter={[20, 20]}>
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Skeleton height="180px" width="100%" />
+              <Skeleton height="260px" width="100%" />
             </Col>
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Skeleton height="180px" width="100%" />
+              <Skeleton height="260px" width="100%" />
             </Col>
             <Col lg={8} md={8} sm={12} xs={24}>
-              <Skeleton height="180px" width="100%" />
+              <Skeleton height="260px" width="100%" />
             </Col>
           </Row>
         ) : (
           <Row gutter={[20, 20]}>
             {videos?.map((item) => (
-              <Col key={item?.id} lg={8} md={8} sm={12} xs={24}>
+              <Col className="video" key={item?.id} lg={8} md={8} sm={12} xs={24}>
                 <YtPlayer videoId={item} />
               </Col>
             ))}

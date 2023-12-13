@@ -55,7 +55,7 @@ const FiltersLayout = () => {
               {brand
                 ? `${brand} ${category === "mobile" ? "mobile" : category}`
                 : `category`
-                ? category === 'mobile' ? 'Mobile Devices' : category === 'accessories' ? 'Mobile Accessories' : category === 'tablet' ? 'Tablet Devices' :  category === 'watch' ? 'Smart Watches' : category
+                ? category === 'mobile' ? 'Mobile Devices' : category === 'accessories' ? 'Mobile Accessories' : category === 'tablet' ? 'Tablet Devices' :  category === 'watch' ? 'Smart Watches' : 'Mobiles'
                 : "Mobile Devices"}{" "}
               for sale in {city ? city : "Pakistan"}
             </h1>
@@ -105,7 +105,6 @@ const FiltersLayout = () => {
             <div ref={filtersNodeRef} className="filters">
               <div className="sticky_container">
                 <ProductFilters
-              
                   setTotalRecords={setTotalRecords}
                   isLoadMore={isLoadMore}
                   setIsLoadMore={setIsLoadMore}
@@ -123,7 +122,9 @@ const FiltersLayout = () => {
 
             <div className="flex_cols">
               <div className="product_results">
-                <ProductResult  isLoadMore={isLoadMore} loading={loading} deviceData={deviceData} />
+                <ProductResult setLoading={setLoading}
+                  setCategoryBrands={setCategoryBrands}
+                  setDeviceData={setDeviceData} isLoadMore={isLoadMore} loading={loading} deviceData={deviceData} />
               </div>
               {totalRecords && totalRecords > deviceData?.length ?<div className="load_more">
                 <StyledButton loading={isLoadMore} disabled={isLoadMore} onClick={onPageChange}>Load More</StyledButton>
