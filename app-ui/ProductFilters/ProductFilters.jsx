@@ -63,7 +63,9 @@ const ProductFilters = (props) => {
       if (isLoadMore) {
         setIsLoadMore(false);
       }
+
       setDeviceData((prev) => [...(prev || []), ...res?.data?.data?.data]);
+
       setTotalRecords(res?.data?.data?.total);
 
       let getBrands = res?.data?.brands?.map((item) => {
@@ -86,8 +88,6 @@ const ProductFilters = (props) => {
       form.setFieldsValue(formValues);
     } catch (error) {
       console.log(error);
-      setIsLoadMore(false);
-
     }
   };
 
@@ -109,6 +109,11 @@ const ProductFilters = (props) => {
       ...(order && { order }),
       page,
     };
+
+    if(payload?.search){
+      setLoading(true)
+      setDeviceData([])
+    }
 
     debouncedGetDevices(payload);
 

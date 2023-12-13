@@ -183,8 +183,8 @@ const Navbar = ({ userData }) => {
       search: data?.accessories_title
         ? data?.accessories_title
         : `${data?.brand} ${data?.model}`,
-      category: data?.category,
-      brand: data?.brand,
+      category: data?.category.toLowerCase(),
+      brand: data?.brand.toLowerCase(),
       min_price: "0",
       max_price: "1000000",
     };
