@@ -254,27 +254,27 @@ const Navbar = ({ userData }) => {
       <div className="nav_links">
         <ul ref={menuRef}>
           <li>
-            <Link className="active" href="/">
+            <Link className={`${pathname === '/' ? "active" : ''}`} href="/">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/devices">Find my device</Link>
+            <Link className={`${pathname.includes('/devices')  ? "active" : ''}`} href="/devices">Find my device</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link className={`${pathname === '/about' ? "active" : ''}`}  href="/about">About</Link>
           </li>
           <li>
-            <Link href="/blogs">Blogs</Link>
+            <Link className={`${pathname.includes('/blogs')  ? "active" : ''}`}  href="/blogs">Blogs</Link>
           </li>
           <li>
-            <Link href="/videos">Videos</Link>
+            <Link className={`${pathname === '/videos' ? "active" : ''}`}  href="/videos">Videos</Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link className={`${pathname === '/contact' ? "active" : ''}`}  href="/contact">Contact</Link>
           </li>
           <li>
-            <Link href="/careers">Careers</Link>
+            <Link className={`${pathname === '/careers' ? "active" : ''}`}  href="/careers">Careers</Link>
           </li>
         </ul>
         <div className="login_section">
