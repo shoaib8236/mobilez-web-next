@@ -41,7 +41,7 @@ const AppBanner = (props) => {
             {sliderImages?.map((item, i) => (
               <SwiperSlide key={i}>
                 <div className="slider_wrap">
-                  <Image fill objectFit="cover" src={getImage(item)} alt="banner" />
+                  <Image loading="eager" fill objectFit="cover" src={getImage(item)} alt="banner" />
                 </div>
               </SwiperSlide>
             ))}
