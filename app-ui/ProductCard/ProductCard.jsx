@@ -38,7 +38,6 @@ const ProductCard = (props) => {
       <div className={`product_card_wrap ${className}`}>
         <div className="image_wrap">
           <Image
-            loading="lazy"
             fill
             objectFit="cover"
             src={getImage(data?.image?.img)}
