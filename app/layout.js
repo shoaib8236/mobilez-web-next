@@ -4,6 +4,7 @@ import "swiper/css";
 import "../styles/index.scss";
 import "swiper/css/pagination";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
         <GoogleOAuthProvider clientId="85457123059-rcs2j4u7b73qndp2fjs8gn56j3m66vu4.apps.googleusercontent.com">
           <RootLayer>
             <div id="_layout">{children}</div>
+            <SpeedInsights />
           </RootLayer>
         </GoogleOAuthProvider>
       </body>
