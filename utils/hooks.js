@@ -26,14 +26,14 @@ const useFcmToken = () => {
             if (currentToken) {
               setToken(currentToken);
             } else {
-              console.log(
-                "No registration token available. Request permission to generate one."
-              );
+              // console.log(
+              //   "No registration token available. Request permission to generate one."
+              // );
             }
           }
         }
       } catch (error) {
-        console.log("An error occurred while retrieving token:", error);
+        // console.log("An error occurred while retrieving token:", error);
       }
     };
     retrieveToken();
@@ -48,7 +48,7 @@ const useAuthCheck = () => {
   useEffect(() => {
     if (
       localStorage.getItem("@token") &&
-      Object.keys(JSON.parse(localStorage.getItem("@user"))|| {})?.length
+      Object.keys(JSON.parse(localStorage.getItem("@user")) || {})?.length
     ) {
       setIsAuth(true);
     } else {
@@ -61,4 +61,22 @@ const useAuthCheck = () => {
   return { authCheck: isAuth };
 };
 
-export { useFcmToken, useAuthCheck };
+
+const useDeviceDetect = () => {
+  const [isWindows, setIsWindows] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+
+    // Check if the user is on a Windows device
+    setIsWindows(/Windows/.test(userAgent));
+
+    // Check if the user is on a Mac device
+    setIsMac(/Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent));
+  }, []);
+
+  return { isWindows, isMac };
+};
+
+export { useFcmToken, useAuthCheck, useDeviceDetect };

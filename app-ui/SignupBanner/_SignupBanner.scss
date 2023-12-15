@@ -42,3 +42,11 @@
     margin-bottom: 20px;
   }
 }
+
+@media screen and (max-width: $breakpoint_md) {
+  .signup_banner {
+    .content_wrap {
+      display: block;
+    }
+  }
+}

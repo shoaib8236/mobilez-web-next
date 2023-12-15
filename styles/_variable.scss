@@ -1,6 +1,6 @@
 // colors
 
-$primary: #015DCF;
+$primary: #083b86;
 $secondary: #ff9800;
 $danger: #f00;
 $warning: #f2a818;
@@ -9,8 +9,9 @@ $info: #17a2b8;
 $light: #ffffff;
 $dark: #000000;
 $light_gray: #c1c1c1;
-
+$gray: #999999;
 $text_color: #000000bd;
+$body_color: #f2f3f3;
 
 // fonts sizes
 
@@ -26,14 +27,15 @@ $text_sm: 14px;
 $text_xsm: 12px;
 
 // Border Colors
-$stroke_color: #d4d4d4;
+$stroke_color: #e6e6e6;
 
 // Font Weights
 $font_light: 300;
 $font_regular: 400;
 $font_medium: 500;
 $font_semibold: 600;
-$font_bold: 800;
+$font_bold: 700;
+$font_extrabold: 800;
 
 // transitions
 $transition_slow: 0.8s;

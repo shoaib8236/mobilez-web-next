@@ -1,0 +1,81 @@
+.form_item_wrap {
+  &.space_x_10 {
+    padding: 0 10px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+
+  .ant-checkbox-group {
+    flex-direction: column;
+    gap: 5px;
+    .ant-checkbox {
+      margin-right: 5px;
+    }
+  }
+
+  .ant-collapse {
+    .ant-collapse-item {
+      background-color: $light;
+    }
+
+    .ant-collapse-header-text {
+      font-size: $text_sm;
+      font-weight: $font_bold;
+    }
+  }
+
+  .ant-radio-group {
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ant-radio-wrapper {
+    margin-right: 0;
+
+    .ant-tag {
+      margin-right: 0;
+      background-color: rgba($color: $primary, $alpha: 0.05);
+      color: $primary;
+      border-color: rgba($color: $primary, $alpha: 0.2);
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    > span {
+      padding: 0;
+    }
+    .ant-radio {
+      display: none;
+    }
+
+    &.ant-radio-wrapper-checked {
+      .ant-tag {
+        background-color: rgba($color: $secondary, $alpha: 0.05);
+        color: $secondary;
+        border-color: $secondary;
+      }
+    }
+  }
+
+  .price_range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: $text_sm;
+      font-weight: $font_bold;
+      line-height: 1;
+
+      svg {
+        font-size: 25px;
+        line-height: 1;
+      }
+    }
+  }
+}

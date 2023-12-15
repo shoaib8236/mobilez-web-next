@@ -1,17 +1,23 @@
 .product_card_wrap {
-  box-shadow: $shadow_light;
-  border-radius: $radius_sm;
+  border: solid 1px $stroke_color;
   max-width: 100%;
   overflow: hidden;
+  background-color: $light;
+  border-radius: $radius_md;
+  
 
   .image_wrap {
     width: 100%;
     position: relative;
-    height: 250px;
+    height: 240px;
   }
 
   .card_content {
-    padding: 24px 12px;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
     p {
       font-size: $text_sm;
       color: $dark;
@@ -24,17 +30,82 @@
       margin-bottom: 10px;
     }
     .blog_card_area {
-      display: flex;
-      justify-content: space-between;
     }
 
     .primary {
       margin-top: 10px;
+      font-size: $text_sm;
     }
 
-    h3 {
+    h2 {
       color: $dark;
+      font-size: $text_lg;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: $font_bold;
+      margin-top: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: $text_color;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      
+      svg {
+        margin-right: 5px;
+        color: rgba($color: $text_color, $alpha: 0.5);
+        font-size: 16px;
+      }
+    }
+    
+    .blog_card_footer {
+      margin-top: 10px;
+    }
+    
+    .flex_between {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      justify-content: space-between;
+
     }
   }
 
+  &.list {
+    display: flex;
+
+    .image_wrap {
+      width: 220px;
+      height:180px;
+    }
+
+    .blog_card_footer {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 10px;
+    }
+
+    .blog_card_area {
+      justify-content: unset;
+      gap: 10px;
+
+      p {
+        border-right: solid 2px $text_color;
+        padding-right: 10px;
+
+        &:last-child {
+          padding-right: 0px;
+          border: none;
+        }
+      }
+    }
+  }
 }

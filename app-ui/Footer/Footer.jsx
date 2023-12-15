@@ -1,10 +1,17 @@
+import { useDeviceDetect } from "@/utils/hooks";
 import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import QRCode from "react-qr-code";
 
 const Footer = (props) => {
   const {} = props;
+
+  // const {isWindows, isMac} = useDeviceDetect()
+
+  // console.log(isWindows, isMac);
+
   return (
     <div className="footer">
       <div className="content_wrap">

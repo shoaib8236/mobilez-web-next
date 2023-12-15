@@ -1,61 +1,256 @@
 .find_my_device_wrap {
-  .flex_layout {
+  position: relative;
+
+  .page_title_wrap {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    padding-bottom: 20px;
 
-    .title_with_icon {
-      height: 75px;
+    > div {
       display: flex;
+      gap: 10px;
       align-items: center;
-      color: $primary;
-
-      &.mb_0 {
-        margin-bottom: 0;
+      .page_title {
+        font-size: $title_lg;
+        color: $primary;
+        text-transform: capitalize;
+        font-weight: $font_regular;
+        margin: 0;
       }
 
-      svg {
-        margin-right: 10px;
-        color: $primary;
-        font-size: $title_sm;
+      button {
+        display: none;
       }
     }
+    p {
+      font-weight: $font_medium;
+      color: $dark;
+      font-size: $text_sm;
+      padding-right: 10px;
+      margin-bottom: 0;
+    }
+  }
 
-    .flex_cols {
-      flex: 1;
-      border-top: solid 1px $stroke_color;
+  .styled_breadcrumb {
+    margin-bottom: 30px;
+  }
 
-      .results_wrapper {
-        margin-top: 10px;
-      }
+  .content_fluid {
+    background-color: #fafafa;
+    box-shadow: $shadow_light;
 
-      .filters_header {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        .flex_between {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
+    .flex_layout {
+      display: flex;
+      padding-top: 10px;
 
-          .styled_select {
-            max-width: 300px;
-          }
-        }
-      }
-
-      &.for_filters {
+      .filters {
+        background-color: $light;
+        border-radius: 0 $radius_lg $radius_lg 0;
+        min-width: 300px;
         max-width: 300px;
-        padding-top: 0;
-        margin-right: 15px;
 
         .sticky_container {
-          padding: 15px;
-          padding-left: 0;
-          padding-top: 0;
           position: sticky;
           left: 0;
           top: 0;
+          .filters_header {
+            padding: 20px 10px;
+            padding-bottom: 15px;
+            border-bottom: solid 1px $stroke_color;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h3 {
+              font-size: $text_md;
+            }
+
+            > div {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              button {
+                border-radius: 6px;
+                svg {
+                  font-size: 18px;
+                }
+              }
+
+              .filters_action {
+                display: none;
+              }
+            }
+          }
         }
+      }
+      .flex_cols {
+        flex: 1;
+        padding: 10px;
+        padding-top: 0;
+
+        .product_results {
+          background-color: $light;
+          padding: 0 20px;
+          border-radius: $radius_lg;
+
+          .results_wrapper {
+            margin-top: 20px;
+            padding-bottom:15px;
+          }
+
+          .filters_header {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+
+            button {
+              border-radius: 6px;
+              svg {
+                font-size: 18px;
+              }
+            }
+
+            .flex_between {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+
+              .styled_select {
+                max-width: 300px;
+              }
+
+              .filters_right_section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                flex-grow: 1;
+
+                > div {
+                  display: flex;
+                  gap: 10px;
+                }
+
+                .styled_select {
+                  flex-grow: 1;
+                }
+              }
+            }
+          }
+        }
+
+        .load_more {
+          padding: 10px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint_lg) {
+  .find_my_device_wrap {
+    .page_title_wrap {
+      > div {
+        display: block;
+        width: 100%;
+        button {
+          display: flex;
+          margin-bottom: 10px;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .content_fluid {
+      .flex_layout {
+        .flex_cols {
+          padding: 0;
+          .product_results {
+            padding: 0 10px;
+          }
+        }
+
+        .filters {
+          position: fixed;
+          z-index: 999;
+          top: 113px;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          max-width: 400px;
+          min-width: auto;
+          transform: translateX(-100%);
+          transition: $transition_fast;
+          overflow-y: auto;
+
+          &.open {
+            transform: translateX(0);
+          }
+
+          .sticky_container {
+            .filters_header {
+              > div {
+                .filters_action {
+                  display: flex;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint_md) {
+  .find_my_device_wrap {
+    .content_fluid {
+      .flex_layout {
+        .filters {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint_sm) {
+  .find_my_device_wrap {
+    .page_title_wrap {
+      > div {
+        .page_title {
+          font-size: $title_sm;
+        }
+      }
+    }
+    
+    .two_card_sm {
+      .image_wrap {
+        height: 150px;
+      }
+
+      .card_content {
+        padding: 6px;
+      }
+
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
       }
     }
   }

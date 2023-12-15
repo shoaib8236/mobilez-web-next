@@ -1,62 +1,43 @@
-"use client";
+import FiltersLayout from "@/app-ui/FiltersLayout/FiltersLayout";
 
-import PageBanner from "@/app-ui/PageBanner/PageBanner";
-import ProductFilters from "@/app-ui/ProductFilters/ProductFilters";
-import ProductResult from "@/app-ui/ProductResult/ProductResult";
-import api from "@/services/api";
-import { useEffect, useState } from "react";
-import { LuFilter } from "react-icons/lu";
- 
-const Page = (props) => {
+export default function Page(props) {
+  return (
+    <>
+      <div className="find_my_device_wrap">
+        <FiltersLayout />
+      </div>
+    </>
+  );
+}
 
-  const [deviceData, setDeviceData] = useState(null);
-  const [loading, setLoading] = useState(true);
+export async function generateMetadata(props) {
+  const {
+    searchParams: { category, brand, city },
+  } = props;
 
-  const getDevices = async () => {
-    try {
-      setLoading(true)
-      let res = await api.post("/category", props?.searchParams);
-      setLoading(false)
+  const getOrderedTitle = (str) => {
+    let newStr = str.slice(0, 1).toUpperCase() + str.slice(1);
 
-      setDeviceData(res?.data?.data);
-    } catch (error) {
-      console.log(error);
+    if (newStr === "Watch") {
+      return "Smart Watches";
+    } else if (newStr === "Mobile") {
+      return "Mobile Devices";
+    } else if (newStr === "Tablet") {
+      return "Tablet Devices";
+    } else if (newStr === "Accessories") {
+      return "Mobile Accessories";
     }
   };
 
-  useEffect(() => {
-    getDevices();
-  }, [props?.searchParams]);
+  let getTitle = category
+    ? `${brand ? brand : ""} ${getOrderedTitle(category)} ${
+        city ? `in ${city.slice(0, 1).toUpperCase() + city.slice(1)}` : "in Pakistan"
+      }`
+    : "";
 
-  console.log(deviceData, "deviceData")
-
-  return (
-    <div className="find_my_device_wrap">
-     
-      <div className="content_wrap">
-        <div className="flex_layout">
-          <div className="flex_cols for_filters">
-            <div className="sticky_container">
-              <h3 className="title_with_icon"><LuFilter/> Filters</h3>
-              <ProductFilters
-                loading={loading}
-                initialValues={props?.searchParams}
-                setDeviceData={setDeviceData}
-              />
-            </div>
-          </div>
-          <div className="flex_cols">
-
-            <div className="product_results">
-              <ProductResult
-                loading={loading}
-               deviceData={deviceData} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Page;
+  return {
+    title: getTitle
+      ? `${getTitle} | Mobilez Market`
+      : `Mobile devices ${city ? `in ${city.slice(0, 1).toUpperCase() + city.slice(1)}` : "in Pakistan"} | Mobilez Market`,
+  };
+}

@@ -26,11 +26,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: solid 1px $stroke_color;
       padding: 6px;
       img {
         margin-left: 8px;
       }
+    }
+  }
+}
+
+@media screen and (max-width:$breakpoint_md) {
+  .login_wrap {
+    .login_form {
+      padding:0;
+    }
+    .hide_image_tab {
+      display: none;
     }
   }
 }

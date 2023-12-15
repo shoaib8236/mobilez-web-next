@@ -9,6 +9,7 @@ const BlogCard = (props) => {
   const { className = "", data = {}, onClick = () => {} } = props;
 
   return (
+          <Link href={{ pathname: `/blogs/${data?.slug}` }}>
     <div className={`blog_card_wrap ${className}`}>
       <div className="image_wrap">
         <Image
@@ -22,21 +23,16 @@ const BlogCard = (props) => {
       </div>
       <div className="card_content">
         <div className="content">
-          <h3 className="text_secondary">{data?.title}</h3>
+          <h3 className="text_primary">{data?.title}</h3>
           <p
             className="desc"
             dangerouslySetInnerHTML={{ __html: data?.description }}
           />
         </div>
-        <div className="blog_card_footer">
-          <Link href={{ pathname: `/blogs/${data?.slug}` }}>
-            <StyledButton onClick={onClick} className="primary with_icon">
-              Read More
-            </StyledButton>
-          </Link>
-        </div>
+        
       </div>
     </div>
+  </Link>
   );
 };
 

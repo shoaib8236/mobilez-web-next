@@ -33,14 +33,15 @@ const AppBanner = (props) => {
       {loading ? (
         <div className="banner_placeholder">
           <Skeleton height="100%" width="100%"/>
+          {/* <div></div> */}
         </div>
       ) : (
         <>
           <Swiper className={`app_banner ${className}`} slidesPerView={1}>
             {sliderImages?.map((item, i) => (
               <SwiperSlide key={i}>
-                <div style={{ height: 400, width: "100%" }}>
-                  <Image fill objectFit="cover" src={getImage(item)} alt="" />
+                <div className="slider_wrap">
+                  <Image loading="eager" fill objectFit="cover" src={getImage(item)} alt="banner" />
                 </div>
               </SwiperSlide>
             ))}

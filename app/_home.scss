@@ -21,3 +21,50 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint_lg) {
+  .home_wrap {
+    .home_banner_wrap {
+      height: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint_md) {
+  .home_wrap {
+    .home_banner_wrap {
+      height: 160px;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint_sm) {
+  .home_wrap {
+    .home_banner_wrap {
+      height: 100px;
+    }
+
+    .two_card_sm {
+      .image_wrap {
+        height: 150px;
+      }
+
+      .card_content {
+        padding: 6px;
+      }
+
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
+      }
+    }
+  }
+  .content_wrap {
+  }
+  .mb_60 {
+    margin-bottom: 30px !important;
+  }
+}

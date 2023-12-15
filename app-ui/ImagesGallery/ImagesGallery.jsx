@@ -7,7 +7,7 @@ const ImagesGallery = (props) => {
   return (
     <>
       <div className="styled_gallery">
-        <ImageGallery items={images} />
+        <ImageGallery lazyLoad={true} items={images} />
       </div>
     </>
   );

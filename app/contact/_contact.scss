@@ -48,3 +48,27 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint_md) {
+  .contact_form_wrap {
+    .form_wrap {
+      flex-direction: column-reverse;
+      .form_cols {
+        &.for_details {
+          border: none;
+          margin: 0;
+          border-bottom: solid 1px $stroke_color;
+          margin-bottom: 30px;
+          max-width: 100%;
+
+          .content {
+            padding:0;
+            ul{
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

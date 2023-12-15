@@ -1,65 +1,110 @@
-.content_wrap {
-  .detail_image {
-    width: 100%;
-    height: 633px;
-    object-fit: cover;
-    border-radius: $radius_sm;
-  }
-  .detail_content {
-    background-color: rgba($color: $light_gray, $alpha: 0.2);
-    padding: 10px 12px;
-    border-radius: $radius_sm;
-    h1 {
-      font-weight: $font_semibold;
-    }
-    hr {
-      margin-top: 22px;
-    }
-    .blinking_text {
-      animation: blink 1s infinite;
-    }
-    .posted_heading {
-      margin-top: 17px;
-    }
+.product_details_header {
+  padding: 30px 0;
+  background-color: rgba($color: $secondary, $alpha: 0.08);
+  border-bottom: solid 1px $stroke_color;
+  margin-bottom: 25px;
 
-    .details_btn button {
-      margin-top: 10px;
-    }
-    @media screen and (min-width: 360px) {
-      .details_btn button:nth-child(2) {
-        margin-left: 4px;
-      }
-    }
-    .specs {
+  h1 {
+    margin-bottom:20px;
+    font-weight:$font_bold;
+  }
+  h2 {
+    color:$primary;
+  }
+
+}
+.content_wrap {
+  .mb_60 {
+    margin-bottom: 60px;
+  }
+
+  .mt_60 {
+    margin-top: 60px;
+  }
+  .my_20 {
+    margin: 20px 0;
+  }
+
+
+  .styled_table {
+    .t_row {
       display: flex;
-      flex-wrap: wrap;
-      margin-top: 12px;
-      div {
-        border: 1px solid #c5c5c5;
-        padding: 12px 22px;
+      border-bottom: solid 1px $stroke_color;
+      padding: 8px 0;
+
+      .t_cols {
+        flex: 1;
+        font-size: $text_sm;
+
+        &:first-child {
+          font-weight: $font_semibold;
+        }
       }
-      span {
-        font-weight: $font_semibold;
+    }
+  }
+
+  .contact_actions {
+    padding: 20px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .styled_chip {
+    background:rgba($color: $primary, $alpha: 0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: max-content;
+    padding:4px 10px;
+    border-radius:$radius_sm;
+    margin-top: 10px;
+
+    font-weight:$font_semibold;
+
+    svg {
+      color:$primary;
+      margin-right: 10px;
+
+    }
+  }
+  
+  .social {
+    display: flex;
+    gap: 10px;
+    button,a {
+      display: block;
+      height: 40px;
+      width: 40px;
+      background-color: $light_gray;
+      color: $gray;
+      border:none;
+      border-radius:$radius_md;
+      font-size: 24px;
+      display: flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+
+      &.whatsapp {
+        background-color: #075e54;
+        color: $light;
       }
-    }
-    .specs_heading {
-      margin-top: 14px;
-    }
-    .desc_heading {
-      margin-top: 14px;
-    }
-    .share_heading {
-      margin-top: 14px;
-    }
-    .views_heading {
-      margin-top: 14px;
-    }
-    .icons svg {
-      color: $dark;
-      border-radius: $radius_sm;
-      padding: 2px;
-      font-size: 28px;
-      margin-top: 6px;
+      &.facebook {
+        background-color: #1877F2;
+        color: $light;
+      }
+      &.secondary {
+        background-color: $secondary;
+        color: $light;
+      }
+
+      &:hover {
+        opacity:0.8;
+      }
+      &:active {
+        opacity:1;
+      }
+
     }
   }
 }

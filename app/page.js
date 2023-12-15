@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import Skeleton from "@/app-ui/Skeleton/Skeleton";
 
 const fetchData = async (category) => {
   try {
@@ -54,20 +55,20 @@ export default function Home() {
   let sliderProp = {
     breakpoints: {
       300: {
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 10,
       },
       480: {
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: 10,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 10,
       },
       1200: {
         slidesPerView: 4,
-        spaceBetween: 40,
+        spaceBetween: 20,
       },
     },
     spaceBetween: 20,
@@ -83,18 +84,50 @@ export default function Home() {
   const renderSkeleton = () => {
     return (
       <>
-        <Row gutter={[40, 40]}>
-          <Col lg={6}>
-            <BlogSkeleton />
+        <Row gutter={[20, 20]}>
+          <Col lg={6} md={8} sm={12} xs={12}>
+            <Skeleton margin="0 0 20px 0" height="200px" width="100%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="60%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="40%" />
+            <Skeleton
+              borderRadius="100px"
+              margin="0 0 30px 0"
+              height="20px"
+              width="30%"
+            />
           </Col>
-          <Col lg={6}>
-            <BlogSkeleton />
+          <Col lg={6} md={8} sm={12} xs={12}>
+            <Skeleton margin="0 0 20px 0" height="200px" width="100%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="60%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="40%" />
+            <Skeleton
+              borderRadius="100px"
+              margin="0 0 30px 0"
+              height="20px"
+              width="30%"
+            />
           </Col>
-          <Col lg={6}>
-            <BlogSkeleton />
+          <Col lg={6} md={8} sm={12} xs={12}>
+            <Skeleton margin="0 0 20px 0" height="200px" width="100%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="60%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="40%" />
+            <Skeleton
+              borderRadius="100px"
+              margin="0 0 30px 0"
+              height="20px"
+              width="30%"
+            />
           </Col>
-          <Col lg={6}>
-            <BlogSkeleton />
+          <Col lg={6} md={8} sm={12} xs={12}>
+            <Skeleton margin="0 0 20px 0" height="200px" width="100%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="60%" />
+            <Skeleton margin="0 0 10px 0" height="20px" width="40%" />
+            <Skeleton
+              borderRadius="100px"
+              margin="0 0 30px 0"
+              height="20px"
+              width="30%"
+            />
           </Col>
         </Row>
       </>
@@ -112,11 +145,16 @@ export default function Home() {
         {mobiles === null ? (
           renderSkeleton()
         ) : (
-          <>   
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+          <>
+            <Swiper
+              className="p_15"
+              {...sliderProp}
+              modules={[Pagination]}
+              loop={true}
+            >
               {mobiles?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <ProductCard data={item} />
+                  <ProductCard className="two_card_sm" data={item} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -125,7 +163,7 @@ export default function Home() {
       </div>
 
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-2.webp"} alt="banner" />
       </div>
 
       <div className="mb_60">
@@ -138,10 +176,15 @@ export default function Home() {
             renderSkeleton()
           ) : (
             <>
-              <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+              <Swiper
+                className="p_15"
+                {...sliderProp}
+                modules={[Pagination]}
+                loop={true}
+              >
                 {tablets?.data?.data?.map((item) => (
                   <SwiperSlide key={item?.id}>
-                    <ProductCard data={item} />
+                    <ProductCard className="two_card_sm" data={item} />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -149,11 +192,8 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="mb_60">
-        <StyledHeading text="RECENTLY ADDED TABLETS" />
-      </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="banner" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED SMART WATCHES" />
@@ -163,10 +203,15 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+            <Swiper
+              className="p_15"
+              {...sliderProp}
+              modules={[Pagination]}
+              loop={true}
+            >
               {smartWatches?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <ProductCard data={item} />
+                  <ProductCard className="two_card_sm" data={item} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -174,7 +219,7 @@ export default function Home() {
         )}
       </div>
       <div className="home_banner_wrap mb_60">
-        <Image fill objectFit="cover" src={"/page-banner.webp"} alt="" />
+        <Image fill objectFit="cover" src={"/banner-3.webp"} alt="banner" />
       </div>
       <div className="mb_60">
         <StyledHeading text="RECENTLY ADDED ACCESSORIES" />
@@ -184,10 +229,15 @@ export default function Home() {
           renderSkeleton()
         ) : (
           <>
-            <Swiper {...sliderProp} modules={[Pagination]} loop= {true}>
+            <Swiper
+              className="p_15"
+              {...sliderProp}
+              modules={[Pagination]}
+              loop={true}
+            >
               {accessories?.data?.data?.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <ProductCard type="accessories" data={item} />
+                  <ProductCard className="two_card_sm" type="accessories" data={item} />
                 </SwiperSlide>
               ))}
             </Swiper>
