@@ -33,6 +33,9 @@ const ProductCard = (props) => {
     }
   }
 
+  var area = data?.user?.area
+  var cityFromArea = area ? area.split(" ").pop() : null;
+
   return (
     <Link href={`/product/${data?.id}/${data?.slug}`}>
       <div className={`product_card_wrap ${className}`}>
@@ -67,7 +70,11 @@ const ProductCard = (props) => {
             <div className="flex_between">
               <p className="location">
                 <HiLocationMarker />
-                {data?.user?.city}
+                {data?.user?.city?(
+                  <span>{data?.user?.city}</span>
+                ):(
+                <span>{cityFromArea}</span>
+                )}
               </p>
 
               <p>

@@ -33,19 +33,19 @@ const Footer = (props) => {
                   <Link href="/"> Home</Link>
                 </li>
                 <li>
-                  <Link href="/"> Find Me a Device</Link>
+                  <Link href="/devices"> Find Me a Device</Link>
                 </li>
                 <li>
-                  <Link href="/"> About Us</Link>
+                  <Link href="/about"> About Us</Link>
                 </li>
                 <li>
-                  <Link href="/"> Careers</Link>
+                  <Link href="/careers"> Careers</Link>
                 </li>
                 <li>
-                  <Link href="/"> Blog</Link>
+                  <Link href="/blogs"> Blog</Link>
                 </li>
                 <li>
-                  <Link href="/"> Contact Us</Link>
+                  <Link href="/contact"> Contact Us</Link>
                 </li>
               </ul>
             </div>
