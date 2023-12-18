@@ -221,18 +221,18 @@ const ProductDetailsLayout = (props) => {
               </div>
             ) : (
               <div className="styled_table">
-                <div className="t_row">
+                {productDetails?.ram && <div className="t_row">
                   <div className="t_cols">Ram</div>
                   <div className="t_cols">{productDetails?.ram} GB</div>
-                </div>
-                <div className="t_row">
+                </div>}
+                {productDetails?.storage && <div className="t_row">
                   <div className="t_cols">Storage</div>
                   <div className="t_cols">{productDetails?.storage} GB</div>
-                </div>
-                <div className="t_row">
+                </div>}
+                {productDetails?.pta_status && <div className="t_row">
                   <div className="t_cols">PTA Status</div>
                   <div className="t_cols">{productDetails?.pta_status}</div>
-                </div>
+                </div>}
                 <div className="t_row">
                   <div className="t_cols">Warranty</div>
                   <div className="t_cols">{productDetails?.warranty}</div>

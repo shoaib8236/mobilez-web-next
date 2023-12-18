@@ -7,6 +7,8 @@
   h1 {
     margin-bottom:20px;
     font-weight:$font_bold;
+    font-family: 'system-ui' !important;
+    
   }
   h2 {
     color:$primary;
@@ -23,6 +25,11 @@
   }
   .my_20 {
     margin: 20px 0;
+  }
+
+   h3 {
+    font-weight: $font_semibold;
+    font-size: $title_sm;
   }
 
 
