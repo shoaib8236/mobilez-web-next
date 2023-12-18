@@ -55,10 +55,10 @@ const Footer = (props) => {
               <h3 className="text_primary">About</h3>
               <ul>
                 <li>
-                  <Link href="/"> Privacy</Link>
+                  <Link href="/privacy-policy"> Privacy</Link>
                 </li>
                 <li>
-                  <Link href="/"> Terms & Conditions</Link>
+                  <Link href="/terms-conditions"> Terms & Conditions</Link>
                 </li>
               </ul>
             </div>
