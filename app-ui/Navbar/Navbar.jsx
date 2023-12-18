@@ -38,36 +38,116 @@ const Navbar = ({ userData }) => {
     }
   }, []);
 
+
+
   let getSearchSuggestions = async (search) => {
     try {
       setLoading(true);
-      let res = await api.post("/search", { search });
-
-      if (res?.data?.status) {
-        setSearchData(res?.data?.search_data);
+  
+      const controller = new AbortController();
+      const signal = controller.signal;
+  
+      const response = await api.post("/search", { search }, { signal });
+  
+      if (response?.data?.status && search?.length > 0) {
+        setSearchData(response?.data?.search_data);
         setLoading(false);
       } else {
         setLoading(false);
       }
     } catch (error) {
-      setLoading(false);
-      console.log(error);
+      if (!axios.isCancel(error)) {
+        setLoading(false);
+        console.log(error);
+      }
     }
   };
 
+  useEffect(()=> {
+    if(!loading && !search?.length) {
+      setSearchData([])
+    }
+  }, [search, loading])
+  
+
   useEffect(() => {
+    let controller = null;
+  
     let timer = setTimeout(() => {
       if (search?.length > 2) {
-        getSearchSuggestions(search);
+        controller = new AbortController();
+        getSearchSuggestions(search, controller.signal);
       }
     }, 500);
-
-    if (!search?.length) {
-      setSearchData([]);
-    }
-
-    return () => clearTimeout(timer);
+  
+    return () => {
+      clearTimeout(timer);
+      if (controller) {
+        controller.abort();
+      }
+    };
   }, [search]);
+
+  const handlePlaceHolder = () => {
+    setShowPlaceholder(false);
+  };
+  const onBlurInput = () => {
+    setShowPlaceholder(true);
+  
+    let timer = setTimeout(() => {
+      setSearchData([]);
+    }, 300);
+  
+    
+    return clearTimeout(timer);
+  };
+
+  const handleSearch = (e) => {
+    const {value} = e.target;
+    if (value) {
+      setSearch(value);
+    }
+  };
+  
+  const submitSearch = (e) => {
+    if(e.which === 13){
+      let payload = {
+        search: e.target.value
+      };
+      setSearchData([]);
+      setSearch("");
+      let url = new URL(window.location.href);
+      let params = new URLSearchParams(url.search);
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value !== undefined) {
+          params.set(key, value);
+        }
+      });
+      url.search = params.toString();
+      router.push("/devices" + url.search);
+    }
+  };
+
+
+  const onSearch = (data) => () => {
+    let payload = {
+      search: data?.accessories_title
+        ? data?.accessories_title
+        : `${data?.brand} ${data?.model}`,
+    };
+    setSearchData([]);
+    setSearch("");
+    let url = new URL(window.location.href);
+    let params = new URLSearchParams(url.search);
+    Object.entries(payload).forEach(([key, value]) => {
+      if (value !== undefined) {
+        params.set(key, value);
+      }
+    });
+    url.search = params.toString();
+    router.push("/devices" + url.search);
+  };
+
 
   const onOpenMobileMenu = useCallback(() => {
     if (menuRef.current) {
@@ -100,13 +180,13 @@ const Navbar = ({ userData }) => {
   };
 
   const onPost = () => {
-
-
     let token =localStorage.getItem('@token');
     let url = `https://www.mobilezmarket.com/add-mobile`;
     window.open(url)
-
   };
+
+ 
+
 
   const items = [
     {
@@ -168,65 +248,6 @@ const Navbar = ({ userData }) => {
     " tablets",
   ];
 
-  const handlePlaceHolder = () => {
-    setShowPlaceholder(false);
-  };
-
-  const onBlurInput = () => {
-    setShowPlaceholder(true);
-    setSearchData([])
-  };
-
-  const handleSearch = (e) => {
-    const {value} = e.target;
-    if (value) {
-      setSearch(value);
-    } else {
-      setSearch("");
-    }
-  };
-  
-  const submitSearch = (e) => {
-    if(e.which === 13){
-      let payload = {
-        search: e.target.value
-      };
-      setSearchData([]);
-      setSearch("");
-      let url = new URL(window.location.href);
-      let params = new URLSearchParams(url.search);
-      Object.entries(payload).forEach(([key, value]) => {
-        if (value !== undefined) {
-          params.set(key, value);
-        }
-      });
-      url.search = params.toString();
-      router.push("/devices" + url.search);
-    }
-   
-  };
-  const onSearch = (data) => () => {
-    let payload = {
-      search: data?.accessories_title
-        ? data?.accessories_title
-        : `${data?.brand} ${data?.model}`,
-      category: data?.category.toLowerCase(),
-      brand: data?.brand.toLowerCase(),
-      min_price: "0",
-      max_price: "1000000",
-    };
-    setSearchData([]);
-    setSearch("");
-    let url = new URL(window.location.href);
-    let params = new URLSearchParams(url.search);
-    Object.entries(payload).forEach(([key, value]) => {
-      if (value !== undefined) {
-        params.set(key, value);
-      }
-    });
-    url.search = params.toString();
-    router.push("/devices" + url.search);
-  };
 
   return (
     <nav className="nav_wrapper">
