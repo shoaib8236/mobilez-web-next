@@ -143,25 +143,25 @@ const ProductDetailsLayout = (props) => {
     <>
       <div className="product_details_header">
         <div className="content_wrap">
-          <h1>
+        
             {loading ? (
               <Skeleton height="25px" width="250px" />
             ) : (
-              <>
+              <h1>
                 {productDetails?.accessories_title ? (
-                  <>
-                    <h2>{productDetails?.accessories_title}</h2>
-                  </>
+               
+                    <>{productDetails?.accessories_title}</>
+                 
                 ) : (
-                  <>
-                    <h2>
-                      {productDetails?.brand} {productDetails?.model}
-                    </h2>
-                  </>
+               
+                    <>
+                      {productDetails?.brand} {" "} {productDetails?.model}
+                    </>
+                 
                 )}
-              </>
+              </h1>
             )}
-          </h1>
+        
           <h2>
             {loading ? (
               <Skeleton height="25px" width="150px" />

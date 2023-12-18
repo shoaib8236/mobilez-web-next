@@ -24,7 +24,7 @@ const PageBanner = (props) => {
             <h1>{title}</h1>
             <div className="breadcrumb">
               <Link href={"/"}>Home</Link> <span>/</span>{" "}
-              <Link href={"/about"} className="active">
+              <Link href={"/"} className="active">
                 {currentPage ? currentPage : title}
               </Link>
             </div>

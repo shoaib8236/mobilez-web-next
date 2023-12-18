@@ -99,7 +99,14 @@ const Navbar = ({ userData }) => {
     window.open(`https://www.mobilezmarket.com/${endPoint}`);
   };
 
-  const onPost = () => {};
+  const onPost = () => {
+
+
+    let token =localStorage.getItem('@token');
+    let url = `https://www.mobilezmarket.com/add-mobile`;
+    window.open(url)
+
+  };
 
   const items = [
     {

@@ -54,15 +54,10 @@ const FiltersLayout = () => {
   const [form] = Form.useForm();
 
   const getDevices = async (data, isNewData, newPage) => {
-
-    console.log(page, data, isNewData)
+    console.log(page, data, isNewData);
 
     try {
-     
-     
       let res = await api.post(`/category?page=${newPage}`, data);
-    
-
 
       if (isNewData) {
         setDeviceData(res?.data?.data?.data);
@@ -87,17 +82,13 @@ const FiltersLayout = () => {
         range: [data?.min_price || 0, data?.max_price || 1000000],
       };
 
-  
-
       form.setFieldsValue(formValues);
     } catch (error) {
       console.log(error);
-      
     }
 
     setLoading(false);
     setIsLoadMore(false);
-
   };
 
   const debouncedGetDevices = debounce(getDevices, 300);
@@ -117,8 +108,7 @@ const FiltersLayout = () => {
     ...(order && { order }),
   };
   useEffect(() => {
-
-    setLoading(true)
+    setLoading(true);
     debouncedGetDevices(payload, true, 1);
 
     return () => debouncedGetDevices.cancel();
@@ -138,7 +128,7 @@ const FiltersLayout = () => {
   ]);
 
   const onReset = () => {
-    setPage(1)
+    setPage(1);
     form.resetFields();
     router.push("/devices");
   };
@@ -162,9 +152,7 @@ const FiltersLayout = () => {
     let payload = {
       ...getValues,
     };
-
-    setPage(1)
-
+    setPage(1);
     if (payload?.range?.[1] > 0) {
       payload = {
         ...payload,
@@ -195,6 +183,7 @@ const FiltersLayout = () => {
     handleCollapseClose();
   };
 
+
   let timer;
   const onValuesChange = (value) => {
     if (Object.keys(value)[0] === "range") {
@@ -208,7 +197,6 @@ const FiltersLayout = () => {
     }
   };
 
-  // ________________________________________________________
 
   const handleCollapse = () => {
     let filterNode = filtersNodeRef.current;
@@ -224,12 +212,11 @@ const FiltersLayout = () => {
   };
 
   const onPageChange = () => {
-    setIsLoadMore(true)
-    let newPage = page + 1
+    setIsLoadMore(true);
+    let newPage = page + 1;
     payload.page = newPage;
     debouncedGetDevices(payload, false, newPage);
     setPage(newPage);
-
   };
 
   return (
@@ -451,15 +438,19 @@ const FiltersLayout = () => {
                 />
               </div>
               {totalRecords && totalRecords > deviceData?.length ? (
-                <div className="load_more">
-                  <StyledButton
-                    loading={isLoadMore}
-                    disabled={isLoadMore}
-                    onClick={onPageChange}
-                  >
-                    Load More
-                  </StyledButton>
-                </div>
+                <>
+                  {!loading && (
+                    <div className="load_more">
+                      <StyledButton
+                        loading={isLoadMore}
+                        disabled={isLoadMore}
+                        onClick={onPageChange}
+                      >
+                        Load More
+                      </StyledButton>
+                    </div>
+                  )}
+                </>
               ) : (
                 ""
               )}

@@ -51,6 +51,7 @@
 
           &.active {
             color: $secondary;
+            pointer-events: none;
           }
         }
       }
