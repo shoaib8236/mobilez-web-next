@@ -174,17 +174,37 @@ const Navbar = ({ userData }) => {
 
   const onBlurInput = () => {
     setShowPlaceholder(true);
+    setSearchData([])
   };
 
   const handleSearch = (e) => {
-    const { value } = e.target;
+    const {value} = e.target;
     if (value) {
       setSearch(value);
     } else {
       setSearch("");
     }
   };
-
+  
+  const submitSearch = (e) => {
+    if(e.which === 13){
+      let payload = {
+        search: e.target.value
+      };
+      setSearchData([]);
+      setSearch("");
+      let url = new URL(window.location.href);
+      let params = new URLSearchParams(url.search);
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value !== undefined) {
+          params.set(key, value);
+        }
+      });
+      url.search = params.toString();
+      router.push("/devices" + url.search);
+    }
+   
+  };
   const onSearch = (data) => () => {
     let payload = {
       search: data?.accessories_title
@@ -220,6 +240,7 @@ const Navbar = ({ userData }) => {
               value={search}
               onChange={handleSearch}
               onClick={handlePlaceHolder}
+              onKeyDown={submitSearch}
               onBlur={onBlurInput}
               type="text"
             />
