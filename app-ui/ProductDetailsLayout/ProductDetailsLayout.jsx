@@ -67,10 +67,8 @@ const ProductDetailsLayout = (props) => {
   };
 
   useEffect(() => {
-    if (fcmToken) {
-      getProductsDetails(fcmToken);
-    }
-  }, [fcmToken, slug]);
+    getProductsDetails(fcmToken);
+  }, [ slug]);
 
   const productImages = productDetails?.productimages.map((item) => ({
     original: getImage(item?.img),
