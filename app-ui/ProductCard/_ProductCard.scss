@@ -109,3 +109,17 @@
     }
   }
 }
+
+@media screen and (max-width:$breakpoint_sm) {
+  .product_card_wrap {
+  
+  
+    &.list {
+      display: flex;
+      .image_wrap {
+        width: 140px !important;
+        height:156px !important;
+      }
+    }
+  }
+}
