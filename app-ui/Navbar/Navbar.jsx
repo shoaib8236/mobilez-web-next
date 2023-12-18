@@ -38,17 +38,14 @@ const Navbar = ({ userData }) => {
     }
   }, []);
 
-
-
   let getSearchSuggestions = async (search) => {
     try {
       setLoading(true);
+
   
-      const controller = new AbortController();
-      const signal = controller.signal;
-  
-      const response = await api.post("/search", { search }, { signal });
-  
+
+      const response = await api.post("/search", { search });
+
       if (response?.data?.status && search?.length > 0) {
         setSearchData(response?.data?.search_data);
         setLoading(false);
@@ -56,35 +53,25 @@ const Navbar = ({ userData }) => {
         setLoading(false);
       }
     } catch (error) {
-      if (!axios.isCancel(error)) {
-        setLoading(false);
-        console.log(error);
-      }
+      setLoading(false);
     }
   };
 
-  useEffect(()=> {
-    if(!loading && !search?.length) {
-      setSearchData([])
+  useEffect(() => {
+    if (!loading && !search?.length) {
+      setSearchData([]);
     }
-  }, [search, loading])
-  
+  }, [search, loading]);
 
   useEffect(() => {
-    let controller = null;
-  
     let timer = setTimeout(() => {
       if (search?.length > 2) {
-        controller = new AbortController();
-        getSearchSuggestions(search, controller.signal);
+        getSearchSuggestions(search);
       }
     }, 500);
-  
+
     return () => {
       clearTimeout(timer);
-      if (controller) {
-        controller.abort();
-      }
     };
   }, [search]);
 
@@ -93,26 +80,25 @@ const Navbar = ({ userData }) => {
   };
   const onBlurInput = () => {
     setShowPlaceholder(true);
-  
+
     let timer = setTimeout(() => {
       setSearchData([]);
     }, 300);
-  
-    
+
     return clearTimeout(timer);
   };
 
   const handleSearch = (e) => {
-    const {value} = e.target;
+    const { value } = e.target;
     if (value) {
       setSearch(value);
     }
   };
-  
+
   const submitSearch = (e) => {
-    if(e.which === 13){
+    if (e.which === 13) {
       let payload = {
-        search: e.target.value
+        search: e.target.value,
       };
       setSearchData([]);
       setSearch("");
@@ -127,7 +113,6 @@ const Navbar = ({ userData }) => {
       router.push("/devices" + url.search);
     }
   };
-
 
   const onSearch = (data) => () => {
     let payload = {
@@ -147,7 +132,6 @@ const Navbar = ({ userData }) => {
     url.search = params.toString();
     router.push("/devices" + url.search);
   };
-
 
   const onOpenMobileMenu = useCallback(() => {
     if (menuRef.current) {
@@ -180,13 +164,10 @@ const Navbar = ({ userData }) => {
   };
 
   const onPost = () => {
-    let token =localStorage.getItem('@token');
+    let token = localStorage.getItem("@token");
     let url = `https://www.mobilezmarket.com/add-mobile`;
-    window.open(url)
+    window.open(url);
   };
-
- 
-
 
   const items = [
     {
@@ -247,7 +228,6 @@ const Navbar = ({ userData }) => {
     " accessories",
     " tablets",
   ];
-
 
   return (
     <nav className="nav_wrapper">
