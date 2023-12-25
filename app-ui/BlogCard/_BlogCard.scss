@@ -20,12 +20,21 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    height: 160px;
+    min-height: 160px;
     
 
     .content {
       > * {
         margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size:$title_sm;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .desc {

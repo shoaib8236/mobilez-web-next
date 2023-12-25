@@ -80,28 +80,33 @@ const ProductDetailsLayout = (props) => {
   let sliderProp = {
     breakpoints: {
       300: {
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 10,
       },
       480: {
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: 10,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 10,
       },
       1200: {
         slidesPerView: 4,
-        spaceBetween: 40,
+        spaceBetween: 20,
       },
     },
-    spaceBetween: 20,
-    slidesPerView: 4,
-
-    pagination: {
-      clickable: true,
-      dynamicBullets: true,
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    1200: {
+      slidesPerView: 4,
+      spaceBetween: 40,
     },
     navigation: true,
   };
@@ -318,7 +323,7 @@ const ProductDetailsLayout = (props) => {
                 <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
                   {relatedAdds?.map((item) => (
                     <SwiperSlide key={item?.id}>
-                      <ProductCard data={item} />
+                      <ProductCard className="card_small_mobile" data={item} />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -338,7 +343,7 @@ const ProductDetailsLayout = (props) => {
                 <Swiper {...sliderProp} modules={[Pagination]} loop={true}>
                   {shopAdds?.map((item) => (
                     <SwiperSlide key={item?.id}>
-                      <ProductCard data={item} />
+                      <ProductCard className="card_small_mobile" data={item} />
                     </SwiperSlide>
                   ))}
                 </Swiper>

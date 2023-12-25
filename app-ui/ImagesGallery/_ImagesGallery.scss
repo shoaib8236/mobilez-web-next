@@ -1,5 +1,6 @@
 .image-gallery-image {
   max-height: 500px !important;
+  min-height: 500px !important;
   background-color: $dark;
 }
 .fullscreen {
@@ -12,19 +13,20 @@
 .image-gallery-thumbnail .image-gallery-thumbnail-image {
   height: 80px;
   object-fit: cover;
-  border-radius:$radius_sm;
+  border-radius:0 ;
 }
 
 .image-gallery-thumbnail {
-  border-radius: $radius_md;
-  
+  border-radius: 0;
+
   &.active {
-    border-color:$primary !important;
+    border-width:4px;
+    border-color: $primary !important;
   }
   
   &:hover {
-    
-    border-color:$primary !important;
+    border-width:4px;
+    border-color: $primary !important;
   }
 }
 
@@ -33,7 +35,6 @@
   width: 20px;
 
   &:hover {
-    color:$primary;
+    color: $primary;
   }
-
 }

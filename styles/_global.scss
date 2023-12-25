@@ -153,3 +153,26 @@ h3 {
   }
 }
 
+
+
+@media screen and (max-width: $breakpoint_sm) {
+  
+    .two_card_sm {
+      .image_wrap {
+        height: 150px;
+      }
+
+      .card_content {
+        padding: 6px;
+      }
+
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
+      }
+    }
+  
+}

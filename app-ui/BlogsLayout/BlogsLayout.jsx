@@ -24,20 +24,20 @@ const BlogsLayout = () => {
     <div className="content_wrap">
       {loading ? (
         <Row gutter={[20, 20]}>
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
-          <Col lg={8} md={8} sm={12} xs={24}>
+          <Col lg={6} md={8} sm={12} xs={24}>
             <BlogSkeleton />
           </Col>
         </Row>
       ) : (
         <Row gutter={[20, 20]}>
           {blogs?.map((item) => (
-            <Col key={item?.id} lg={8} md={8} sm={12} xs={24}>
+            <Col key={item?.id} lg={6} md={8} sm={12} xs={24}>
               <BlogCard data={item} />
             </Col>
           ))}

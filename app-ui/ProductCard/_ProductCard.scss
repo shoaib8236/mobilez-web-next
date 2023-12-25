@@ -121,5 +121,28 @@
         height:156px !important;
       }
     }
+
+    &.card_small_mobile
+    {
+      .image_wrap {
+        height: 150px;
+      }
+
+      .card_content {
+        padding: 6px;
+      }
+
+      h2 {
+        font-size: $text_sm;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 10px;
+      }
+      span {
+        font-size: 10px;
+      }
+    }
+
   }
 }
