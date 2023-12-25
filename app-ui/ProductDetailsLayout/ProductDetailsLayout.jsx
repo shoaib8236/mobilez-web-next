@@ -70,7 +70,7 @@ const ProductDetailsLayout = (props) => {
 
   useEffect(() => {
     getProductsDetails(fcmToken);
-  }, [ slug]);
+  }, [slug]);
 
   const productImages = productDetails?.productimages.map((item) => ({
     original: getImage(item?.img),
@@ -142,30 +142,29 @@ const ProductDetailsLayout = (props) => {
     notification.success({ message: "Link copied to clipboard!" });
   };
 
-  console.log(slug, "slug")
-
   return (
     <>
       <div className="product_details_header">
         <div className="content_wrap">
-        
-            
-        <div className="styled_breadcrumb">
-          <Link href="/">
-            <IoHome />
-            Home
-          </Link>{" "}
-          <span className="separator">/</span>
-         
-           
+          {loading ? (
+            ""
+          ) : (
+            <div className="styled_breadcrumb">
+              <Link href="/">
+                <IoHome />
+                Home
+              </Link>{" "}
+              <span className="separator">/</span>
+              <Link href={`/devices?category=${productDetails?.category}`}>{productDetails?.category}</Link>
+              <span className="separator">/</span>
+              <Link href={`/devices?category=${productDetails?.category}&brand=${productDetails?.brand}`}>{productDetails?.brand}</Link>
+              <span className="separator">/</span>
               <Link href={`/product/${slug[0]}/${slug[1]}`}>
-                {slug[1]?.split("-").join(' ')}
+                {slug[1]?.split("-").join(" ")}
               </Link>
               <span className="separator">/</span>
-           
-         
-        </div>
-
+            </div>
+          )}
         </div>
       </div>
 
@@ -180,32 +179,27 @@ const ProductDetailsLayout = (props) => {
           </Col>
 
           <Col lg={12} md={12} sm={24} xs={24}>
-
-          {loading ? (
+            {loading ? (
               <Skeleton height="25px" width="250px" />
             ) : (
               <h1>
                 {productDetails?.accessories_title ? (
-               
-                    <>{productDetails?.accessories_title}</>
-                 
+                  <>{productDetails?.accessories_title}</>
                 ) : (
-               
-                    <>
-                      {productDetails?.brand} {" "} {productDetails?.model}
-                    </>
-                 
+                  <>
+                    {productDetails?.brand} {productDetails?.model}
+                  </>
                 )}
               </h1>
             )}
-        
-          <h2>
-            {loading ? (
-              <Skeleton height="25px" width="150px" />
-            ) : (
-              `Rs: ${numberWithCommas(productDetails?.price)}`
-            )}
-          </h2>
+
+            <h2>
+              {loading ? (
+                <Skeleton height="25px" width="150px" />
+              ) : (
+                `Rs: ${numberWithCommas(productDetails?.price)}`
+              )}
+            </h2>
 
             {loading ? (
               <div>
@@ -245,18 +239,24 @@ const ProductDetailsLayout = (props) => {
               </div>
             ) : (
               <div className="styled_table">
-                {productDetails?.ram && <div className="t_row">
-                  <div className="t_cols">Ram</div>
-                  <div className="t_cols">{productDetails?.ram} GB</div>
-                </div>}
-                {productDetails?.storage && <div className="t_row">
-                  <div className="t_cols">Storage</div>
-                  <div className="t_cols">{productDetails?.storage} GB</div>
-                </div>}
-                {productDetails?.pta_status && <div className="t_row">
-                  <div className="t_cols">PTA Status</div>
-                  <div className="t_cols">{productDetails?.pta_status}</div>
-                </div>}
+                {productDetails?.ram && (
+                  <div className="t_row">
+                    <div className="t_cols">Ram</div>
+                    <div className="t_cols">{productDetails?.ram} GB</div>
+                  </div>
+                )}
+                {productDetails?.storage && (
+                  <div className="t_row">
+                    <div className="t_cols">Storage</div>
+                    <div className="t_cols">{productDetails?.storage} GB</div>
+                  </div>
+                )}
+                {productDetails?.pta_status && (
+                  <div className="t_row">
+                    <div className="t_cols">PTA Status</div>
+                    <div className="t_cols">{productDetails?.pta_status}</div>
+                  </div>
+                )}
                 <div className="t_row">
                   <div className="t_cols">Warranty</div>
                   <div className="t_cols">{productDetails?.warranty}</div>
