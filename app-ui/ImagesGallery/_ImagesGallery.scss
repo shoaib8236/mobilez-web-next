@@ -27,3 +27,13 @@
     border-color:$primary !important;
   }
 }
+
+.image-gallery .image-gallery-svg {
+  height: 50px;
+  width: 20px;
+
+  &:hover {
+    color:$primary;
+  }
+
+}
