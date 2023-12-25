@@ -42,8 +42,6 @@ const Navbar = ({ userData }) => {
     try {
       setLoading(true);
 
-  
-
       const response = await api.post("/search", { search });
 
       if (response?.data?.status && search?.length > 0) {

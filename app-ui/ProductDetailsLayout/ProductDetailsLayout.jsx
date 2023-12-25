@@ -21,6 +21,8 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FiLink } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
+import Link from "next/link";
+import { IoHome } from "react-icons/io5";
 
 const ProductDetailsLayout = (props) => {
   const { slug } = props;
@@ -139,12 +141,47 @@ const ProductDetailsLayout = (props) => {
     navigator.clipboard.writeText(currentPath);
     notification.success({ message: "Link copied to clipboard!" });
   };
+
+  console.log(slug, "slug")
+
   return (
     <>
       <div className="product_details_header">
         <div className="content_wrap">
         
+            
+        <div className="styled_breadcrumb">
+          <Link href="/">
+            <IoHome />
+            Home
+          </Link>{" "}
+          <span className="separator">/</span>
+         
+           
+              <Link href={`/product/${slug[0]}/${slug[1]}`}>
+                {slug[1]?.split("-").join(' ')}
+              </Link>
+              <span className="separator">/</span>
+           
+         
+        </div>
+
+        </div>
+      </div>
+
+      <div className="content_wrap">
+        <Row gutter={[20, 20]}>
+          <Col lg={12} md={12} sm={24} xs={24}>
             {loading ? (
+              <Skeleton height="400px" width="100%" />
+            ) : (
+              <ImagesGallery images={productImages || []} />
+            )}
+          </Col>
+
+          <Col lg={12} md={12} sm={24} xs={24}>
+
+          {loading ? (
               <Skeleton height="25px" width="250px" />
             ) : (
               <h1>
@@ -169,20 +206,7 @@ const ProductDetailsLayout = (props) => {
               `Rs: ${numberWithCommas(productDetails?.price)}`
             )}
           </h2>
-        </div>
-      </div>
 
-      <div className="content_wrap">
-        <Row gutter={[20, 20]}>
-          <Col lg={12} md={12} sm={24} xs={24}>
-            {loading ? (
-              <Skeleton height="400px" width="100%" />
-            ) : (
-              <ImagesGallery images={productImages || []} />
-            )}
-          </Col>
-
-          <Col lg={12} md={12} sm={24} xs={24}>
             {loading ? (
               <div>
                 <Skeleton height="34px" width="100%" margin=" 0 0 10px 0" />

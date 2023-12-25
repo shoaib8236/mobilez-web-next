@@ -134,7 +134,11 @@ const FiltersLayout = () => {
   };
 
   const onBrandChange = () => {
-    form.setFieldValue("brand", []);
+    form.setFieldsValue({
+      brand: [],
+      ram: [],
+      storage: [],
+    });
   };
 
   const removeUndefinedValues = (obj) => {
@@ -173,7 +177,7 @@ const FiltersLayout = () => {
     params.delete("order");
 
     Object.entries(payload).forEach(([key, value]) => {
-      if (value !== undefined || value !== "0" || value !== 0) {
+      if (value?.length) {
         params.set(key, value);
       }
     });
@@ -183,8 +187,8 @@ const FiltersLayout = () => {
     handleCollapseClose();
   };
 
-
   let timer;
+
   const onValuesChange = (value) => {
     if (Object.keys(value)[0] === "range") {
       clearTimeout(timer);
@@ -193,10 +197,15 @@ const FiltersLayout = () => {
         form.submit();
       }, 1000);
     } else {
-      form.submit();
+      if (Object.keys(value)[0] === "category") {
+        
+        router.push(`/devices?category=${value?.category}`);
+
+      } else {
+        form.submit();
+      }
     }
   };
-
 
   const handleCollapse = () => {
     let filterNode = filtersNodeRef.current;
@@ -321,12 +330,7 @@ const FiltersLayout = () => {
                       ghost
                       bordered={false}
                       expandIconPosition="end"
-                      defaultActiveKey={[
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                      ]}
+                      defaultActiveKey={["1", "2", "3", "4"]}
                     >
                       <Collapse.Panel key="1" header="Category">
                         <Form.Item name="category">
@@ -391,16 +395,20 @@ const FiltersLayout = () => {
                           </div>
                         ) : null}
                       </Collapse.Panel>
-                      <Collapse.Panel key="5" header="Ram">
-                        <Form.Item name="ram">
-                          <Checkbox.Group options={RamOptions} />
-                        </Form.Item>
-                      </Collapse.Panel>
-                      <Collapse.Panel key="6" header="Storage">
-                        <Form.Item name="storage">
-                          <Checkbox.Group options={StorageOptions} />
-                        </Form.Item>
-                      </Collapse.Panel>
+                      {["accessories", "watch"].includes(category) !== true && (
+                        <Collapse.Panel key="5" header="Ram">
+                          <Form.Item name="ram">
+                            <Checkbox.Group options={RamOptions} />
+                          </Form.Item>
+                        </Collapse.Panel>
+                      )}
+                      {["accessories", "watch"].includes(category) !== true && (
+                        <Collapse.Panel key="6" header="Storage">
+                          <Form.Item name="storage">
+                            <Checkbox.Group options={StorageOptions} />
+                          </Form.Item>
+                        </Collapse.Panel>
+                      )}
                       <Collapse.Panel key="7" header="Product Condition">
                         <Form.Item name="product_status">
                           <Checkbox.Group options={ProductCondition} />
@@ -411,11 +419,13 @@ const FiltersLayout = () => {
                           <Checkbox.Group options={WarrantyOptions} />
                         </Form.Item>
                       </Collapse.Panel>
-                      <Collapse.Panel key="9" header="Pta Status">
-                        <Form.Item name="pta_status">
-                          <Checkbox.Group options={PtaStatus} />
-                        </Form.Item>
-                      </Collapse.Panel>
+                      {["accessories", "watch"].includes(category) !== true && (
+                        <Collapse.Panel key="9" header="Pta Status">
+                          <Form.Item name="pta_status">
+                            <Checkbox.Group options={PtaStatus} />
+                          </Form.Item>
+                        </Collapse.Panel>
+                      )}
                     </Collapse>
                   </div>
                 </Form>
