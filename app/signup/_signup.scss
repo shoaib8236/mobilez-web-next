@@ -1,5 +1,7 @@
 .signup_wrap {
     padding: 60px 0;
+
+
     .signup_form {
       display: flex;
       flex-direction: column;
@@ -30,6 +32,31 @@
         padding: 6px;
         img {
           margin-left: 8px;
+        }
+      }
+    }
+    .suggest_box {
+      border-radius: $radius_sm;
+      background-color: $light;
+      border: solid 1px $stroke_color;
+      margin-top: 10px;
+      overflow: hidden;
+  
+      >div {
+        padding: 6px 10px;
+        border-bottom: solid 1px $stroke_color;
+        margin-bottom: 5px;
+        cursor: pointer;
+  
+        &.active {
+          background-color: $stroke_color;
+          border-color: transparent;
+          
+        }
+  
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
         }
       }
     }

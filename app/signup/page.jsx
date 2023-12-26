@@ -13,6 +13,11 @@ import { useRouter } from "next/navigation";
 import { useAuthCheck } from "@/utils/hooks";
 import LoginWithGoogle from "@/app-ui/LoginWithGoogle/LoginWithGoogle";
 import Image from "next/image";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng,
+} from "react-places-autocomplete";
 
 const Page = () => {
   const router = useRouter();
@@ -20,6 +25,8 @@ const Page = () => {
 
   const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState(false);
+  const [address, setAddress] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState("");
 
   useEffect(() => {
     if (authCheck) {
@@ -32,9 +39,15 @@ const Page = () => {
       notification.error({ message: "Password does not match!" });
       return;
     }
+
+    let payload = { ...values, terms: true, city:selectedAddress.city, area: address }
+
+ 
+    console.log(payload)
+
     try {
       setLoading(true);
-      const res = await api.post("/register-user", { ...values, terms: true });
+      const res = await api.post("/register-user", );
       if (res?.data?.status === 400) {
         notification.error({ message: res?.data?.errors?.email?.[0] });
         setLoading(false);
@@ -58,6 +71,46 @@ const Page = () => {
 
   const onChangeAccountType = (e) => {
     setAccountType(e === "business");
+  };
+
+ 
+
+  const extractAddressComponents = (addressComponents) => {
+    let extractedData = {
+      area: "",
+      city: "",
+      province: "",
+      country: "",
+    };
+    
+    
+    addressComponents.forEach((component) => {
+      if (
+        component.types.includes("sublocality") ||
+        component.types.includes("neighborhood")
+      ) {
+        extractedData.area = component.long_name;
+      } else if (component.types.includes("locality")) {
+        extractedData.city = component.long_name;
+      } else if (component.types.includes("administrative_area_level_1")) {
+        extractedData.province = component.long_name;
+      } else if (component.types.includes("country")) {
+        extractedData.country = component.long_name;
+      }
+    });
+
+    return extractedData;
+  };
+
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    let extractedData = extractAddressComponents(
+      results[0]?.address_components
+    );
+    setSelectedAddress(extractedData)
+    console.log("address", extractedData, value);
+    setAddress(value);
+    
   };
 
   return (
@@ -107,26 +160,55 @@ const Page = () => {
                     </Col>
                   </Row>
                   <Row gutter={[8, 8]}>
-                    <Col lg={12} md={12} sm={24} xs={24}>
+                    <Col lg={24} md={24} sm={24} xs={24}>
                       <Form.Item
-                        rules={requiredRule}
-                        name="city"
-                        label="Select City"
+                        className="styled_input"
+                        label="Where are you located?"
+                        name="area"
                       >
-                        <Select
-                          placeholder="Select City"
-                          className="styled_select"
+                        <PlacesAutocomplete
+                          shouldFetchSuggestions={address.length > 3}
+                          value={address}
+                          onChange={setAddress}
+                          onSelect={handleSelect}
                         >
-                          <Select.Option value="Karachi">Karachi</Select.Option>
-                          <Select.Option value="Lahore">Lahore</Select.Option>
-                          <Select.Option value="Peshawar">
-                            Peshawar
-                          </Select.Option>
-                          <Select.Option value="Multan">Multan</Select.Option>
-                        </Select>
+                          {({
+                            getInputProps,
+                            suggestions,
+                            getSuggestionItemProps,
+                            loading,
+                          }) => (
+                            <div>
+                              <Input
+                                {...getInputProps({
+                                  placeholder: "Click to find your address",
+                                })}
+                                value={address}
+                              />
+                              {suggestions?.length > 0 && (
+                                <div className="suggest_box">
+                                  {loading && <div>Loading...</div>}
+
+                                  {suggestions.map((suggestion, index) => (
+                                    <div
+                                      className={`${
+                                        suggestion.active ? "active" : ""
+                                      }`}
+                                      key={index}
+                                      {...getSuggestionItemProps(suggestion, { 
+                                      })}
+                                    >
+                                      {suggestion.description}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </PlacesAutocomplete>
                       </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={24} xs={24}>
+                    <Col lg={24} md={24} sm={24} xs={24}>
                       <Form.Item
                         className="styled_input"
                         name="email"
@@ -272,6 +354,8 @@ const Page = () => {
           </Col>
         </Row>
       </div>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhs33Zqv1-a7XcZkEWKvJNh10oWlVYyO8&libraries=places"></script>
+
     </div>
   );
 };

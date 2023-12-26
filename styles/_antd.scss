@@ -103,7 +103,7 @@
   }
 
   .ant-select-selector {
-    border: solid 1px $primary;
+    border: solid 1px $stroke_color;
     border-width: 1px !important;
     box-shadow: unset;
     height: 34px;
@@ -112,7 +112,7 @@
 
   &:hover {
     .ant-select-selector {
-      border-color: $primary !important;
+      border-color: $stroke_color !important;
       box-shadow: unset !important;
     }
   }
@@ -143,9 +143,9 @@
   }
 }
 
-.ant-select-selection-placeholder {
-  color: $primary !important;
-}
+// .ant-select-selection-placeholder {
+//   color: $primary !important;
+// }
 
 .ant-select-arrow {
   > span {
@@ -154,7 +154,7 @@
   
   width: 0;
   border-right:solid 6px transparent;
-  border-top:solid 6px $primary;
+  border-top:solid 6px $gray;
   border-left:solid 6px transparent;
   margin-top: -3px !important;
 }
