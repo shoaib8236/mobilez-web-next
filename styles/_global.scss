@@ -56,6 +56,16 @@ h3 {
   font-weight: $font_semibold;
 }
 
+
+._dashboard {
+  display: flex;
+
+  #_layout {
+    flex: 1;
+  }
+
+}
+
 // swiper styles
 
 .swiper {

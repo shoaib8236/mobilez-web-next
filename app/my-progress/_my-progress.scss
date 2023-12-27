@@ -1,0 +1,17 @@
+.progress_wrap {
+    display:flex;
+    padding:20px;
+    height: 100svh;
+    .progress {
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items: center;
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    }
+
+}

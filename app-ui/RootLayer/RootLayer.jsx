@@ -7,6 +7,7 @@ import { getMessaging, onMessage } from "firebase/messaging";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
+import Menu from "../Menu/Menu";
 const RootLayer = ({ children }) => {
   const { fcmToken, notificationPermissionStatus } = useFcmToken();
   const { authCheck } = useAuthCheck();
@@ -38,12 +39,18 @@ const RootLayer = ({ children }) => {
     }
   }, [pathname]);
 
+  let dashboardRoutes = ["/my-devices", "/how-it-works", '/my-progress', '/manage-account', '/wishlist', '/profile-setting', '/winning-participation', '/post-ad']
+
   return (
-    <>
-      <Navbar userData={userData} />
+    <div className={`${dashboardRoutes.includes(pathname) ? '_dashboard' : '_web'}`}>
+      {dashboardRoutes.includes(pathname) ? (
+        <Menu />
+      ) : (
+        <Navbar userData={userData} />
+      )}
       {children}
-      <Footer />
-    </>
+      {dashboardRoutes.includes(pathname) !== true && <Footer />}
+    </div>
   );
 };
 

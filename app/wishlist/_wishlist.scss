@@ -1,0 +1,39 @@
+.wishlist {
+  flex: 1;
+  .styled_table {
+    .th,
+    .tr {
+      display: flex;
+    }
+    
+    .td {
+        padding: 15px;
+        flex: 1;
+        border-bottom: solid 1px $stroke_color;
+        font-size: 14px;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+
+     
+
+      &.product_image {
+        img {
+            background-color: $light_gray;
+            border-radius: $radius_sm;
+        }
+      }
+    }
+
+    .th {
+      .td {
+        font-weight: $font_bold;
+      }
+    }
+  }
+
+  .entries {
+    font-weight: $font_bold;
+    margin: 20px;
+  }
+}
