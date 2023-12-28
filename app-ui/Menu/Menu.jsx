@@ -34,19 +34,16 @@ const Menu = () => {
           <Link href={"/my-devices"}>
             <RiAdvertisementFill /> My Ads
           </Link>
-          <Link href={"/my-devices"}>
+          <Link href={"/post-ad"}>
             <FiPlus /> Post Ads
           </Link>
           <Link href={"/my-devices"}>
             <IoIosShareAlt /> Share Your Referal
           </Link>
-          <Link href={"/manage-account"}>
-            <IoIosShareAlt /> Manage Your Account
-          </Link>
           <Link href={"/my-devices"}>
             <AiOutlineUser /> Manage Your Account
           </Link>
-          <Link href={"/my-devices"}>
+          <Link href={"/winning-participation"}>
             <IoGiftSharp /> Winning Participation
           </Link>
           <Link href={"/how-it-works"}>

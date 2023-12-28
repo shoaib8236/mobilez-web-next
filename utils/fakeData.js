@@ -88,8 +88,11 @@ export const brandsLogo = [
 export const RamOptions = [
   { value: "1GB", label: "1GB" },
   { value: "2GB", label: "2GB" },
+  { value: "3GB", label: "3GB" },
   { value: "4GB", label: "4GB" },
+  { value: "6GB", label: "6GB" },
   { value: "8GB", label: "8GB" },
+  { value: "12GB", label: "12GB" },
   { value: "16GB", label: "16GB" },
   { value: "18GB", label: "18GB" },
   { value: "24GB", label: "24GB" },

@@ -1,0 +1,14 @@
+.post_an_ad {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  overflow-y: auto;
+  .ad_wrap {
+    padding: 20px;
+
+    > h1 {
+        margin-bottom: 40px;
+        margin-left:10px;
+    }
+  }
+}

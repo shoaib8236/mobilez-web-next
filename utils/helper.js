@@ -1,3 +1,4 @@
+
 import moment from "moment/moment";
 
 export const getImage = (endPoint) => {
@@ -29,3 +30,12 @@ export const removeStorageItemByKey = (key) => {
 export const numberWithCommas = (x)=> {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
+export const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
