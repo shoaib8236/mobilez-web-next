@@ -1,5 +1,7 @@
+'use client'
+
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
-import { Col, Form, Row } from "antd";
+import { Col, Form, Row, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { api } from "@/services/api";
 
