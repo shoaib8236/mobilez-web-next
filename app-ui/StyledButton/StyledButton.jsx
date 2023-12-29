@@ -20,9 +20,7 @@ const StyledButton = (props) => {
       type={type}
       disabled={loading || disabled}
       onClick={onClick}
-      className={`styled_button ${
-        disabled || loading ? "disabled" : ""
-      } ${className}`}
+      className={`styled_button ${ disabled ? "disabled" : "" } ${loading ? 'disabled loading' : ''} ${className}`}
     >
       {icon && icon} <span className="child_element">{children}</span>
       {loading && (

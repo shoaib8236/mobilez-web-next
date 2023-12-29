@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import firebaseApp from "@/firebase/firebase";
 import { getMessaging, onMessage } from "firebase/messaging";
 import Navbar from "../Navbar/Navbar";
+import DashboardHeader from "../DashboardHeader/DashboardHeader";
 import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 import Menu from "../Menu/Menu";
@@ -48,7 +49,18 @@ const RootLayer = ({ children }) => {
       ) : (
         <Navbar userData={userData} />
       )}
-      {children}
+
+      {dashboardRoutes.includes(pathname) ? (
+       <div>
+        <DashboardHeader userData={userData} />
+       {children}
+       </div>
+      ) : (
+        children
+      )}
+      
+      
+
       {dashboardRoutes.includes(pathname) !== true && <Footer />}
     </div>
   );

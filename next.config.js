@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-
 const path = require("path");
 
 const nextConfig = {
@@ -7,10 +5,8 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["www.mobilezmarket.com"],
+    domains: ["www.mobilezmarket.com", "lh3.googleusercontent.com"],
   },
-
-
 };
 
 module.exports = nextConfig;

@@ -146,6 +146,13 @@
     cursor: not-allowed;
 
     .child_element {
+      opacity: 1;
+    }
+  }
+  
+  &.loading {
+    
+    .child_element {
       opacity: 0;
     }
   }

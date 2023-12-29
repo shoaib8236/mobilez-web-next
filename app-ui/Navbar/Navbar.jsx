@@ -158,13 +158,12 @@ const Navbar = ({ userData }) => {
   };
 
   const onPushToDashboard = (endPoint) => () => {
-    window.open(`https://www.mobilezmarket.com/${endPoint}`);
+    router.push(`/${endPoint}`);
   };
-
+  
   const onPost = () => {
-    let token = localStorage.getItem("@token");
-    let url = `https://www.mobilezmarket.com/add-mobile`;
-    window.open(url);
+    
+    router.push(`/post-ad`);
   };
 
   const items = [
@@ -172,7 +171,7 @@ const Navbar = ({ userData }) => {
       key: "1",
       label: (
         <>
-          <span onClick={onPushToDashboard("mydevices")}>Dashboard</span>
+          <span onClick={onPushToDashboard("my-devices")}>Dashboard</span>
         </>
       ),
     },

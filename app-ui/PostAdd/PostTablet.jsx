@@ -77,6 +77,7 @@ const PostTablet = () => {
               {WarrantyOptions?.map((item) => (
                 <Option value={item?.value}>{item.label}</Option>
               ))}
+              <Option  value={'No Warranty'}>No Warranty</Option>
             </Select>
           </Form.Item>
         </Col>

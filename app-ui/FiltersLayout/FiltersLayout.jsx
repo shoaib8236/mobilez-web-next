@@ -15,13 +15,8 @@ import { Checkbox, Collapse, Form, Radio, Slider, Tag } from "antd";
 
 import api from "@/services/api";
 import debounce from "lodash/debounce";
-import {
-  ProductCondition,
-  PtaStatus,
-  RamOptions,
-  StorageOptions,
-  WarrantyOptions,
-} from "@/utils/fakeData";
+import { ProductCondition, PtaStatus, WarrantyOptions } from "@/utils/fakeData";
+import { FaRegGrinBeamSweat } from "react-icons/fa";
 
 const FiltersLayout = () => {
   const [deviceData, setDeviceData] = useState([]);
@@ -30,6 +25,9 @@ const FiltersLayout = () => {
   const [isLoadMore, setIsLoadMore] = useState(false);
   const [page, setPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(1);
+  const [rams, setRams] = useState([]);
+  const [rom, setRom] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const filtersNodeRef = useRef(null);
 
@@ -53,14 +51,11 @@ const FiltersLayout = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
-
-
-  const getBrands = async (cat)=> {
-
+  const getBrands = async (cat) => {
     try {
-      let res = await api.get(`/product-brands?category=${cat}`)
+      let res = await api.get(`/product-brands?category=${cat}`);
 
-      if(res?.data?.status){
+      if (res?.data?.status) {
         let getBrands = res?.data?.product_brands?.map((item) => {
           return {
             label: item,
@@ -69,15 +64,26 @@ const FiltersLayout = () => {
         });
         setCategoryBrands(getBrands);
       }
+    } catch (error) {}
+  };
 
-    } catch (error) {
-      
-    }
+  const getCities = async (cat) => {
+    try {
+      let res = await api.get(`/cities`);
 
-  }
+      if (res?.data?.status) {
+        let getCitiesData = res?.data?.cities?.map((item) => {
+          return {
+            label: item,
+            value: item,
+          };
+        });
+        setCities(getCitiesData);
+      }
+    } catch (error) {}
+  };
 
   const getDevices = async (data, isNewData, newPage) => {
-
     try {
       let res = await api.post(`/category?page=${newPage}`, data);
 
@@ -95,6 +101,24 @@ const FiltersLayout = () => {
         range: [data?.min_price || 0, data?.max_price || 1000000],
       };
 
+      let getRams = res?.data?.ram?.map((item) => {
+        return {
+          label: `${item?.ram} GB`,
+          value: `${item?.ram} GB`,
+        };
+      });
+      let getRoms = res?.data?.storage?.map((item) => {
+        return {
+          label: `${item?.storage} GB`,
+          value: `${item?.storage} GB`,
+        };
+      });
+
+      console.log(res?.data);
+
+      setRams(getRams);
+      setRom(getRoms);
+
       form.setFieldsValue(formValues);
     } catch (error) {
       console.log(error);
@@ -103,8 +127,6 @@ const FiltersLayout = () => {
     setLoading(false);
     setIsLoadMore(false);
   };
-
-  
 
   const debouncedGetDevices = debounce(getDevices, 300);
 
@@ -122,6 +144,11 @@ const FiltersLayout = () => {
     ...(sort && { sort }),
     ...(order && { order }),
   };
+
+  useEffect(() => {
+    getCities();
+  }, []);
+
   useEffect(() => {
     setLoading(true);
     debouncedGetDevices(payload, true, 1);
@@ -142,13 +169,11 @@ const FiltersLayout = () => {
     order,
   ]);
 
-  useEffect(()=> {
-
-    if(category){
-      getBrands(category)
+  useEffect(() => {
+    if (category) {
+      getBrands(category);
     }
-
-  }, [category])
+  }, [category]);
 
   const onReset = () => {
     setPage(1);
@@ -221,9 +246,7 @@ const FiltersLayout = () => {
       }, 1000);
     } else {
       if (Object.keys(value)[0] === "category") {
-        
         router.push(`/devices?category=${value?.category}`);
-
       } else {
         form.submit();
       }
@@ -373,31 +396,27 @@ const FiltersLayout = () => {
                           </Radio.Group>
                         </Form.Item>
                       </Collapse.Panel>
-                      {
-                        category !== 'accessories' && <Collapse.Panel key="2" header="Brands">
-                        <Form.Item name="brand">
-                          <Radio.Group>
-                            {categoryBrands?.map((item) => (
-                              <Radio value={item?.label}>
-                                <Tag color="blue">{item?.label}</Tag>
-                              </Radio>
-                            ))}
-                          </Radio.Group>
-                        </Form.Item>
-                      </Collapse.Panel>
-                      }
+                      {categoryBrands?.length > 0 && (
+                        <Collapse.Panel key="2" header="Brands">
+                          <Form.Item name="brand">
+                            <Radio.Group>
+                              {categoryBrands?.map((item) => (
+                                <Radio value={item?.label}>
+                                  <Tag color="blue">{item?.label}</Tag>
+                                </Radio>
+                              ))}
+                            </Radio.Group>
+                          </Form.Item>
+                        </Collapse.Panel>
+                      )}
                       <Collapse.Panel key="4" header="City">
                         <Form.Item name="city">
                           <Radio.Group>
-                            <Radio value={"karachi"}>
-                              <Tag color="blue">Karachi</Tag>
-                            </Radio>
-                            <Radio value={"lahore"}>
-                              <Tag color="blue">Lahore</Tag>
-                            </Radio>
-                            <Radio value={"islamabad"}>
-                              <Tag color="blue">Islamabad</Tag>
-                            </Radio>
+                            {cities?.map((item) => (
+                              <Radio value={item?.value}>
+                                <Tag color="blue">{item?.value}</Tag>
+                              </Radio>
+                            ))}
                           </Radio.Group>
                         </Form.Item>
                       </Collapse.Panel>
@@ -423,14 +442,14 @@ const FiltersLayout = () => {
                       {["accessories", "watch"].includes(category) !== true && (
                         <Collapse.Panel key="5" header="Ram">
                           <Form.Item name="ram">
-                            <Checkbox.Group options={RamOptions} />
+                            <Checkbox.Group options={rams} />
                           </Form.Item>
                         </Collapse.Panel>
                       )}
                       {["accessories", "watch"].includes(category) !== true && (
                         <Collapse.Panel key="6" header="Storage">
                           <Form.Item name="storage">
-                            <Checkbox.Group options={StorageOptions} />
+                            <Checkbox.Group options={rom} />
                           </Form.Item>
                         </Collapse.Panel>
                       )}
