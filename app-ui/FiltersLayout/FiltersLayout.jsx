@@ -53,8 +53,30 @@ const FiltersLayout = () => {
   const router = useRouter();
   const [form] = Form.useForm();
 
+
+
+  const getBrands = async (cat)=> {
+
+    try {
+      let res = await api.get(`/product-brands?category=${cat}`)
+
+      if(res?.data?.status){
+        let getBrands = res?.data?.product_brands?.map((item) => {
+          return {
+            label: item,
+            value: item,
+          };
+        });
+        setCategoryBrands(getBrands);
+      }
+
+    } catch (error) {
+      
+    }
+
+  }
+
   const getDevices = async (data, isNewData, newPage) => {
-    console.log(page, data, isNewData);
 
     try {
       let res = await api.post(`/category?page=${newPage}`, data);
@@ -66,15 +88,6 @@ const FiltersLayout = () => {
       }
 
       setTotalRecords(res?.data?.data?.total);
-
-      let getBrands = res?.data?.brands?.map((item) => {
-        return {
-          label: item?.brand,
-          value: item?.brand,
-        };
-      });
-
-      setCategoryBrands(getBrands);
 
       let formValues = {
         ...data,
@@ -90,6 +103,8 @@ const FiltersLayout = () => {
     setLoading(false);
     setIsLoadMore(false);
   };
+
+  
 
   const debouncedGetDevices = debounce(getDevices, 300);
 
@@ -126,6 +141,14 @@ const FiltersLayout = () => {
     sort,
     order,
   ]);
+
+  useEffect(()=> {
+
+    if(category){
+      getBrands(category)
+    }
+
+  }, [category])
 
   const onReset = () => {
     setPage(1);
@@ -350,7 +373,8 @@ const FiltersLayout = () => {
                           </Radio.Group>
                         </Form.Item>
                       </Collapse.Panel>
-                      <Collapse.Panel key="2" header="Brands">
+                      {
+                        category !== 'accessories' && <Collapse.Panel key="2" header="Brands">
                         <Form.Item name="brand">
                           <Radio.Group>
                             {categoryBrands?.map((item) => (
@@ -361,6 +385,7 @@ const FiltersLayout = () => {
                           </Radio.Group>
                         </Form.Item>
                       </Collapse.Panel>
+                      }
                       <Collapse.Panel key="4" header="City">
                         <Form.Item name="city">
                           <Radio.Group>
