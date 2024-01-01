@@ -12,48 +12,58 @@ import React, { useEffect, useState } from "react";
 const Page = () => {
   const { TabPane } = Tabs;
 
-
   const searchParams = useSearchParams();
 
   const type = searchParams.get("type") || "";
+  const id = searchParams.get("id") || "";
 
-
-  console.log(type, )
-
+  
   const [brands, setBrands] = useState([]);
+  const [ad, setAd] = useState([]);
+  const [loadingAd, setLoadingAd] = useState(true);
 
   const getBrands = async () => {
     try {
       let res = await api.get("/brands");
       if (res?.data?.status) {
-        console.log(res?.data);
         setBrands(res?.data?.brands);
       }
     } catch (error) {}
   };
+  const getAdById = async (id) => {
+    try {
+      setLoadingAd(true);
+      let res = await api.get(`/edit-Ad/${id}`);
+      if (res?.data?.status) {
+        setAd(res?.data?.data);
+      }
+    } catch (error) {}
+    setLoadingAd(false);
+  };
 
   useEffect(() => {
+    getAdById(id);
     getBrands();
   }, []);
+
+  const renderEditAdByType = (type) => {
+    if (type === "mobile") {
+      return <PostMobile brands={brands} defaultValue={ad} />;
+    } else if (type === "tablet") {
+      <PostTablet brands={brands} defaultValue={ad} />;
+    } else if (type === "watch") {
+      <PostSmartWatch brands={brands} defaultValue={ad} />;
+    } else if (type === "accessories") {
+      <PostAccessories brands={brands} defaultValue={ad} />;
+    }
+  };
 
   return (
     <div className="post_an_ad">
       <div className="ad_wrap">
         <h1>Select Category</h1>
-        <Tabs type="card" defaultActiveKey={type}>
-          <TabPane tab="Mobile" key="mobile">
-            <PostMobile brands={brands} />
-          </TabPane>
-          <TabPane tab="Tablet" key="tablet">
-            <PostTablet brands={brands} />
-          </TabPane>
-          <TabPane tab="Accessories" key="accessories">
-            <PostAccessories brands={brands} />
-          </TabPane>
-          <TabPane tab="Smart Watch" key="smart_watch">
-            <PostSmartWatch  brands={brands} />
-          </TabPane>
-        </Tabs>
+
+        {loadingAd ? "loading" : renderEditAdByType(type)}
       </div>
     </div>
   );

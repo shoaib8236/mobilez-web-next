@@ -86,26 +86,26 @@ export const brandsLogo = [
 ];
 
 export const RamOptions = [
-  { value: "1GB", label: "1GB" },
-  { value: "2GB", label: "2GB" },
-  { value: "3GB", label: "3GB" },
-  { value: "4GB", label: "4GB" },
-  { value: "6GB", label: "6GB" },
-  { value: "8GB", label: "8GB" },
-  { value: "12GB", label: "12GB" },
-  { value: "16GB", label: "16GB" },
-  { value: "18GB", label: "18GB" },
-  { value: "24GB", label: "24GB" },
+  { value: "1GB", number: 1, label: "1GB" },
+  { value: "2GB", number: 2, label: "2GB" },
+  { value: "3GB", number: 3, label: "3GB" },
+  { value: "4GB", number: 4, label: "4GB" },
+  { value: "6GB", number: 6, label: "6GB" },
+  { value: "8GB", number: 8, label: "8GB" },
+  { value: "12GB", number: 12, label: "12GB" },
+  { value: "16GB", number: 16, label: "16GB" },
+  { value: "18GB", number: 18, label: "18GB" },
+  { value: "24GB", number: 24, label: "24GB" },
 ];
 
 export const StorageOptions = [
-  { value: "16GB", label: "16GB" },
-  { value: "32GB", label: "32GB" },
-  { value: "64GB", label: "64GB" },
-  { value: "128GB", label: "128GB" },
-  { value: "256GB", label: "256GB" },
-  { value: "512GB", label: "512GB" },
-  { value: "1TB", label: "1TB" },
+  { value: "16GB", number: 16, label: "16GB" },
+  { value: "32GB", number: 32, label: "32GB" },
+  { value: "64GB", number: 64, label: "64GB" },
+  { value: "128GB", number: 128, label: "128GB" },
+  { value: "256GB", number: 256, label: "256GB" },
+  { value: "512GB", number: 512, label: "512GB" },
+  { value: "1TB", number: 1, label: "1TB" },
 ];
 
 export const PtaStatus = [

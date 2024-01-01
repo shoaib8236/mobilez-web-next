@@ -40,7 +40,7 @@ const RootLayer = ({ children }) => {
     }
   }, [pathname]);
 
-  let dashboardRoutes = ["/my-devices", "/how-it-works", '/my-progress', '/manage-account', '/wishlist', '/profile-setting', '/winning-participation', '/post-ad']
+  let dashboardRoutes = ["/my-devices", "/how-it-works", '/my-progress', '/manage-account', '/wishlist', '/profile-setting', '/winning-participation', '/post-ad', '/edit-ad']
 
   return (
     <div className={`${dashboardRoutes.includes(pathname) ? '_dashboard' : '_web'}`}>

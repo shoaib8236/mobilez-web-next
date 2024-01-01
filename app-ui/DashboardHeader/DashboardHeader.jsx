@@ -4,8 +4,6 @@ import Image from "next/image";
 const DashboardHeader = (props) => {
   const { userData } = props;
 
-  console.log(userData);
-
   return (
     <div className="dashboard_header">
       <div className="user">
