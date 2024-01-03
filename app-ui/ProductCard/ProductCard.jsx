@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import Image from "next/image";
@@ -94,8 +95,6 @@ const ProductCard = (props) => {
       onAddIntoWishList(id);
     }
   };
-
-  console.log(data)
 
   return (
     <Link href={`/product/${data?.id}/${data?.slug}`}>
