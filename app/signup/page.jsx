@@ -25,7 +25,7 @@ const Page = () => {
   const router = useRouter();
   const { authCheck } = useAuthCheck();
 
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
 
   const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState(false);
@@ -136,8 +136,11 @@ const Page = () => {
               );
               setSelectedAddress(extractedData);
               setAddress(`${extractedData.area}, ${extractedData.city}`);
-              form.setFieldValue('area', `${extractedData.area}, ${extractedData.city}`)
-              setIsPlacesDropdown(false)
+              form.setFieldValue(
+                "area",
+                `${extractedData.area}, ${extractedData.city}`
+              );
+              setIsPlacesDropdown(false);
             }
           } catch (error) {
             console.error("Error getting address from coordinates:", error);
@@ -211,6 +214,11 @@ const Page = () => {
                           value={address}
                           onChange={setAddress}
                           onSelect={handleSelect}
+                          searchOptions={{
+                            componentRestrictions: {
+                              country: "pk", // ISO 3166-1 alpha-2 country code for Pakistan
+                            },
+                          }}
                         >
                           {({
                             getInputProps,
