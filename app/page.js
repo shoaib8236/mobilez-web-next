@@ -47,6 +47,7 @@ const useCategoryData = (category) => {
 };
 
 export default function Home() {
+  
   const mobiles = useCategoryData("mobile");
   const tablets = useCategoryData("tablet");
   const smartWatches = useCategoryData("watch");

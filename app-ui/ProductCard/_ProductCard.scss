@@ -12,8 +12,8 @@
     top: 10px;
     z-index: 999;
     display: flex;
-    align-items:center;
-    gap:10px;
+    align-items: center;
+    gap: 10px;
 
     .badge {
       padding: 4px 10px;
@@ -24,24 +24,55 @@
 
       &.primary {
         background-color: $primary;
-  
       }
       &.secondary {
         background-color: $secondary;
-  
       }
       &.danger {
         background-color: $danger;
       }
-  
     }
   }
-  
 
   .image_wrap {
     width: 100%;
     position: relative;
     height: 240px;
+
+    .wishlist_wrapper {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      z-index: 9999;
+
+      button {
+        border: none;
+        font-size: 30px;
+        line-height: 1;
+        background: rgba($color: $secondary, $alpha: 0);
+        cursor: pointer;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        color:$secondary;
+        
+        &.fill {
+          
+          color:$danger;
+        }
+
+        &:hover {
+          opacity: 0.5;
+        }
+        &:active {
+          opacity: 1;
+        }
+
+      }
+    }
   }
 
   .card_content {
@@ -90,24 +121,23 @@
     .location {
       display: flex;
       align-items: center;
-      
+
       svg {
         margin-right: 5px;
         color: rgba($color: $text_color, $alpha: 0.5);
         font-size: 16px;
       }
     }
-    
+
     .blog_card_footer {
       margin-top: 10px;
     }
-    
+
     .flex_between {
       display: flex;
       align-items: center;
       margin-top: 15px;
       justify-content: space-between;
-
     }
   }
 
@@ -116,7 +146,8 @@
 
     .image_wrap {
       width: 220px;
-      height:200px;
+      height: 200px;
+      position: relative;
     }
 
     .blog_card_footer {
@@ -142,20 +173,17 @@
   }
 }
 
-@media screen and (max-width:$breakpoint_sm) {
+@media screen and (max-width: $breakpoint_sm) {
   .product_card_wrap {
-  
-  
     &.list {
       display: flex;
       .image_wrap {
         width: 140px !important;
-        height:156px !important;
+        height: 156px !important;
       }
     }
 
-    &.card_small_mobile
-    {
+    &.card_small_mobile {
       .image_wrap {
         height: 150px;
       }
@@ -175,6 +203,5 @@
         font-size: 10px;
       }
     }
-
   }
 }
