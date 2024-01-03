@@ -27,6 +27,25 @@
     font-weight: $font_semibold;
     font-size: $title_sm;
   }
+  
+  .blink {
+    animation:blink 1s infinite;
+    color:$primary;
+    font-weight: $font_semibold;
+  }
+
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 
   .styled_table {
@@ -37,10 +56,10 @@
 
       .t_cols {
         flex: 1;
-        font-size: $text_sm;
+        font-size: $text_md;
 
         &:first-child {
-          font-weight: $font_semibold;
+          font-weight: $font_bold;
         }
       }
     }

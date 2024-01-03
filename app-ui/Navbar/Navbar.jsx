@@ -88,9 +88,9 @@ const Navbar = ({ userData }) => {
 
   const handleSearch = (e) => {
     const { value } = e.target;
-    if (value) {
+    
       setSearch(value);
-    }
+    
   };
 
   const submitSearch = (e) => {

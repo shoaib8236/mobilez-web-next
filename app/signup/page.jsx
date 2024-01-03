@@ -19,14 +19,19 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
+import { MdOutlineMyLocation } from "react-icons/md";
+
 const Page = () => {
   const router = useRouter();
   const { authCheck } = useAuthCheck();
+
+  const [form] = Form.useForm()
 
   const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState(false);
   const [address, setAddress] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [isPlacesDropDown, setIsPlacesDropdown] = useState(false);
 
   useEffect(() => {
     if (authCheck) {
@@ -40,14 +45,16 @@ const Page = () => {
       return;
     }
 
-    let payload = { ...values, terms: true, city:selectedAddress.city, area: address }
-
- 
-    console.log(payload)
+    let payload = {
+      ...values,
+      terms: true,
+      city: selectedAddress.city,
+      area: address,
+    };
 
     try {
       setLoading(true);
-      const res = await api.post("/register-user", );
+      const res = await api.post("/register-user");
       if (res?.data?.status === 400) {
         notification.error({ message: res?.data?.errors?.email?.[0] });
         setLoading(false);
@@ -73,8 +80,6 @@ const Page = () => {
     setAccountType(e === "business");
   };
 
- 
-
   const extractAddressComponents = (addressComponents) => {
     let extractedData = {
       area: "",
@@ -82,8 +87,7 @@ const Page = () => {
       province: "",
       country: "",
     };
-    
-    
+
     addressComponents.forEach((component) => {
       if (
         component.types.includes("sublocality") ||
@@ -107,10 +111,45 @@ const Page = () => {
     let extractedData = extractAddressComponents(
       results[0]?.address_components
     );
-    setSelectedAddress(extractedData)
+    setSelectedAddress(extractedData);
     console.log("address", extractedData, value);
     setAddress(value);
-    
+  };
+
+  const onOpenPlacesDropdown = () => {
+    setIsPlacesDropdown(!isPlacesDropDown);
+  };
+  const onClosePlacesDropdown = () => {
+    setIsPlacesDropdown(false);
+  };
+
+  const onGetCurrentLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const results = await geocodeByAddress(`${latitude}, ${longitude}`);
+            if (results && results.length > 0) {
+              const extractedData = extractAddressComponents(
+                results[0]?.address_components
+              );
+              setSelectedAddress(extractedData);
+              setAddress(`${extractedData.area}, ${extractedData.city}`);
+              form.setFieldValue('area', `${extractedData.area}, ${extractedData.city}`)
+              setIsPlacesDropdown(false)
+            }
+          } catch (error) {
+            console.error("Error getting address from coordinates:", error);
+          }
+        },
+        (error) => {
+          console.error(`Error getting location: ${error.message}`);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by your browser");
+    }
   };
 
   return (
@@ -134,7 +173,7 @@ const Page = () => {
                 signup to your <br /> account.
               </p>
               <div>
-                <Form onFinish={onSubmit} layout="vertical">
+                <Form form={form} onFinish={onSubmit} layout="vertical">
                   <Row gutter={[8, 8]}>
                     <Col lg={12} md={12} sm={24} xs={24}>
                       <Form.Item
@@ -162,12 +201,13 @@ const Page = () => {
                   <Row gutter={[8, 8]}>
                     <Col lg={24} md={24} sm={24} xs={24}>
                       <Form.Item
+                        rules={requiredRule}
                         className="styled_input"
-                        label="Where are you located?"
+                        label="Location"
                         name="area"
                       >
                         <PlacesAutocomplete
-                          shouldFetchSuggestions={address.length > 3}
+                          shouldFetchSuggestions={address?.length > 3}
                           value={address}
                           onChange={setAddress}
                           onSelect={handleSelect}
@@ -180,13 +220,23 @@ const Page = () => {
                           }) => (
                             <div>
                               <Input
+                                onClick={onOpenPlacesDropdown}
+                                onBlur={onClosePlacesDropdown}
                                 {...getInputProps({
                                   placeholder: "Click to find your address",
                                 })}
                                 value={address}
                               />
-                              {suggestions?.length > 0 && (
+                              {isPlacesDropDown && (
                                 <div className="suggest_box">
+                                  <button
+                                    onClick={onGetCurrentLocation}
+                                    type="button"
+                                  >
+                                    <MdOutlineMyLocation />
+                                    Current location
+                                  </button>
+
                                   {loading && <div>Loading...</div>}
 
                                   {suggestions.map((suggestion, index) => (
@@ -195,8 +245,10 @@ const Page = () => {
                                         suggestion.active ? "active" : ""
                                       }`}
                                       key={index}
-                                      {...getSuggestionItemProps(suggestion, { 
-                                      })}
+                                      {...getSuggestionItemProps(
+                                        suggestion,
+                                        {}
+                                      )}
                                     >
                                       {suggestion.description}
                                     </div>
@@ -319,15 +371,11 @@ const Page = () => {
                         validator: (_, value) =>
                           value
                             ? Promise.resolve()
-                            : Promise.reject(
-                                new Error("Should accept agreement")
-                              ),
+                            : Promise.reject(new Error("required!")),
                       },
                     ]}
                   >
-                    <Checkbox>
-                      I have read the <a href="">agreement</a>
-                    </Checkbox>
+                    <Checkbox>I have read terms</Checkbox>
                   </Form.Item>
 
                   <div>
@@ -343,8 +391,10 @@ const Page = () => {
                     </div>
                     <p className="text_center signup_or">or</p>
                     <Row gutter={[16, 16]}>
-                      <Col lg={12} md={12} sm={24} xs={24}>
-                        <LoginWithGoogle />
+                      <Col lg={24} md={24} sm={24} xs={24}>
+                        <div className="flex_center">
+                          <LoginWithGoogle />
+                        </div>
                       </Col>
                     </Row>
                   </div>
@@ -354,8 +404,10 @@ const Page = () => {
           </Col>
         </Row>
       </div>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhs33Zqv1-a7XcZkEWKvJNh10oWlVYyO8&libraries=places"></script>
-
+      <script
+        type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhs33Zqv1-a7XcZkEWKvJNh10oWlVYyO8&libraries=places"
+      ></script>
     </div>
   );
 };

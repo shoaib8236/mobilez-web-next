@@ -6,6 +6,7 @@
 }
 
 
+
 .page_title {
   text-transform:uppercase;
   margin-bottom: 30px;
@@ -77,6 +78,13 @@
 
 .page_title {
   margin-bottom: 30px;
+}
+
+.flex_center {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

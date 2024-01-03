@@ -160,9 +160,15 @@ const ProductDetailsLayout = (props) => {
                 Home
               </Link>{" "}
               <span className="separator">/</span>
-              <Link href={`/devices?category=${productDetails?.category}`}>{productDetails?.category}</Link>
+              <Link href={`/devices?category=${productDetails?.category}`}>
+                {productDetails?.category}
+              </Link>
               <span className="separator">/</span>
-              <Link href={`/devices?category=${productDetails?.category}&brand=${productDetails?.brand}`}>{productDetails?.brand}</Link>
+              <Link
+                href={`/devices?category=${productDetails?.category}&brand=${productDetails?.brand}`}
+              >
+                {productDetails?.brand}
+              </Link>
               <span className="separator">/</span>
               <Link href={`/product/${slug[0]}/${slug[1]}`}>
                 {slug[1]?.split("-").join(" ")}
@@ -218,9 +224,11 @@ const ProductDetailsLayout = (props) => {
                 <div className="t_row">
                   <div className="t_cols">Posted By</div>
                   <div className="t_cols">
-                    {productDetails?.user?.user_type === "business"
-                      ? productDetails?.user.shop_name
-                      : productDetails?.user.name}
+                    <span className="blink">
+                      {productDetails?.user?.user_type === "business"
+                        ? productDetails?.user.shop_name
+                        : productDetails?.user.name}
+                    </span>
                   </div>
                 </div>
                 <div className="t_row">

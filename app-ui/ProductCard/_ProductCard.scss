@@ -4,6 +4,38 @@
   overflow: hidden;
   background-color: $light;
   border-radius: $radius_md;
+  position: relative;
+
+  .badge_wrapper {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 999;
+    display: flex;
+    align-items:center;
+    gap:10px;
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: $light;
+      line-height: 1;
+      font-size: $text_sm;
+
+      &.primary {
+        background-color: $primary;
+  
+      }
+      &.secondary {
+        background-color: $secondary;
+  
+      }
+      &.danger {
+        background-color: $danger;
+      }
+  
+    }
+  }
   
 
   .image_wrap {
@@ -84,7 +116,7 @@
 
     .image_wrap {
       width: 220px;
-      height:180px;
+      height:200px;
     }
 
     .blog_card_footer {

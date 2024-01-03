@@ -13,28 +13,48 @@
 .image-gallery-thumbnail .image-gallery-thumbnail-image {
   height: 80px;
   object-fit: cover;
-  border-radius:0 ;
+  border-radius: 0;
 }
 
 .image-gallery-thumbnail {
   border-radius: 0;
 
   &.active {
-    border-width:4px;
+    border-width: 4px;
     border-color: $primary !important;
   }
-  
+
   &:hover {
-    border-width:4px;
+    border-width: 4px;
     border-color: $primary !important;
   }
+}
+
+.image-gallery-icon {
+  z-index: 999;
 }
 
 .image-gallery .image-gallery-svg {
   height: 50px;
   width: 20px;
+  position: relative;
 
   &:hover {
     color: $primary;
   }
+}
+
+button.image-gallery-icon.image-gallery-fullscreen-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  opacity: 0;
+  z-index: 998;
+}
+
+button.image-gallery-icon.image-gallery-play-button {
+  display: none;
 }

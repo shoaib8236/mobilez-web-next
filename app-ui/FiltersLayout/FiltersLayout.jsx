@@ -47,6 +47,7 @@ const FiltersLayout = () => {
   const search = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "";
   const order = searchParams.get("order") || "";
+  const warranty = searchParams.get("warranty") || "";
 
   const router = useRouter();
   const [form] = Form.useForm();
@@ -143,6 +144,7 @@ const FiltersLayout = () => {
     ...(search && { search }),
     ...(sort && { sort }),
     ...(order && { order }),
+    ...(warranty &&  { warranty: warranty.split(",") }),
   };
 
   useEffect(() => {
@@ -167,6 +169,7 @@ const FiltersLayout = () => {
     search,
     sort,
     order,
+    warranty
   ]);
 
   useEffect(() => {

@@ -24,7 +24,7 @@ const PostMobile = (props) => {
 
   useEffect(() => {
 
-    if (defaultValue.category === "Mobile") {
+    if (defaultValue?.category === "Mobile") {
       form.setFieldsValue({
         ...defaultValue,
         files: {

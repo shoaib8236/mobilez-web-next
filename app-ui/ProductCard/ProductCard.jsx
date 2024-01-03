@@ -36,9 +36,27 @@ const ProductCard = (props) => {
   var area = data?.user?.area
   var cityFromArea = area ? area.split(" ").pop() : null;
 
+  console.log(data)
+
+  const timeDifference = Date.now() - new Date(data?.created_at).getTime();
+  const isNew = timeDifference < 24 * 60 * 60 * 1000;
+
   return (
     <Link href={`/product/${data?.id}/${data?.slug}`}>
+
+
       <div className={`product_card_wrap ${className}`}>
+      <div className="badge_wrapper">
+        {data?.feature_add && <div className={`badge primary`}>
+          Featured
+        </div>}
+        {data?.sell_status === 'Sold' && <div className={`badge danger`}>
+          Sold
+        </div>}
+        {isNew  && <div className={`badge secondary`}>
+          New
+        </div>}
+      </div>
         <div className="image_wrap">
           <Image
             fill
