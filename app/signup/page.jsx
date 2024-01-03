@@ -412,10 +412,6 @@ const Page = () => {
           </Col>
         </Row>
       </div>
-      <script
-        type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhs33Zqv1-a7XcZkEWKvJNh10oWlVYyO8&libraries=places"
-      ></script>
     </div>
   );
 };

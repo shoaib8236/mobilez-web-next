@@ -21,6 +21,11 @@ export default function RootLayout({ children }) {
             <SpeedInsights />
           </RootLayer>
         </GoogleOAuthProvider>
+      <script
+      
+        type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhs33Zqv1-a7XcZkEWKvJNh10oWlVYyO8&libraries=places"
+      ></script>
       </body>
     </html>
   );
