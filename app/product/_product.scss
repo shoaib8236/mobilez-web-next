@@ -29,6 +29,7 @@
   }
   
   .blink {
+    cursor: pointer;
     animation:blink 1s infinite;
     color:$primary;
     font-weight: $font_semibold;
