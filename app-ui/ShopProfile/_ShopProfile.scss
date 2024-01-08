@@ -1,0 +1,47 @@
+.shop_profile_wrap {
+
+    border: solid 1px $stroke_color;
+    border-radius: $radius_md;
+    padding: 10px;
+    box-shadow: 10px 10px 20px rgba($color: $primary, $alpha: 0.2);
+
+    >h1 {
+        font-size: $title_sm;
+        text-align: center;
+        margin-bottom: 15px;
+        font-weight: $font_semibold;
+    }
+
+    >p {
+        font-weight: $font_semibold;
+        font-size: $text_sm;
+        margin-bottom: 10px;
+    }
+
+    .user {
+        height: 80px;
+        width: 80px;
+        min-width: 80px;
+        min-height: 80px;
+        border-radius: 80px;
+        border: solid 1px $stroke_color;
+        margin: auto;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            font-size: 52px;
+            color: $secondary;
+        }
+
+    }
+
+    .profile_flex_content {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
+}

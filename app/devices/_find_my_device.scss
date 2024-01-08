@@ -10,10 +10,11 @@
     padding: 20px 0;
     padding-bottom: 20px;
 
-    > div {
+    >div {
       display: flex;
       gap: 10px;
       align-items: center;
+
       .page_title {
         font-size: $title_lg;
         color: $primary;
@@ -26,6 +27,7 @@
         display: none;
       }
     }
+
     p {
       font-weight: $font_medium;
       color: $dark;
@@ -46,15 +48,16 @@
     .flex_layout {
       display: flex;
       padding-top: 10px;
-      padding-bottom:20px;
-      
+      padding-bottom: 20px;
+
       .filters {
         background-color: $light;
         min-width: 300px;
         max-width: 300px;
-        max-height:fit-content;
+        max-height: fit-content;
 
         .sticky_container {
+
           // position: sticky;
           // left: 0;
           // top: 0;
@@ -71,13 +74,14 @@
               font-size: $text_md;
             }
 
-            > div {
+            >div {
               display: flex;
               align-items: center;
               gap: 10px;
 
               button {
                 border-radius: 6px;
+
                 svg {
                   font-size: 18px;
                 }
@@ -90,6 +94,7 @@
           }
         }
       }
+
       .flex_cols {
         flex: 1;
         padding: 10px;
@@ -102,7 +107,7 @@
 
           .results_wrapper {
             margin-top: 20px;
-            padding-bottom:15px;
+            padding-bottom: 15px;
           }
 
           .filters_header {
@@ -113,6 +118,7 @@
 
             button {
               border-radius: 6px;
+
               svg {
                 font-size: 18px;
               }
@@ -135,7 +141,7 @@
                 gap: 10px;
                 flex-grow: 1;
 
-                > div {
+                >div {
                   display: flex;
                   gap: 10px;
                 }
@@ -162,9 +168,10 @@
 @media screen and (max-width: $breakpoint_lg) {
   .find_my_device_wrap {
     .page_title_wrap {
-      > div {
+      >div {
         display: block;
         width: 100%;
+
         button {
           display: flex;
           margin-bottom: 10px;
@@ -177,6 +184,7 @@
       .flex_layout {
         .flex_cols {
           padding: 0;
+
           .product_results {
             padding: 0 10px;
           }
@@ -201,7 +209,7 @@
 
           .sticky_container {
             .filters_header {
-              > div {
+              >div {
                 .filters_action {
                   display: flex;
                 }
@@ -230,13 +238,13 @@
 @media screen and (max-width: $breakpoint_sm) {
   .find_my_device_wrap {
     .page_title_wrap {
-      > div {
+      >div {
         .page_title {
           font-size: $title_sm;
         }
       }
     }
-    
+
     .two_card_sm {
       .image_wrap {
         height: 150px;
@@ -250,9 +258,11 @@
         font-size: $text_sm;
         margin-top: 10px;
       }
+
       p {
         font-size: 10px;
       }
+
       span {
         font-size: 10px;
 

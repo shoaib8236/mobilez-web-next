@@ -23,9 +23,12 @@ import { FiLink } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import Link from "next/link";
 import { IoHome } from "react-icons/io5";
+import { useRouter } from 'next/navigation';
 
 const ProductDetailsLayout = (props) => {
   const { slug } = props;
+
+  const router = useRouter()
 
   const { fcmToken, notificationPermissionStatus } = useFcmToken();
   const [productDetails, setProductDetails] = useState(null);
@@ -147,6 +150,10 @@ const ProductDetailsLayout = (props) => {
     notification.success({ message: "Link copied to clipboard!" });
   };
 
+  const onPushToProfile = () => {
+    router.push(`/profile/${productDetails?.seller_id}/${productDetails?.user?.slug}`)
+  }
+
   return (
     <>
       <div className="product_details_header">
@@ -224,7 +231,7 @@ const ProductDetailsLayout = (props) => {
                 <div className="t_row">
                   <div className="t_cols">Posted By</div>
                   <div className="t_cols">
-                    <span className="blink">
+                    <span onClick={onPushToProfile} className="blink">
                       {productDetails?.user?.user_type === "business"
                         ? productDetails?.user.shop_name
                         : productDetails?.user.name}

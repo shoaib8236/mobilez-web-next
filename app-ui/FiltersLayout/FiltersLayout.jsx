@@ -65,7 +65,7 @@ const FiltersLayout = () => {
         });
         setCategoryBrands(getBrands);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getCities = async (cat) => {
@@ -81,7 +81,7 @@ const FiltersLayout = () => {
         });
         setCities(getCitiesData);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getDevices = async (data, isNewData, newPage) => {
@@ -144,7 +144,7 @@ const FiltersLayout = () => {
     ...(search && { search }),
     ...(sort && { sort }),
     ...(order && { order }),
-    ...(warranty &&  { warranty: warranty.split(",") }),
+    ...(warranty && { warranty: warranty.split(",") }),
   };
 
   useEffect(() => {
@@ -289,16 +289,16 @@ const FiltersLayout = () => {
               {brand
                 ? `${brand} ${category === "mobile" ? "mobile" : category}`
                 : `category`
-                ? category === "mobile"
-                  ? "Mobile Devices"
-                  : category === "accessories"
-                  ? "Mobile Accessories"
-                  : category === "tablet"
-                  ? "Tablet Devices"
-                  : category === "watch"
-                  ? "Smart Watches"
-                  : "Mobiles"
-                : "Mobile Devices"}{" "}
+                  ? category === "mobile"
+                    ? "Mobile Devices"
+                    : category === "accessories"
+                      ? "Mobile Accessories"
+                      : category === "tablet"
+                        ? "Tablet Devices"
+                        : category === "watch"
+                          ? "Smart Watches"
+                          : "Mobiles"
+                  : "Mobile Devices"}{" "}
               for sale in {city ? city : "Pakistan"}
             </h1>
           </div>
@@ -323,9 +323,8 @@ const FiltersLayout = () => {
           {brand && (
             <>
               <Link
-                href={`/devices?category=${category || ""}&brand=${
-                  brand || ""
-                }`}
+                href={`/devices?category=${category || ""}&brand=${brand || ""
+                  }`}
               >
                 {brand}
               </Link>
@@ -334,9 +333,8 @@ const FiltersLayout = () => {
           )}{" "}
           {city && (
             <Link
-              href={`/devices?category=${category || ""}&brand=${
-                brand || ""
-              }&city=${city || ""}`}
+              href={`/devices?category=${category || ""}&brand=${brand || ""
+                }&city=${city || ""}`}
             >
               {city}{" "}
             </Link>
