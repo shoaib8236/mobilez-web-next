@@ -54,7 +54,7 @@ const Page = () => {
 
     try {
       setLoading(true);
-      const res = await api.post("/register-user");
+      const res = await api.post("/register-user", payload);
       if (res?.data?.status === 400) {
         notification.error({ message: res?.data?.errors?.email?.[0] });
         setLoading(false);
