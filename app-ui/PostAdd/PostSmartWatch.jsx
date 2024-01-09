@@ -22,7 +22,7 @@ const PostSmartWatch = (props) => {
   const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getBrands = brands.filter((item) => item.category === "Mobile");
+  
 
   const handleFileChange = (info) => {
     const { fileList } = info;
@@ -131,7 +131,7 @@ const PostSmartWatch = (props) => {
               label="Product Brand"
             >
               <Select className="styled_select">
-                {getBrands?.map((item, i) => (
+                {brands?.map((item, i) => (
                   <Option key={i} value={item?.title}>
                     {item.title}
                   </Option>
@@ -197,8 +197,9 @@ const PostSmartWatch = (props) => {
                 listType="picture-card"
                 fileList={fileList}
                 onChange={handleFileChange}
+                maxCount={20}
               >
-                Upload
+                {fileList.length === 20 ? '' : 'Upload'}
               </Upload>
             </Form.Item>
           </Col>

@@ -11,7 +11,6 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
-    console.log(values);
     try {
       let res = await api.post("/delete-user", values);
       if (res?.data?.status) {

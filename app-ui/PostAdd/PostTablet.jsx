@@ -20,7 +20,6 @@ const PostTablet = (props) => {
   const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getBrands = brands.filter((item) => item.category === "Mobile");
 
   const handleFileChange = (info) => {
     const { fileList } = info;
@@ -29,9 +28,7 @@ const PostTablet = (props) => {
   };
 
   const compressImage = async (file) => {
-    console.log(
-      `originalFile size ${file?.originFileObj.size} MB Before compress`
-    );
+
 
     const image = new Image();
     image.src = URL.createObjectURL(file?.originFileObj);
@@ -47,7 +44,6 @@ const PostTablet = (props) => {
 
         canvas.toBlob(
           (blob) => {
-            console.log(`originalFile size ${blob.size} MB After compress`);
             resolve({
               ...file,
               originFileObj: blob,
@@ -129,7 +125,7 @@ const PostTablet = (props) => {
               label="Product Brand"
             >
               <Select className="styled_select">
-                {getBrands?.map((item, i) => (
+                {brands?.map((item, i) => (
                   <Option key={i} value={item?.title}>
                     {item.title}
                   </Option>
@@ -228,8 +224,9 @@ const PostTablet = (props) => {
                 listType="picture-card"
                 fileList={fileList}
                 onChange={handleFileChange}
+                maxCount={20}
               >
-                Upload
+                {fileList.length === 20 ? '' : 'Upload'}
               </Upload>
             </Form.Item>
           </Col>

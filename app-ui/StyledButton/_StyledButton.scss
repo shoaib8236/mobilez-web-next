@@ -6,9 +6,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-
   .child_element {
-    font-weight: $font_semibold;
+    font-weight: 600;
     font-size: $text_sm;
   }
 

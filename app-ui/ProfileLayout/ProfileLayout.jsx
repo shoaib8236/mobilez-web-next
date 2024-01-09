@@ -123,7 +123,6 @@ const ProfileLayout = (props) => {
         };
       });
 
-      console.log(res?.data);
 
       setRams(getRams);
       setRom(getRoms);

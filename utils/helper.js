@@ -19,7 +19,7 @@ export const logout = () => {
   localStorage.removeItem(`@token`);
   localStorage.removeItem(`@user`);
   localStorage.removeItem(`@phone`);
-  window.location.reload();
+  window.location.href = window.location.origin + '/'
 };
 
 export const removeStorageItemByKey = (key) => {

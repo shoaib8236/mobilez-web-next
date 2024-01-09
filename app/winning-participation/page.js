@@ -13,7 +13,19 @@ const Page = () => {
 
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null)
 
+  useEffect(() => {
+    let getUser = JSON.parse(localStorage.getItem('@user'))
+    setUser(getUser)
+  }, [])
+
+  useEffect(()=> {
+
+    participationForm.setFieldsValue(user)
+
+  }, [user])
+  
   const onUpload = (fileName) => (e) => {
     setFiles((prev) => ({ ...prev, [fileName]: e }));
   };
@@ -78,7 +90,7 @@ const Page = () => {
                   className="styled_input"
                   label="First Name"
                 >
-                  <Input />
+                  <Input disabled />
                 </Form.Item>
               </Col>
               <Col lg={12} md={12} sm={12} xs={24}>
@@ -97,7 +109,7 @@ const Page = () => {
                   className="styled_input"
                   label="Whatsapp Number"
                 >
-                  <Input />
+                  <Input disabled />
                 </Form.Item>
               </Col>
               <Col lg={12} md={12} sm={12} xs={24}>
@@ -106,7 +118,7 @@ const Page = () => {
                   className="styled_input"
                   label="CNIC Number"
                 >
-                  <Input />
+                  <Input disabled />
                 </Form.Item>
               </Col>
             </Row>
@@ -203,7 +215,7 @@ const Page = () => {
                   className="styled_input"
                   label="Shop Address"
                 >
-                  <Input />
+                  <Input  />
                 </Form.Item>
               </Col>
             </Row>

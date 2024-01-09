@@ -12,14 +12,12 @@ const Page = () => {
 
     let getUser = JSON.parse(localStorage.getItem('@user'))
 
-    console.log(getUser)
 
     setUser(getUser)
 
   }, [])
 
 
-  console.log(Math.round(user?.progress))
 
 
   return (

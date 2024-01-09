@@ -72,15 +72,15 @@ const ProductResult = (props) => {
             <div>
               <StyledButton
                 onClick={onChangeLayout("list")}
-                className="icon_style light_primary sm"
+                className="primary with_icon sm"
               >
-                <FaListUl />
+                <FaListUl /> List
               </StyledButton>
               <StyledButton
                 onClick={onChangeLayout("grid")}
-                className="icon_style light_primary sm"
+                className="primary with_icon sm"
               >
-                <LuLayoutGrid />
+                <LuLayoutGrid /> Grid
               </StyledButton>
             </div>
           </div>

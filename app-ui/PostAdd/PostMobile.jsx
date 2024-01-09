@@ -14,7 +14,7 @@ import imageCompression from "browser-image-compression";
 import { getImage } from "@/utils/helper";
 
 const PostMobile = (props) => {
-  const { brands, defaultValue = null } = props;
+  const { brands = [], defaultValue = null } = props;
 
   const [form] = Form.useForm();
 
@@ -52,8 +52,6 @@ const PostMobile = (props) => {
     );
   }, [defaultValue]);
 
-  const getBrands = brands.filter((item) => item.category === "Mobile");
-
   const handleFileChange = (info) => {
     const { fileList } = info;
     setFileList([...fileList]);
@@ -79,7 +77,6 @@ const PostMobile = (props) => {
 
         canvas.toBlob(
           (blob) => {
-            console.log(`originalFile size ${blob.size} MB After compress`);
             resolve({
               ...file,
               originFileObj: blob,
@@ -114,7 +111,6 @@ const PostMobile = (props) => {
   const updateAdd = async (data, files) => {
     const { fileList } = files;
 
-    console.log(fileList)
 
     // let formData = new FormData();
 
@@ -183,7 +179,7 @@ const PostMobile = (props) => {
               label="Product Brand"
             >
               <Select className="styled_select">
-                {getBrands?.map((item, i) => (
+                {brands?.map((item, i) => (
                   <Option key={i} value={item?.title}>
                     {item.title}
                   </Option>
@@ -282,8 +278,10 @@ const PostMobile = (props) => {
                 listType="picture-card"
                 fileList={fileList}
                 onChange={handleFileChange}
+                maxCount={20}
+                
               >
-                Upload
+                {fileList.length === 20 ? '' : 'Upload'}
               </Upload>
             </Form.Item>
           </Col>

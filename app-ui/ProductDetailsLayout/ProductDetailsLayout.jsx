@@ -244,6 +244,12 @@ const ProductDetailsLayout = (props) => {
                     {getFormattedDate(productDetails?.created_at)}
                   </div>
                 </div>
+                <div className="t_row">
+                  <div className="t_cols">Location</div>
+                  <div className="t_cols">
+                    {productDetails?.user?.area}
+                  </div>
+                </div>
               </div>
             )}
 

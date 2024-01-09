@@ -5,12 +5,102 @@ import { numberRule } from "@/utils/rules";
 import StyledButton from "@/app-ui/StyledButton/StyledButton";
 import api from "@/services/api";
 import { useRouter } from "next/navigation";
+import { AiOutlineRedo } from "react-icons/ai";
 
 const Page = () => {
+  const router = useRouter();
+  const [form] = Form.useForm();
+
+
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
-  const [form] = Form.useForm();
-  const router = useRouter();
+
+  const [resendTimer, setResendTimer] = useState(null);
+  const [disabledResend, setDisabledResend] = useState(false);
+  const [countDown, setCountDown] = useState(0);
+
+
+
+
+  useEffect(() => {
+    let timerFromStorage = localStorage.getItem('@resendTimer');
+    if (timerFromStorage) {
+      setResendTimer(new Date(timerFromStorage));
+    }
+  }, []);
+
+
+  useEffect(() => {
+    if (resendTimer) {
+      setDisabledResend(true)
+    }
+  }, [resendTimer])
+
+  useEffect(() => {
+    if (resendTimer) {
+      setDisabledResend(true);
+      console.log(resendTimer)
+      const currentTime = new Date();
+      const elapsedTime = (currentTime - resendTimer) / 1000;
+
+      if (elapsedTime >= 60) {
+
+        localStorage.removeItem('@resendTimer')
+
+      }
+    }
+  }, [resendTimer]);
+
+
+  useEffect(() => {
+    // Countdown logic
+    let intervalId;
+
+    if (resendTimer) {
+      intervalId = setInterval(() => {
+        const currentTime = new Date();
+        const elapsedTime = (currentTime - resendTimer) / 1000;
+        const remainingTime = Math.max(0, 60 - elapsedTime);
+        setCountDown(Math.floor(remainingTime));
+
+        if (remainingTime === 0) {
+          // Enable resend button when countdown reaches zero
+          setDisabledResend(false);
+          clearInterval(intervalId);
+        }
+      }, 1000);
+    }
+
+    return () => {
+      // Cleanup interval on component unmount
+      clearInterval(intervalId);
+    };
+  }, [resendTimer]);
+
+
+
+
+  const resendOtp = async () => {
+    try {
+      setDisabledResend(true)
+      let res = await api.post('/resend-otp', { phone_number: phone })
+      if (res?.data?.status) {
+        let timer = new Date();
+        setResendTimer(timer);
+        localStorage.setItem('@resendTimer', timer.toISOString());
+        notification.success({ message: 'Success', description: 'Successfully resend otp!' })
+      }else {
+        setDisabledResend(false)
+      }
+
+
+    } catch (error) {
+      notification.error({ message: 'Oops', description: error?.response?.data.message })
+      setDisabledResend(false)
+    }
+
+  };
+
 
   const getUserData = async () => {
     try {
@@ -70,7 +160,7 @@ const Page = () => {
               </p>
               <div>
                 <Form form={form} onFinish={onSubmit} layout="vertical">
-                  <Form.Item
+                  {/* <Form.Item
                     layout="vertical"
                     className="styled_input"
                     name="phone_number"
@@ -78,7 +168,7 @@ const Page = () => {
                     label="Phone Number"
                   >
                     <Input placeholder="Phone Number" />
-                  </Form.Item>
+                  </Form.Item> */}
                   <Form.Item
                     layout="vertical"
                     className="styled_input"
@@ -88,6 +178,11 @@ const Page = () => {
                   >
                     <Input placeholder="Enter OTP" />
                   </Form.Item>
+                  <div className="otp_resend_wrapper">
+                    <StyledButton disabled={disabledResend} onClick={resendOtp} className="light">
+                       Resend otp {countDown > 0 ? <> in {countDown}</> : null}
+                    </StyledButton>
+                  </div>
                   <div>
                     <StyledButton
                       loading={loading}

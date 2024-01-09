@@ -12,7 +12,7 @@ const ContactForm = () => {
 
   const onFinish = async (values) => {
 
-    console.log(values)
+   
 
     try {
       setLoading(true);

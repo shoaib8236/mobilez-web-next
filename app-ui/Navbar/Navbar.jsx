@@ -88,9 +88,9 @@ const Navbar = ({ userData }) => {
 
   const handleSearch = (e) => {
     const { value } = e.target;
-    
-      setSearch(value);
-    
+
+    setSearch(value);
+
   };
 
   const submitSearch = (e) => {
@@ -160,10 +160,9 @@ const Navbar = ({ userData }) => {
   const onPushToDashboard = (endPoint) => () => {
     router.push(`/${endPoint}`);
   };
-  
+
   const onPost = () => {
-    
-    router.push(`/post-ad`);
+    router.push(`/post-ad?type=mobile`);
   };
 
   const items = [
@@ -179,7 +178,7 @@ const Navbar = ({ userData }) => {
       key: "2",
       label: (
         <>
-          <span onClick={onPushToDashboard("edit-profile")}>
+          <span onClick={onPushToDashboard("profile-setting")}>
             Profile Setting
           </span>
         </>
@@ -197,7 +196,7 @@ const Navbar = ({ userData }) => {
       key: "4",
       label: (
         <>
-          <span onClick={onPushToDashboard("add-mobile")}>Post Add</span>
+          <span onClick={onPushToDashboard("post-ad?type=mobile")}>Post Ad</span>
         </>
       ),
     },
@@ -225,6 +224,8 @@ const Navbar = ({ userData }) => {
     " accessories",
     " tablets",
   ];
+
+
 
   return (
     <nav className="nav_wrapper">
@@ -344,6 +345,7 @@ const Navbar = ({ userData }) => {
               arrow
             >
               <div className="user_dropdown">
+                <Image height={50} width={50} src={userData?.photo} alt="user" />
                 <span>{userData?.name}</span> <AiFillCaretDown />
               </div>
             </Dropdown>

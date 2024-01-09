@@ -115,7 +115,7 @@ const FiltersLayout = () => {
         };
       });
 
-      console.log(res?.data);
+     
 
       setRams(getRams);
       setRom(getRoms);
@@ -282,7 +282,7 @@ const FiltersLayout = () => {
       <div className="content_wrap">
         <div className="page_title_wrap">
           <div>
-            <StyledButton className="light_primary sm" onClick={handleCollapse}>
+            <StyledButton className="primary sm" onClick={handleCollapse}>
               Filters
             </StyledButton>
             <h1 className="page_title">
@@ -290,14 +290,14 @@ const FiltersLayout = () => {
                 ? `${brand} ${category === "mobile" ? "mobile" : category}`
                 : `category`
                   ? category === "mobile"
-                    ? "Mobile Devices"
+                    ? "Mobile Phones"
                     : category === "accessories"
                       ? "Mobile Accessories"
                       : category === "tablet"
                         ? "Tablet Devices"
                         : category === "watch"
                           ? "Smart Watches"
-                          : "Mobiles"
+                          : "Mobile Phones"
                   : "Mobile Devices"}{" "}
               for sale in {city ? city : "Pakistan"}
             </h1>
@@ -357,13 +357,13 @@ const FiltersLayout = () => {
                     <div>
                       <StyledButton
                         onClick={onReset}
-                        className="with_icon_right light_primary sm"
+                        className="with_icon_right primary sm"
                       >
                         Clear All Filter <MdFilterListOff />
                       </StyledButton>
                       <StyledButton
                         onClick={handleCollapseClose}
-                        className="icon_style filters_action light_primary sm"
+                        className="icon_style filters_action primary sm"
                       >
                         <AiOutlineClose />
                       </StyledButton>

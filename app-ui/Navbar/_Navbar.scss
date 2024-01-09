@@ -155,6 +155,12 @@
         font-weight: $font_semibold;
         cursor: pointer;
 
+        img {
+          border-radius: 50px;
+          object-fit: cover !important;
+          margin-right: 10px;
+        }
+
         svg {
           color: $gray;
           margin-left: 10px;

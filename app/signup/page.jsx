@@ -20,6 +20,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 import { MdOutlineMyLocation } from "react-icons/md";
+import Link from "next/link";
 
 const Page = () => {
   const router = useRouter();
@@ -112,7 +113,7 @@ const Page = () => {
       results[0]?.address_components
     );
     setSelectedAddress(extractedData);
-    console.log("address", extractedData, value);
+    
     setAddress(value);
   };
 
@@ -320,7 +321,7 @@ const Page = () => {
                       <Form.Item
                         className="styled_input"
                         name="code"
-                        label="Referral Code"
+                        label="Referral Code (Optional)"
                       >
                         <Input placeholder="Referral Code" />
                       </Form.Item>
@@ -336,11 +337,11 @@ const Page = () => {
                           placeholder="Select Account Type"
                           className="styled_select"
                         >
-                          <Select.Option value="business">
-                            Business
-                          </Select.Option>
                           <Select.Option value="individual">
                             Individual
+                          </Select.Option>
+                          <Select.Option value="business">
+                            Business
                           </Select.Option>
                         </Select>
                       </Form.Item>
@@ -383,7 +384,7 @@ const Page = () => {
                       },
                     ]}
                   >
-                    <Checkbox>I have read terms</Checkbox>
+                    <Checkbox>I have read <Link href={'/terms-conditions'}>Terms & Conditions.</Link></Checkbox> 
                   </Form.Item>
 
                   <div>

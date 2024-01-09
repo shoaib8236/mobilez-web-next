@@ -34,7 +34,7 @@ const Menu = () => {
           <Link href={"/my-devices"}>
             <RiAdvertisementFill /> My Ads
           </Link>
-          <Link href={"/post-ad"}>
+          <Link href={"/post-ad?type=mobile"}>
             <FiPlus /> Post Ads
           </Link>
           <Link href={"/my-devices"}>

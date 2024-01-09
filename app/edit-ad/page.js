@@ -61,7 +61,7 @@ const Page = () => {
   return (
     <div className="post_an_ad">
       <div className="ad_wrap">
-        <h1>Select Category</h1>
+      
 
         {loadingAd ? "loading" : renderEditAdByType(type)}
       </div>

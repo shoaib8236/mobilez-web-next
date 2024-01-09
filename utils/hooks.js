@@ -53,7 +53,10 @@ const useAuthCheck = () => {
       setIsAuth(true);
     } else {
       setIsAuth(false);
-      localStorage.clear();
+      localStorage.removeItem('@user');
+      localStorage.removeItem('@token');
+      localStorage.removeItem('@fcm_token');
+      localStorage.removeItem('@phone');
     }
   }, []);
 

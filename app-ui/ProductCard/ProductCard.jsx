@@ -104,7 +104,7 @@ const ProductCard = (props) => {
           {data?.sell_status === "Sold" && (
             <div className={`badge danger`}>Sold</div>
           )}
-          {isNew && <div className={`badge secondary`}>New</div>}
+          {isNew && <div className={`badge danger`}>New</div>}
         </div>
         <div className="image_wrap">
           <div className="wishlist_wrapper">

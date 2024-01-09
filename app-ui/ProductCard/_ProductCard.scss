@@ -8,9 +8,9 @@
 
   .badge_wrapper {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 10px;
-    z-index: 999;
+    z-index: 10;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -150,6 +150,11 @@
       position: relative;
     }
 
+
+    .flex_between {
+      margin-top: 0;
+    }
+
     .blog_card_footer {
       display: flex;
       justify-content: flex-end;
@@ -169,6 +174,9 @@
           border: none;
         }
       }
+
+      
+
     }
   }
 }
