@@ -20,7 +20,6 @@ const PostTablet = (props) => {
   const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-
   const handleFileChange = (info) => {
     const { fileList } = info;
     setFileList([...fileList]);
@@ -28,8 +27,6 @@ const PostTablet = (props) => {
   };
 
   const compressImage = async (file) => {
-
-
     const image = new Image();
     image.src = URL.createObjectURL(file?.originFileObj);
 
@@ -226,7 +223,7 @@ const PostTablet = (props) => {
                 onChange={handleFileChange}
                 maxCount={20}
               >
-                {fileList.length === 20 ? '' : 'Upload'}
+                {fileList?.length === 20 ? "" : "Upload"}
               </Upload>
             </Form.Item>
           </Col>

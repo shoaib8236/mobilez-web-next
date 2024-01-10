@@ -13,19 +13,17 @@ const Page = () => {
 
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    let getUser = JSON.parse(localStorage.getItem('@user'))
-    setUser(getUser)
-  }, [])
+    let getUser = JSON.parse(localStorage.getItem("@user"));
+    setUser(getUser);
+  }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
+    participationForm.setFieldsValue(user);
+  }, [user]);
 
-    participationForm.setFieldsValue(user)
-
-  }, [user])
-  
   const onUpload = (fileName) => (e) => {
     setFiles((prev) => ({ ...prev, [fileName]: e }));
   };
@@ -99,7 +97,7 @@ const Page = () => {
                   className="styled_input"
                   label="Last Name"
                 >
-                  <Input />
+                  <Input disabled />
                 </Form.Item>
               </Col>
               <Col lg={12} md={12} sm={12} xs={24}>
@@ -215,7 +213,7 @@ const Page = () => {
                   className="styled_input"
                   label="Shop Address"
                 >
-                  <Input  />
+                  <Input />
                 </Form.Item>
               </Col>
             </Row>

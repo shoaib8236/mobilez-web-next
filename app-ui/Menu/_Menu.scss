@@ -21,7 +21,7 @@
     flex-grow: 1;
     padding-top: 20px;
     padding: 20px 0 0 26px;
-    overflow-y:auto;
+    overflow-y: auto;
 
     &::-webkit-scrollbar {
       display: none;
@@ -40,18 +40,48 @@
         cursor: pointer;
         width: 100%;
         border-radius: 30px 0 0 30px;
-        font-size:$text_sm;
+        font-size: $text_sm;
 
         svg {
-            font-size: 26px;
-            margin-right: 10px;
+          font-size: 26px;
+          margin-right: 10px;
         }
 
         &:hover {
-            background-color: #323232;
-            color: #fff;
+          background-color: #323232;
+          color: #fff;
         }
 
+        &.drop_down_menu_link {
+          flex-direction: column;
+          align-items: flex-start;
+
+          span {
+            display: flex;
+            align-items: center;
+            color: #8a8a8a;
+            font-size: $text_sm;
+          }
+
+          &:hover {
+            span {
+              color: #fff;
+            }
+          }
+
+          .drop_down_menu_content_item {
+            padding-left: 36px;
+
+            a {
+              padding: 0;
+              margin-bottom: 10px;
+
+              &:first-child {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
       }
     }
   }

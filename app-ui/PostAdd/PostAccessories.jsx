@@ -27,7 +27,7 @@ const PostAccessories = () => {
       if (res?.data?.status) {
         setAccessories(res?.data?.categories);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -52,7 +52,6 @@ const PostAccessories = () => {
       ...data,
       images: files?.fileList,
     };
-
 
     try {
       setLoading(true);
@@ -205,7 +204,7 @@ const PostAccessories = () => {
                 onChange={handleFileChange}
                 maxCount={20}
               >
-                {fileList.length === 20 ? '' : 'Upload'}
+                {fileList?.length === 20 ? "" : "Upload"}
               </Upload>
             </Form.Item>
           </Col>

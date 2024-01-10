@@ -65,7 +65,7 @@ const FiltersLayout = () => {
         });
         setCategoryBrands(getBrands);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const getCities = async (cat) => {
@@ -81,7 +81,7 @@ const FiltersLayout = () => {
         });
         setCities(getCitiesData);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const getDevices = async (data, isNewData, newPage) => {
@@ -114,8 +114,6 @@ const FiltersLayout = () => {
           value: `${item?.storage} GB`,
         };
       });
-
-     
 
       setRams(getRams);
       setRom(getRoms);
@@ -169,7 +167,7 @@ const FiltersLayout = () => {
     search,
     sort,
     order,
-    warranty
+    warranty,
   ]);
 
   useEffect(() => {
@@ -204,6 +202,7 @@ const FiltersLayout = () => {
 
   const onFinish = (values) => {
     let getValues = removeUndefinedValues(values);
+
     let payload = {
       ...getValues,
     };
@@ -228,8 +227,12 @@ const FiltersLayout = () => {
     params.delete("order");
 
     Object.entries(payload).forEach(([key, value]) => {
-      if (value?.length) {
+      if (key === "min_price" || key === "max_price") {
         params.set(key, value);
+      } else {
+        if (value?.length) {
+          params.set(key, value);
+        }
       }
     });
 
@@ -243,7 +246,6 @@ const FiltersLayout = () => {
   const onValuesChange = (value) => {
     if (Object.keys(value)[0] === "range") {
       clearTimeout(timer);
-
       timer = setTimeout(() => {
         form.submit();
       }, 1000);
@@ -289,16 +291,16 @@ const FiltersLayout = () => {
               {brand
                 ? `${brand} ${category === "mobile" ? "mobile" : category}`
                 : `category`
-                  ? category === "mobile"
-                    ? "Mobile Phones"
-                    : category === "accessories"
-                      ? "Mobile Accessories"
-                      : category === "tablet"
-                        ? "Tablet Devices"
-                        : category === "watch"
-                          ? "Smart Watches"
-                          : "Mobile Phones"
-                  : "Mobile Devices"}{" "}
+                ? category === "mobile"
+                  ? "Mobile Phones"
+                  : category === "accessories"
+                  ? "Mobile Accessories"
+                  : category === "tablet"
+                  ? "Tablet Devices"
+                  : category === "watch"
+                  ? "Smart Watches"
+                  : "Mobile Phones"
+                : "Mobile Devices"}{" "}
               for sale in {city ? city : "Pakistan"}
             </h1>
           </div>
@@ -323,8 +325,9 @@ const FiltersLayout = () => {
           {brand && (
             <>
               <Link
-                href={`/devices?category=${category || ""}&brand=${brand || ""
-                  }`}
+                href={`/devices?category=${category || ""}&brand=${
+                  brand || ""
+                }`}
               >
                 {brand}
               </Link>
@@ -333,8 +336,9 @@ const FiltersLayout = () => {
           )}{" "}
           {city && (
             <Link
-              href={`/devices?category=${category || ""}&brand=${brand || ""
-                }&city=${city || ""}`}
+              href={`/devices?category=${category || ""}&brand=${
+                brand || ""
+              }&city=${city || ""}`}
             >
               {city}{" "}
             </Link>

@@ -1,5 +1,3 @@
-
-
 import { Col, Form, Input, Row, Select, Upload, notification } from "antd";
 import React, { useState } from "react";
 import StyledButton from "../StyledButton/StyledButton";
@@ -21,8 +19,6 @@ const PostSmartWatch = (props) => {
   const { Option } = Select;
   const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  
 
   const handleFileChange = (info) => {
     const { fileList } = info;
@@ -159,8 +155,6 @@ const PostSmartWatch = (props) => {
               <Input />
             </Form.Item>
           </Col>
-          
- 
 
           <Col lg={8} md={8} sm={12} xs={24}>
             <Form.Item
@@ -199,7 +193,7 @@ const PostSmartWatch = (props) => {
                 onChange={handleFileChange}
                 maxCount={20}
               >
-                {fileList.length === 20 ? '' : 'Upload'}
+                {fileList?.length === 20 ? "" : "Upload"}
               </Upload>
             </Form.Item>
           </Col>

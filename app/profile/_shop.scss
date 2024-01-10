@@ -1,58 +1,57 @@
 .profile_layout {
+  .profile_content {
+    display: flex;
 
-    .profile_content {
+    .filters {
+      background-color: $light;
+      min-width: 300px;
+      max-width: 300px;
+      max-height: fit-content;
+      padding: 20px;
+
+      .filters_header {
+        padding: 20px 10px;
+        padding-bottom: 15px;
+        border-bottom: solid 1px $stroke_color;
+        margin-bottom: 10px;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        .filters {
-            background-color: $light;
-            min-width: 300px;
-            max-width: 300px;
-            max-height: fit-content;
-            padding: 20px;
+        h3 {
+          font-size: $text_md;
+          margin: 0;
+        }
 
-            .filters_header {
-                padding: 20px 10px;
-                padding-bottom: 15px;
-                border-bottom: solid 1px $stroke_color;
-                margin-bottom: 10px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+        > div {
+          display: flex;
+          align-items: center;
+          gap: 10px;
 
-                h3 {
-                    font-size: $text_md;
-                    margin: 0;
-                }
+          button {
+            border-radius: 6px;
 
-                >div {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-
-                    button {
-                        border-radius: 6px;
-
-                        svg {
-                            font-size: 18px;
-                        }
-                    }
-
-                    .filters_action {
-                        display: none;
-                    }
-                }
+            svg {
+              font-size: 18px;
             }
+          }
 
+          .filters_action {
+            display: none;
+          }
         }
-
-        .shop_ads_result {
-            padding: 20px;
-        }
-
-        .load_more {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+      }
     }
+
+    .shop_ads_result {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .load_more {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  }
 }

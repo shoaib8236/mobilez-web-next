@@ -6,14 +6,7 @@ const Avatar = (props) => {
 
   return (
     <div className={`styled_avatar ${className}`}>
-      <img
-        className=""
-        src={
-          url
-            ? url
-            : ''
-        }
-      />
+      <img className="" src={url ? url : ""} />
     </div>
   );
 };

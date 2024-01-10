@@ -23,20 +23,19 @@ const PostMobile = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-
     if (defaultValue?.category === "Mobile") {
       form.setFieldsValue({
         ...defaultValue,
         files: {
-          fileList : defaultValue?.productimages?.map((item) => {
+          fileList: defaultValue?.productimages?.map((item) => {
             return {
               uid: item?.id,
               name: item?.img,
               status: "done",
               url: getImage(item?.img),
             };
-          })
-        }
+          }),
+        },
       });
     }
 
@@ -111,18 +110,33 @@ const PostMobile = (props) => {
   const updateAdd = async (data, files) => {
     const { fileList } = files;
 
+    try {
+      setLoading(true);
 
-    // let formData = new FormData();
+      let formData = new FormData();
 
-    // for (const [key, value] of Object.entries(data)) {
-    //   formData.append(key, value);
-    // }
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+      }
 
-    // const compressedImages = await Promise.all(fileList.map(compressImage));
+      let res = await api.post("/update-Ad", formData);
 
-    // for (const [key, value] of Object.entries(compressedImages)) {
-    //   formData.append(`image[]`, value?.originFileObj);
-    // }
+      if (res?.data?.status) {
+        await uploadFiles(res?.data?.product_id, files);
+        notification.success({
+          message: "Success",
+          description: "Ad updated successfully!",
+        });
+      }
+    } catch (error) {
+      notification.error({
+        message: "Oops",
+        description: "Something went wrong!",
+      });
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onFinish = async (values) => {
@@ -279,9 +293,8 @@ const PostMobile = (props) => {
                 fileList={fileList}
                 onChange={handleFileChange}
                 maxCount={20}
-                
               >
-                {fileList.length === 20 ? '' : 'Upload'}
+                {fileList?.length === 20 ? "" : "Upload"}
               </Upload>
             </Form.Item>
           </Col>
